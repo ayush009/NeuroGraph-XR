@@ -2212,7 +2212,7 @@ func _demo_finish(id: int, total: int) -> void:
 	if not await _dw(0.1, id):   # let the "found these concepts" narration finish
 		return
 	var ans: String = _answer_text
-	if ans.begins_with("Ollama is not reachable") or ans.begins_with("Q:"):
+	if ans.begins_with("Ollama is not reachable") or ans.begins_with("Q:") or IS_WEB:
 		ans = "Key facts: " + _last_facts
 	_caption("7/%d   Grounded answer" % total, _short(ans, 280))
 	_say("Here is the answer, grounded in the retrieved facts.")
@@ -3365,6 +3365,15 @@ func _apply_theme() -> void:
 	th.set_stylebox("grabber_area_highlight", "HSlider", fill)
 	app_theme = th
 	get_window().theme = th
+	if IS_WEB:   # browsers have no system fonts: bundle symbol / emoji fallbacks so ▶ 🎤 ☰ … don't show as boxes
+		var extra: Array[Font] = []
+		for fp in ["res://assets/fonts/NotoSansSymbols2.ttf", "res://assets/fonts/NotoSansSymbols.ttf", "res://assets/fonts/NotoEmoji.ttf"]:
+			if ResourceLoader.exists(fp):
+				extra.append(load(fp) as Font)
+		var base: Font = ThemeDB.fallback_font
+		var fbs: Array[Font] = base.fallbacks.duplicate()
+		fbs.append_array(extra)
+		base.fallbacks = fbs
 
 
 var app_theme: Theme
@@ -4311,11 +4320,67 @@ func _menu_btn(parent: Node, text: String, entries: Array, cb: Callable) -> void
 
 var intro: Intro
 var intro_layer: CanvasLayer
+var _web_started: bool = false
+signal web_start_clicked
+
+
+## Browser start screen: logo + "Click to start" (unlocks audio), then the intro plays with sound.
+func _web_click_to_start() -> void:
+	var layer: CanvasLayer = CanvasLayer.new()
+	layer.layer = 60
+	add_child(layer)
+	var bg: ColorRect = ColorRect.new()
+	bg.color = Color(0.008, 0.012, 0.04)
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	layer.add_child(bg)
+	var cc: CenterContainer = CenterContainer.new()
+	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
+	layer.add_child(cc)
+	var vb: VBoxContainer = VBoxContainer.new()
+	vb.alignment = BoxContainer.ALIGNMENT_CENTER
+	vb.add_theme_constant_override("separation", 18)
+	cc.add_child(vb)
+	if ResourceLoader.exists("res://assets/generated/neurograph_logo.png"):
+		var lg: TextureRect = TextureRect.new()
+		lg.texture = load("res://assets/generated/neurograph_logo.png")
+		lg.custom_minimum_size = Vector2(140, 140)
+		lg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		lg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		vb.add_child(lg)
+	var t: Label = Label.new()
+	t.text = "NEUROGRAPH XR"
+	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	t.add_theme_font_size_override("font_size", 44)
+	t.add_theme_color_override("font_color", Color(0.6, 0.88, 1.0))
+	vb.add_child(t)
+	var s: Label = Label.new()
+	s.text = "Learn how AI works by exploring it in 3D"
+	s.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	s.add_theme_color_override("font_color", Color(0.75, 0.85, 1.0))
+	vb.add_child(s)
+	var b: Button = Button.new()
+	b.text = "▶   Click to start   (sound on)"
+	b.custom_minimum_size = Vector2(320, 56)
+	b.add_theme_font_size_override("font_size", 20)
+	b.theme = app_theme
+	b.pressed.connect(func() -> void: web_start_clicked.emit())
+	vb.add_child(b)
+	var n: Label = Label.new()
+	n.text = "Browser demo  ·  for VR, the local AI tutor and voice questions, get the desktop app on GitHub"
+	n.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	n.add_theme_font_size_override("font_size", 13)
+	n.add_theme_color_override("font_color", Color(0.6, 0.7, 0.85))
+	vb.add_child(n)
+	await web_start_clicked
+	_web_started = true
+	layer.queue_free()
 
 
 ## Plays the animated welcome intro on top of everything; the start menu appears when it ends.
 func _play_intro() -> void:
 	await get_tree().process_frame   # make sure the window size is known before drawing
+	if IS_WEB and not _web_started:
+		await _web_click_to_start()   # browsers only allow sound after the visitor clicks once
 	if intro_layer == null:
 		intro_layer = CanvasLayer.new()
 		intro_layer.layer = 50
@@ -4614,7 +4679,7 @@ func _add_button(parent: Node, text: String, cb: Callable) -> void:
 
 
 func _setup_xr() -> void:
-	if preview_vr_ui:   # desktop preview of the VR screen: never take over the headset
+	if preview_vr_ui or IS_WEB:   # desktop preview of the VR screen: never take over the headset
 		return
 	var xr: XRInterface = XRServer.find_interface("OpenXR")
 	if xr == null or not (xr.is_initialized() or xr.initialize()):
@@ -5321,6 +5386,22 @@ func _build_facts(q: String) -> String:
 	return facts
 
 
+## Browser version: the retrieval half of GraphRAG still runs (nodes glow), the answer is the graph's own facts.
+func _web_answer() -> void:
+	var lines: PackedStringArray = []
+	var first: String = ""
+	for id in highlighted.slice(0, 4):
+		if not g_items.has(String(id)):
+			continue
+		var b: String = _brief(String(id), 160)
+		lines.append("•  %s:  %s" % [_title_of(String(id)), b])
+		if first == "":
+			first = "%s. %s" % [_title_of(String(id)), b]
+	_show_answer("From the knowledge graph (glowing):\n" + "\n".join(lines) + "\n\n🌐 Browser demo: download the desktop app for the full AI tutor and voice questions.")
+	if not demo_running:
+		_speak_answer(first)
+
+
 func _ask(q: String) -> void:
 	q = q.strip_edges()
 	if q == "":
@@ -5341,6 +5422,9 @@ func _ask(q: String) -> void:
 	_stop_answer_voice()   # a new question: stop reading the previous answer
 	_refresh_materials()
 	_rebuild_pulses()
+	if IS_WEB:   # browser demo: no local LLM -> answer straight from the retrieved graph facts
+		_web_answer()
+		return
 	var prompt: String = "You are a friendly tutor for %s inside a VR learning application. Answer in at most 4 short sentences, using ONLY the facts below. If the facts are not enough, say so.\n\nFACTS:\n%s\nQUESTION: %s" % [String(COURSES[course_idx]["name"]), _last_facts, q]
 	var body: String = JSON.stringify({"model": OLLAMA_MODEL, "prompt": prompt, "stream": false})
 	var err: int = http.request(OLLAMA_URL, ["Content-Type: application/json"], HTTPClient.METHOD_POST, body)
@@ -5391,10 +5475,23 @@ var _stt_busy: bool = false
 var voice_btn: Button
 
 
+var IS_WEB: bool = OS.has_feature("web")   # running in a browser (web export)
+
+
 func _setup_voice() -> void:
+	if IS_WEB:
+		# browser: no local speech engine / microphone recording; answers are read by the browser's voice
+		tts_http = HTTPRequest.new()
+		add_child(tts_http)
+		answer_player = AudioStreamPlayer.new()
+		add_child(answer_player)
+		if voice_btn:
+			voice_btn.visible = false
+		return
 	# 1) the local speech engine (exits by itself if one is already running)
-	if FileAccess.file_exists(STT_SCRIPT):
-		var args: PackedStringArray = [ProjectSettings.globalize_path(STT_SCRIPT), "--parent", str(OS.get_process_id())]
+	var stt_path: String = _stt_script_path()
+	if FileAccess.file_exists(stt_path):
+		var args: PackedStringArray = [stt_path, "--parent", str(OS.get_process_id())]
 		_stt_pid = OS.create_process("pythonw", args)   # pythonw = no console window over the game
 		if _stt_pid <= 0:
 			_stt_pid = OS.create_process("python", args)
@@ -5485,6 +5582,12 @@ func _speech_chunks(t: String) -> Array:
 
 func _speak_answer(t: String) -> void:
 	_stop_answer_voice()
+	if IS_WEB:   # browser: use the browser's built-in speech voice
+		var wv: PackedStringArray = DisplayServer.tts_get_voices_for_language("en")
+		if not wv.is_empty() and t.strip_edges() != "":
+			DisplayServer.tts_stop()
+			DisplayServer.tts_speak(_spoken(_clean_for_speech(t)), wv[0], 90, 1.0, 1.0)
+		return
 	_say_chunks = _speech_chunks(_clean_for_speech(t))
 	_fetch_next_speech()
 	if not _say_chunks.is_empty() or _say_inflight != "":
@@ -5539,6 +5642,13 @@ func _stop_answer_voice() -> void:
 		_say_inflight = ""
 	if answer_player != null:
 		answer_player.stop()
+
+
+## In the editor the script is in res://tools; in the downloadable app it sits next to the .exe (tools/stt_server.py).
+func _stt_script_path() -> String:
+	if OS.has_feature("editor"):
+		return ProjectSettings.globalize_path(STT_SCRIPT)
+	return OS.get_executable_path().get_base_dir().path_join("tools/stt_server.py")
 
 
 func _notification(what: int) -> void:
@@ -5659,7 +5769,7 @@ func _on_stt_done(result: int, code: int, _h: PackedStringArray, body: PackedByt
 	if result != OK or code != 200:
 		_show_answer("The speech engine is not running yet.\nWait a few seconds and try again. If it keeps failing, open a terminal and run:\n    pip install faster-whisper\nthen restart the app.")
 		if _stt_pid <= 0 or not OS.is_process_running(_stt_pid):   # try to (re)start it for the next attempt
-			_stt_pid = OS.create_process("pythonw", [ProjectSettings.globalize_path(STT_SCRIPT)])
+			_stt_pid = OS.create_process("pythonw", [_stt_script_path(), "--parent", str(OS.get_process_id())])
 		return
 	var parsed: Variant = JSON.parse_string(body.get_string_from_utf8())
 	var text: String = String((parsed as Dictionary).get("text", "")).strip_edges() if parsed is Dictionary else ""

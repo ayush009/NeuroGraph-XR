@@ -62,3 +62,6 @@ doc_graph.json
 /Video/
 *.lnk
 /docs_build/
+
+# local test captures
+/_webcheck/

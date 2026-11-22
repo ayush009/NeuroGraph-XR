@@ -17,6 +17,14 @@
 
 <br/>
 
+<a href="https://ayush009.github.io/NeuroGraph-XR/"><img src="https://img.shields.io/badge/▶%20PLAY%20IN%20YOUR%20BROWSER-no%20install-2EA44F?style=for-the-badge" height="42" alt="Play in your browser"/></a>
+&nbsp;
+<a href="https://github.com/ayush009/NeuroGraph-XR/releases/latest/download/NeuroGraph_XR_Windows.zip"><img src="https://img.shields.io/badge/⬇%20DOWNLOAD%20FOR%20WINDOWS-VR%20·%20AI%20·%20voice-478CBF?style=for-the-badge" height="42" alt="Download for Windows"/></a>
+
+<sub>The browser demo has the 3D graph, guided tour, quiz and all labs. The Windows app adds VR, the local AI tutor and voice questions.</sub>
+
+<br/><br/>
+
 <img src="docs/media/demo.webp" width="860" alt="NeuroGraph XR in action: the knowledge graph, the exploding network, a live forward pass"/>
 
 **[🎬 Watch the full demo](docs/media/demo.mp4)** &nbsp;·&nbsp; **[✨ Features](#-features)** &nbsp;·&nbsp; **[🚀 Quick start](#-quick-start)** &nbsp;·&nbsp; **[🥽 VR controls](#-vr-controls)** &nbsp;·&nbsp; **[🧠 How it works](#-how-the-ai-tutor-works-graphrag)**
@@ -166,6 +174,9 @@ flowchart LR
 ---
 
 ## 🚀 Quick start
+
+> **Just want to try it?** &nbsp;[▶ Play in your browser](https://ayush009.github.io/NeuroGraph-XR/) &nbsp;or&nbsp; [⬇ download the Windows app](https://github.com/ayush009/NeuroGraph-XR/releases/latest) (unzip → double-click `NeuroGraph_XR.exe`).
+> The steps below are for running it from source.
 
 ### 1 · Run the app
 1. Install **[Godot 4.7](https://godotengine.org/download)** (standard or .NET build).
