@@ -106,7 +106,7 @@ Put on a headset and NeuroGraph XR becomes a room-scale experience. The **comple
 home menu, tour captions, quiz, labs and Ask AI — floats in front of you on a see-through screen, with the
 3D graph behind it. Your controller laser is the mouse.
 
-Works with any **OpenXR-compatible PC VR headset** through SteamVR (or your headset's own OpenXR runtime) — standalone headsets work too when streamed to the PC.
+Tested on a **VR headset via SteamVR**. Any **OpenXR-compatible headset** should work — PC VR headsets directly, standalone headsets when streamed to the PC.
 
 ### 🎮 VR controls
 
