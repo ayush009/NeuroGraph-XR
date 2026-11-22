@@ -1,0 +1,17 @@
+{
+  "title": "Inside a Transformer: predicting the next word",
+  "intro_caption": "Tokens -> Embeddings -> Self-Attention -> Add & Norm -> Feed-Forward -> Next word.  Column = layer, sphere = neuron.",
+  "intro_say": "Now the inside of a Transformer. It reads the sentence, the cat sat on the, and predicts the next word. Each column is one step, and each sphere is a neuron. The labels show the data shape, where batch means how many samples are processed together.",
+  "classes": ["mat", "floor", "roof", "moon", "car"],
+  "favor": 0,
+  "note": "illustrative weights",
+  "chips": ["What does self-attention do?", "Why is there a softmax at the end?", "What are embeddings?"],
+  "layers": [
+    {"name": "Tokens", "units": 6, "color": "#3fa7ff", "shape": "[batch, 6]", "params": 0, "act": "input", "desc": "The sentence 'The cat sat on the' is cut into 6 tokens and turned into IDs by the tokenizer.", "say": "The input. The tokenizer cut the sentence into six tokens. The shape is batch by six. Batch means how many samples are processed at the same time. Here we show one sample."},
+    {"name": "Embeddings", "units": 12, "color": "#35d6a0", "shape": "[batch, 6, 768]", "params": 38597376, "act": "tanh", "desc": "Every token ID is looked up in the embedding matrix and becomes a vector of 768 numbers; position information is added.", "say": "Each token is looked up in the embedding matrix and becomes a vector of numbers. Tokens with similar meaning get similar vectors, and position information is added."},
+    {"name": "Self-Attention", "units": 12, "color": "#ff8a3d", "shape": "[batch, 6, 768]", "params": 2362368, "act": "attn", "desc": "Each token asks which other tokens matter for it and mixes in their information (queries, keys, values).", "say": "Self attention. Every token asks which other tokens matter, and mixes in their information. This is how the word cat can influence the word sat."},
+    {"name": "Add & Norm", "units": 12, "color": "#b583ff", "shape": "[batch, 6, 768]", "params": 1536, "act": "tanh", "desc": "A residual connection adds the input back, and normalisation keeps the numbers in a stable range.", "say": "Add and norm. A skip connection adds the input back, and normalisation keeps the numbers stable, so deep stacks of layers can be trained."},
+    {"name": "Feed-Forward", "units": 16, "color": "#ffd23f", "shape": "[batch, 6, 3072]", "params": 4722432, "act": "relu", "desc": "A two-layer network applied to every token separately; it expands to 3072 numbers and projects back.", "say": "The feed forward network transforms every token on its own. Each neuron computes a weighted sum, adds a bias, and applies an activation. Brighter means stronger."},
+    {"name": "Next-Word Probabilities", "units": 5, "color": "#ff4f79", "shape": "[batch, vocabulary]", "params": 0, "act": "softmax", "desc": "The last vector is projected onto the whole vocabulary; softmax turns the scores into probabilities. Here, 5 candidate words are shown.", "say": "Finally, softmax turns the scores into probabilities over the possible next words."}
+  ]
+}

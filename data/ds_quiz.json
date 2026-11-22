@@ -1,0 +1,85 @@
+{
+ "title": "Data Science Concepts Quiz",
+ "questions": [
+  {
+   "q": "Which concept removes duplicates and fixes missing values?",
+   "answer": "cleaning",
+   "why": "Bad data gives bad models - cleaning removes duplicates, fixes errors and fills or drops missing values.",
+   "example": "Two rows for the same customer, and an age of \"-5\": both get fixed before training.",
+   "say_name": "data cleaning",
+   "say": "Bad data gives bad models. Cleaning removes duplicates, fixes errors, and handles missing values."
+  },
+  {
+   "q": "Which concept creates informative inputs such as lags and rolling statistics?",
+   "answer": "feature_eng",
+   "why": "Turning raw data into informative inputs often helps a model more than choosing a fancier algorithm.",
+   "example": "From daily sales, create \"sales last week\" and \"7-day average\" as new columns.",
+   "say_name": "feature engineering",
+   "say": "Turning raw data into useful inputs, like last week's sales or a seven day average, often helps more than a fancier model."
+  },
+  {
+   "q": "Which concept happens when a model memorises its training data and fails on new data?",
+   "answer": "overfitting",
+   "why": "The model memorises noise in the training data instead of the real pattern, so it fails on new data.",
+   "example": "A student who memorised last year's answers but can't solve a new question.",
+   "say_name": "overfitting",
+   "say": "The model memorises its training data instead of the real pattern, like a student who memorised old answers and fails a new exam."
+  },
+  {
+   "q": "Which concept repeats train and validation splits to estimate how well a model generalises?",
+   "answer": "cross_val",
+   "why": "The data is split into folds; each fold takes a turn as the test set, giving a more reliable score.",
+   "example": "5-fold CV trains 5 times and averages the 5 scores.",
+   "say_name": "cross-validation",
+   "say": "The data is split into folds, and each fold takes a turn as the test set. Averaging the scores gives a more reliable estimate."
+  },
+  {
+   "q": "Which model is an ensemble of decision trees built with bagging?",
+   "answer": "random_forest",
+   "why": "Many decision trees are trained on random samples of the data, and their votes are combined.",
+   "example": "Asking 100 slightly different experts and going with the majority.",
+   "say_name": "a random forest",
+   "say": "Many decision trees each learn from a random sample of the data, and their votes are combined. Like asking a hundred experts."
+  },
+  {
+   "q": "Which concept reduces dimensions linearly while keeping the maximum variance?",
+   "answer": "pca",
+   "why": "PCA finds new axes along which the data varies most and keeps only the top few.",
+   "example": "50 correlated measurements squeezed into 2 axes you can plot.",
+   "say_name": "P C A",
+   "say": "It finds the directions in which the data varies most, and keeps only the top few. Many columns become a handful you can plot."
+  },
+  {
+   "q": "Which concept retrieves facts from a knowledge graph before a language model answers?",
+   "answer": "graphrag",
+   "why": "GraphRAG retrieves connected facts from a knowledge graph, so the answer can follow relationships.",
+   "example": "\"Which tools does project X use?\" follows edges  project -> uses -> tool.",
+   "say_name": "Graph RAG",
+   "say": "It retrieves connected facts from a knowledge graph, so the answer can follow relationships between things."
+  },
+  {
+   "q": "Which tool runs open language models locally through a simple API?",
+   "answer": "ollama",
+   "why": "Ollama downloads and runs open models on your own machine behind a simple local API.",
+   "example": "ollama run llama3.2 - a chat model running offline on your laptop.",
+   "say_name": "Ollama",
+   "say": "It downloads open models and runs them on your own computer, behind a simple local A P I."
+  },
+  {
+   "q": "Which concept shows why a model made a certain prediction?",
+   "answer": "explain",
+   "why": "Explainability methods show which inputs drove a prediction, so people can trust and check the model.",
+   "example": "\"Loan denied mainly because of: low income, short credit history.\"",
+   "say_name": "explainability",
+   "say": "It shows which inputs drove a prediction, so people can check and trust the model."
+  },
+  {
+   "q": "Which concept tracks data drift and performance after deployment?",
+   "answer": "monitoring",
+   "why": "After deployment, real-world data drifts away from the training data, so performance must be watched.",
+   "example": "A sales model trained before a pandemic slowly gets worse - monitoring raises an alarm.",
+   "say_name": "monitoring",
+   "say": "After deployment, real data slowly drifts away from the training data. Monitoring notices when performance drops."
+  }
+ ]
+}

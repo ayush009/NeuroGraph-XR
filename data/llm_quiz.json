@@ -1,0 +1,165 @@
+{
+ "title": "LLM Engineering Quiz",
+ "questions": [
+  {
+   "q": "Which component splits text into tokens and maps them to integer IDs?",
+   "answer": "tokenizer",
+   "why": "Models can't read letters - the tokenizer turns text into a list of numbers (token IDs) the model can work with.",
+   "example": "\"unbelievable\" might become  un | believ | able  ->  [403, 8812, 540].",
+   "say_name": "the tokenizer",
+   "say": "Models can't read letters. The tokenizer cuts text into pieces called tokens, and turns each one into a number the model can work with."
+  },
+  {
+   "q": "Which method builds a vocabulary by repeatedly merging the most frequent pairs of symbols?",
+   "answer": "bpe",
+   "why": "BPE starts from single characters and keeps gluing the most common pair together, so frequent words end up as one token.",
+   "example": "\"l\"+\"o\" -> \"lo\", then \"lo\"+\"w\" -> \"low\": common words become single tokens.",
+   "say_name": "Byte-Pair Encoding",
+   "say": "It starts from single characters and keeps merging the most common pair, so frequent words end up as a single token."
+  },
+  {
+   "q": "Which concept places tokens with similar meaning close together as vectors?",
+   "answer": "embeddings",
+   "why": "Each token becomes a vector of numbers; tokens used in similar ways get vectors that point in similar directions.",
+   "example": "\"cat\" and \"dog\" sit close together, \"cat\" and \"carburettor\" far apart.",
+   "say_name": "embeddings",
+   "say": "Every token becomes a vector, a list of numbers. Words used in similar ways, like cat and dog, end up close together."
+  },
+  {
+   "q": "Which concept tells the model the order of the tokens?",
+   "answer": "positional",
+   "why": "Attention by itself ignores word order, so a position signal is added to every token vector.",
+   "example": "Without it, \"dog bites man\" and \"man bites dog\" would look identical.",
+   "say_name": "positional encoding",
+   "say": "Attention on its own ignores word order. Adding a position signal is what tells dog bites man apart from man bites dog."
+  },
+  {
+   "q": "Which mechanism lets every token look at all other tokens of the same sequence?",
+   "answer": "self_attention",
+   "why": "Every token builds a weighted mix of all the other tokens, so each word understands its context.",
+   "example": "In \"the bank of the river\", \"bank\" pays attention to \"river\" - not to money.",
+   "say_name": "self-attention",
+   "say": "Each token looks at all the other tokens and mixes in what is relevant. In the bank of the river, bank pays attention to river."
+  },
+  {
+   "q": "Which technique stops the model from looking at future tokens?",
+   "answer": "masked_attention",
+   "why": "A mask hides later positions, so while learning to predict the next word the model can't peek at it.",
+   "example": "Like covering the rest of a sentence with your hand while guessing the next word.",
+   "say_name": "masked attention",
+   "say": "A mask hides the words that come later, so while learning to predict the next word, the model can't peek at it."
+  },
+  {
+   "q": "Which idea runs several attention mechanisms in parallel, each learning a different relation?",
+   "answer": "multi_head",
+   "why": "Several attention heads run side by side, and each can specialise in a different kind of relationship.",
+   "example": "One head tracks grammar (who did what), another tracks which word a pronoun refers to.",
+   "say_name": "multi-head attention",
+   "say": "Several attention heads run side by side. One might track grammar, another which word a pronoun refers to."
+  },
+  {
+   "q": "Which problem made early encoder-decoder models forget long sentences?",
+   "answer": "bottleneck",
+   "why": "The old encoder squeezed the whole sentence into one fixed vector - long inputs simply didn't fit.",
+   "example": "Like summarising a whole book in one sentence, then translating only from that sentence.",
+   "say_name": "the information bottleneck",
+   "say": "Old models squeezed a whole sentence into one fixed vector. For long sentences, important details simply got lost."
+  },
+  {
+   "q": "Which architecture is the basis of modern large language models?",
+   "answer": "transformer",
+   "why": "Transformers use attention instead of step-by-step recurrence, so they train in parallel and scale to huge sizes.",
+   "example": "GPT, Llama, Claude and Gemini are all built from stacked Transformer blocks.",
+   "say_name": "the Transformer",
+   "say": "It replaces step by step processing with attention, so it trains in parallel and scales to huge sizes. G P T and Llama are built on it."
+  },
+  {
+   "q": "Which training stage predicts the next token on enormous amounts of text?",
+   "answer": "pretraining",
+   "why": "In pretraining the model reads huge amounts of text and learns one thing: predict the next token.",
+   "example": "\"The capital of France is ...\" -> it learns to put high probability on \"Paris\".",
+   "say_name": "pretraining",
+   "say": "The model reads a huge amount of text and learns one simple task: predict the next token. Knowledge emerges from that."
+  },
+  {
+   "q": "Which method trains a reward model from human preference rankings?",
+   "answer": "rlhf",
+   "why": "Humans rank several answers, a reward model learns those preferences, and the LLM is then tuned to score high.",
+   "example": "People prefer the polite, correct reply, so the model learns to give replies like that.",
+   "say_name": "R L H F",
+   "say": "People rank several answers, a reward model learns what they prefer, and the language model is then tuned to score well."
+  },
+  {
+   "q": "Which method learns directly from preference pairs, without a reward model?",
+   "answer": "dpo",
+   "why": "DPO skips the separate reward model: it pushes the chosen answer's probability up and the rejected one's down directly.",
+   "example": "Given (better answer, worse answer) pairs, it simply learns to prefer the better one.",
+   "say_name": "D P O",
+   "say": "It skips the reward model. Given a better and a worse answer, it directly makes the better one more likely."
+  },
+  {
+   "q": "Which setting sharpens or flattens the probabilities when choosing the next token?",
+   "answer": "temperature",
+   "why": "Scores are divided by the temperature before softmax: low = sharper and safer, high = flatter and more creative.",
+   "example": "T = 0.2 almost always picks the top word; T = 1.5 often picks surprising words.",
+   "say_name": "temperature",
+   "say": "Low temperature makes the model pick the safest word. High temperature flattens the odds, so its choices get more creative."
+  },
+  {
+   "q": "Which decoding method samples only among the k most likely tokens?",
+   "answer": "top_k",
+   "why": "Top-k throws away everything except the k most likely tokens, then samples only among those.",
+   "example": "With k = 3, only the 3 best next words can ever be chosen - no weird long-tail words.",
+   "say_name": "top-k sampling",
+   "say": "Only the k most likely tokens are kept, and the model samples among them. Strange, unlikely words are cut off."
+  },
+  {
+   "q": "Which concept lets a model learn a task from examples in the prompt, without changing its weights?",
+   "answer": "icl",
+   "why": "The examples in the prompt steer the answer while the model's weights stay exactly the same.",
+   "example": "Show \"happy -> positive, awful -> negative\", then \"great -> ?\" and it answers \"positive\".",
+   "say_name": "in-context learning",
+   "say": "The examples in the prompt steer the answer, while the model's weights stay exactly the same."
+  },
+  {
+   "q": "Which approach fetches relevant documents first and then lets the LLM answer from them?",
+   "answer": "rag",
+   "why": "RAG first retrieves relevant documents, then gives them to the LLM so it can answer from real sources.",
+   "example": "Asking about your company handbook: the right pages are found first, then the model answers from them.",
+   "say_name": "RAG",
+   "say": "First the relevant documents are retrieved, then the model answers from them. That keeps answers grounded in real sources."
+  },
+  {
+   "q": "Which problem describes fluent but invented answers?",
+   "answer": "hallucination",
+   "why": "The model is trained to sound fluent, not to be correct, so it can confidently invent facts.",
+   "example": "Citing a research paper with a real-sounding title that doesn't exist.",
+   "say_name": "hallucination",
+   "say": "The model is trained to sound fluent, not to be correct. So it can confidently invent facts, like a paper that doesn't exist."
+  },
+  {
+   "q": "Which step splits documents into pieces that can be embedded and retrieved?",
+   "answer": "chunking",
+   "why": "Long documents are cut into small pieces so each piece can be embedded and retrieved on its own.",
+   "example": "A 300-page manual becomes ~1,000 chunks of a paragraph or two each.",
+   "say_name": "chunking",
+   "say": "Long documents are cut into small pieces, so each piece can be embedded and found on its own."
+  },
+  {
+   "q": "Which technique finds the nearest vectors quickly by trading a little accuracy for speed?",
+   "answer": "ann",
+   "why": "Approximate Nearest Neighbour search skips checking every vector and accepts a tiny accuracy loss for huge speed.",
+   "example": "Finding the top 5 matches among 10 million vectors in milliseconds instead of seconds.",
+   "say_name": "approximate nearest neighbour search",
+   "say": "Instead of checking every vector, it takes smart shortcuts. A tiny bit less accurate, but thousands of times faster."
+  },
+  {
+   "q": "Which method merges several ranked result lists by summing 1 divided by (k plus rank)?",
+   "answer": "rrf",
+   "why": "RRF scores each document by summing 1 / (k + rank) across lists, so items ranked well everywhere rise to the top.",
+   "example": "Rank 1 in keyword search and rank 2 in vector search beats rank 1 in only one of them.",
+   "say_name": "reciprocal rank fusion",
+   "say": "Each document gets points from every ranked list, and more points for a higher rank. Documents ranked well everywhere win."
+  }
+ ]
+}

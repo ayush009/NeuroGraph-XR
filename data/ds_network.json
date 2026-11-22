@@ -1,0 +1,12 @@
+{
+  "title": "Time-Series Anomaly Detection Network",
+  "layers": [
+    {"name": "Input", "units": 16, "color": "#3fa7ff", "shape": "[batch, 60, 8]", "params": 0, "desc": "60 time steps of 8 sensor features per step (e.g. position, speed, signal strength)."},
+    {"name": "Conv1D 1", "units": 24, "color": "#35d6a0", "shape": "[batch, 60, 32]", "params": 2336, "desc": "Local temporal patterns such as sudden jumps in the signal."},
+    {"name": "Conv1D 2", "units": 24, "color": "#35d6a0", "shape": "[batch, 30, 64]", "params": 6208, "desc": "Higher-level motion patterns after pooling."},
+    {"name": "LSTM", "units": 20, "color": "#b583ff", "shape": "[batch, 64]", "params": 33024, "desc": "Remembers long-range dependencies in the trajectory."},
+    {"name": "Attention", "units": 20, "color": "#ff8a3d", "shape": "[batch, 64]", "params": 16640, "desc": "Weights which time steps matter most for the decision."},
+    {"name": "Dense", "units": 12, "color": "#ffd23f", "shape": "[batch, 32]", "params": 2080, "desc": "Fully connected layer combining all learned features."},
+    {"name": "Output", "units": 3, "color": "#ff4f79", "shape": "[batch, 3]", "params": 99, "desc": "Class probabilities: normal, drift, anomaly."}
+  ]
+}

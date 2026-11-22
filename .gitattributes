@@ -1,0 +1,10 @@
+# Normalize line endings for all text files.
+* text=auto eol=lf
+
+# Binary assets (stored directly, no Git LFS needed - the largest file is < 10 MB)
+*.png binary
+*.jpg binary
+*.webp binary
+*.mp3 binary
+*.mp4 binary
+*.ico binary

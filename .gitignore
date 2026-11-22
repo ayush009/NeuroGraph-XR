@@ -1,0 +1,64 @@
+# ── Godot ─────────────────────────────────────────────
+.godot/
+/android/
+*.tmp
+
+# ── Build outputs (rebuild via Project > Export) ──────
+/builds/
+*.apk
+*.apk.idsig
+*.aab
+
+# ── Large source media NOT used by the app ────────────
+# The app plays DARK_Black_Hole.ogv; the .mp4 is only the original source.
+*.mp4
+!docs/media/demo.mp4
+
+# ── Developer-only editor/AI tools (not needed to run the app) ──
+/godot_ai_workbench/
+/addons/godot_ai/
+/addons/gd-openai/
+/addons/GPTIntegration/
+/addons/claude_3.5_sonnet_chat_api/
+/.claude/
+
+# ── Contains an API key — never commit ────────────────
+tubs_final.py
+
+
+# ── Python / OS ───────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ── Old model, no longer used by the app ──────────────
+gnss_optimized.glb
+gnss_optimized.glb.import
+
+# ── Background images not used by the app (no menu button) ──
+airport_background.jpg
+airport_background.jpg.import
+airport_background_pano.png
+airport_background_pano.png.import
+plane_interior_background.jpg
+plane_interior_background.jpg.import
+plane_interior_background_pano.png
+plane_interior_background_pano.png.import
+heaven_sky.png
+heaven_sky.png.import
+
+# ── Internal product data (CAD attributes + PRO.FILE parts list) ──
+# Rebuild with tools/build_full_model.py and tools/build_product_graph.py.
+# Not for Git without approval (parts list is internal).
+parts_knowledge.json
+product_graph.json
+doc_graph.json
+
+# ── Raw recordings (optimized copies live in docs/media) ──
+/Screenshot/
+/Video/
+*.lnk
+/docs_build/

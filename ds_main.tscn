@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bq8linfigg8tc"]
+
+[ext_resource type="Script" uid="uid://mesi58wlqqgu" path="res://scripts/ds_viewer.gd" id="1_ds"]
+
+[node name="DSViewer" type="Node3D" unique_id=1174222283]
+script = ExtResource("1_ds")
