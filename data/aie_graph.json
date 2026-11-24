@@ -1,0 +1,4736 @@
+{
+ "title": "AI Engineering",
+ "nodes": [
+  {
+   "id": "chatgpt_name",
+   "label": "ChatGPT: the name",
+   "desc": "ChatGPT combines a chat interface with a Generative Pretrained Transformer.",
+   "category": "Intro"
+  },
+  {
+   "id": "chatgpt_success",
+   "label": "Why ChatGPT took off",
+   "desc": "Ease of use, a free tier, session memory, broad skill, viral sharing and good timing drove record adoption.",
+   "category": "Intro"
+  },
+  {
+   "id": "task_specific_to_general",
+   "label": "One model, many tasks",
+   "desc": "The shift from training one specialist per task to a single general-purpose foundation model.",
+   "category": "Intro"
+  },
+  {
+   "id": "genai_drivers",
+   "label": "Why now: 4 ingredients",
+   "desc": "Transformers, web-scale data, GPU compute and better training, all scaled together, enabled generative AI.",
+   "category": "Intro"
+  },
+  {
+   "id": "ai_race",
+   "label": "The AI race",
+   "desc": "Intense competition among companies to release foundation models and assistants.",
+   "category": "Intro"
+  },
+  {
+   "id": "ai_in_the_news",
+   "label": "AI in the headlines",
+   "desc": "Real-world impacts of AI on energy, misuse, user safety and jobs.",
+   "category": "Intro"
+  },
+  {
+   "id": "next_token",
+   "label": "Next-token prediction",
+   "desc": "The core task of a language model: output a probability distribution over the next token given the previous ones.",
+   "category": "Intro"
+  },
+  {
+   "id": "generation_loop",
+   "label": "Autoregressive loop",
+   "desc": "Text generation by repeatedly predicting a token, selecting it and appending it to the input.",
+   "category": "Intro"
+  },
+  {
+   "id": "language_model",
+   "label": "Language model",
+   "desc": "A model that assigns probabilities to word or token sequences, factorised into next-token probabilities by the chain rule.",
+   "category": "Intro"
+  },
+  {
+   "id": "lm_in_asr",
+   "label": "LMs in speech recognition",
+   "desc": "Using a language model to re-rank acoustically similar transcriptions by plausibility.",
+   "category": "Intro"
+  },
+  {
+   "id": "self_supervised_training",
+   "label": "Self-supervised training",
+   "desc": "Learning from raw text where the next word itself serves as the label, so no human annotation is needed.",
+   "category": "Intro"
+  },
+  {
+   "id": "bigram_model",
+   "label": "Bigram model",
+   "desc": "A counting-based model predicting the next word from only the previous word; its table grows as V squared.",
+   "category": "Intro"
+  },
+  {
+   "id": "beyond_next_token",
+   "label": "Why prediction is powerful",
+   "desc": "Architecture, training with alignment, and inference context together turn next-token prediction into capable behaviour.",
+   "category": "Intro"
+  },
+  {
+   "id": "llm",
+   "label": "Large language model",
+   "desc": "A Transformer-based language model scaled up in data, parameters and compute; the text member of the foundation model family.",
+   "category": "Intro"
+  },
+  {
+   "id": "emergent_abilities",
+   "label": "Emergent abilities",
+   "desc": "Skills like translation, reasoning and coding that appear at scale from next-token training alone.",
+   "category": "Intro"
+  },
+  {
+   "id": "foundation_model",
+   "label": "Foundation model",
+   "desc": "A model trained on broad, large-scale data that can be adapted to many downstream tasks by prompting or fine-tuning.",
+   "category": "Intro"
+  },
+  {
+   "id": "ai_system",
+   "label": "AI system",
+   "desc": "One or more models combined with context, data, tools, application logic and a user interface to solve a real task.",
+   "category": "Intro"
+  },
+  {
+   "id": "chatgpt_stack",
+   "label": "ChatGPT = FM+align+UI",
+   "desc": "ChatGPT is a product: an aligned foundation model inside a chat interface with memory and safety filters.",
+   "category": "Intro"
+  },
+  {
+   "id": "fm_modalities",
+   "label": "FMs across modalities",
+   "desc": "Foundation models for images, audio, video and multimodal data, such as CLIP, Whisper, Sora and Gemini.",
+   "category": "Intro"
+  },
+  {
+   "id": "ai_engineering",
+   "label": "AI engineering",
+   "desc": "The discipline of building reliable, useful, maintainable applications with foundation models as core components.",
+   "category": "Intro"
+  },
+  {
+   "id": "ai_engineering_stack",
+   "label": "AI engineering stack",
+   "desc": "Six layers from application down to infrastructure, crossed by evaluation, safety and monitoring.",
+   "category": "Intro"
+  },
+  {
+   "id": "capabilities_to_domains",
+   "label": "Capabilities to domains",
+   "desc": "Six core AI capabilities that combine into many application domains.",
+   "category": "Intro"
+  },
+  {
+   "id": "app_archetypes",
+   "label": "Application archetypes",
+   "desc": "Three common patterns: knowledge assistant, coding assistant and autonomous agent.",
+   "category": "Intro"
+  },
+  {
+   "id": "demo_vs_system",
+   "label": "Demo vs system",
+   "desc": "The gap between a one-off impressive demo and a reliable, safe, efficient production system.",
+   "category": "Intro"
+  },
+  {
+   "id": "failure_modes",
+   "label": "Failure modes",
+   "desc": "Ways an AI pipeline breaks, from outdated data and hallucinations to tool errors and prompt injection.",
+   "category": "Intro"
+  },
+  {
+   "id": "vibe_coding",
+   "label": "Code gen & vibe coding",
+   "desc": "LLMs writing, debugging and translating code; vibe coding means building software mostly by prompting an AI.",
+   "category": "Intro"
+  },
+  {
+   "id": "image_video_generation",
+   "label": "Image & video generation",
+   "desc": "Generative models like DALL-E 3 and Sora turning prompts into images and videos.",
+   "category": "Intro"
+  },
+  {
+   "id": "open_weights",
+   "label": "Open-weight models",
+   "desc": "Models whose trained parameters are published under a license, without necessarily releasing code or data.",
+   "category": "Intro"
+  },
+  {
+   "id": "ollama_local",
+   "label": "Ollama & llama.cpp",
+   "desc": "Tools for downloading and running open-weight LLMs locally via CLI, GUI or HTTP server.",
+   "category": "Intro"
+  },
+  {
+   "id": "weight_memory",
+   "label": "Weight memory",
+   "desc": "Memory for model weights, roughly parameters times bits per weight divided by eight.",
+   "category": "Intro"
+  },
+  {
+   "id": "hardware_challenge",
+   "label": "Model-fit challenge",
+   "desc": "Hands-on exercise trading off model quality, memory use and generation speed on your own hardware.",
+   "category": "Intro"
+  },
+  {
+   "id": "langchain_langflow",
+   "label": "LangChain & LangFlow",
+   "desc": "A framework and its visual editor for composing prompts, chains, agents, memory and retrievers into LLM apps.",
+   "category": "Intro"
+  },
+  {
+   "id": "course_roadmap",
+   "label": "Course roadmap",
+   "desc": "The course path: understand the models, build with models, engineer AI systems.",
+   "category": "Intro"
+  },
+  {
+   "id": "course_logistics",
+   "label": "Lecture & lab",
+   "desc": "Exam admission via a Jupyter-based computer lab with units on foundation models, agents, RAG and LoRA.",
+   "category": "Intro"
+  },
+  {
+   "id": "ifn_research",
+   "label": "Research: efficient LLMs",
+   "desc": "Research on quantisation such as BOF4, adapters, reasoning and neuromorphic hardware.",
+   "category": "Intro"
+  },
+  {
+   "id": "text_to_text_pipeline",
+   "label": "Text-to-Text Pipeline",
+   "desc": "The six-stage path that turns input text into tokens, vectors, scores and finally new output text.",
+   "category": "Tokens"
+  },
+  {
+   "id": "pipeline_input_side",
+   "label": "Pipeline Input Side",
+   "desc": "Tokenization plus embedding lookup: the steps that convert a string into a sequence of vectors.",
+   "category": "Tokens"
+  },
+  {
+   "id": "pipeline_output_side",
+   "label": "Pipeline Output Side",
+   "desc": "Forward pass to logits, token selection and detokenization: the steps that turn vectors back into text.",
+   "category": "Tokens"
+  },
+  {
+   "id": "autoregressive",
+   "label": "Autoregressive Generation",
+   "desc": "Generating text one token at a time, feeding each chosen token back in as input for the next step.",
+   "category": "Tokens"
+  },
+  {
+   "id": "token",
+   "label": "Token",
+   "desc": "A discrete piece of text from a fixed vocabulary, identified by an integer ID; the unit an LLM reads and writes.",
+   "category": "Tokens"
+  },
+  {
+   "id": "vocabulary_granularity",
+   "label": "Vocabulary Granularity",
+   "desc": "The choice of token size (character, subword or word), trading vocabulary size against sequence length.",
+   "category": "Tokens"
+  },
+  {
+   "id": "bpe",
+   "label": "Byte-Pair Encoding",
+   "desc": "A greedy algorithm that builds a subword vocabulary by repeatedly merging the most frequent adjacent token pair.",
+   "category": "Tokens"
+  },
+  {
+   "id": "byte_level_bpe",
+   "label": "Byte-Level BPE",
+   "desc": "BPE applied to UTF-8 bytes, starting from 256 byte tokens so any text can be encoded.",
+   "category": "Tokens"
+  },
+  {
+   "id": "tokenizer",
+   "label": "Tokenizer",
+   "desc": "The component that converts text to token IDs and back, using a fixed vocabulary and merge rules.",
+   "category": "Tokens"
+  },
+  {
+   "id": "special_tokens",
+   "label": "Special Tokens",
+   "desc": "Reserved control tokens such as start, end, padding and chat role markers.",
+   "category": "Tokens"
+  },
+  {
+   "id": "token_cost",
+   "label": "Token Cost & Budget",
+   "desc": "How token counts determine context usage, compute and API billing.",
+   "category": "Tokens"
+  },
+  {
+   "id": "tokenizer_model_coupling",
+   "label": "Tokenizer-Model Coupling",
+   "desc": "A model is trained for one tokenizer; its output layer has one entry per vocabulary token.",
+   "category": "Tokens"
+  },
+  {
+   "id": "ids_need_embeddings",
+   "label": "Why IDs Need Embeddings",
+   "desc": "Token IDs are arbitrary indices, so each is replaced by a learned vector that can carry meaning.",
+   "category": "Tokens"
+  },
+  {
+   "id": "embedding",
+   "label": "Embedding",
+   "desc": "A learned d_model-dimensional vector for each token, stored as a row of the embedding matrix and fetched by ID.",
+   "category": "Tokens"
+  },
+  {
+   "id": "one_hot_projection",
+   "label": "One-Hot Projection",
+   "desc": "Viewing embedding lookup as multiplying a sparse one-hot vector by the embedding matrix.",
+   "category": "Tokens"
+  },
+  {
+   "id": "embedding_geometry",
+   "label": "Embedding Geometry",
+   "desc": "Learned embeddings place similar tokens near each other and encode relations as directions.",
+   "category": "Tokens"
+  },
+  {
+   "id": "norm_vs_direction",
+   "label": "Norm vs. Direction",
+   "desc": "Vector length tends to track word frequency, while vector direction carries meaning.",
+   "category": "Tokens"
+  },
+  {
+   "id": "cosine_similarity",
+   "label": "Cosine Similarity",
+   "desc": "The cosine of the angle between two vectors, from -1 to +1, used to compare meaning independent of length.",
+   "category": "Tokens"
+  },
+  {
+   "id": "word2vec",
+   "label": "Word2Vec (Skip-Gram)",
+   "desc": "An early shallow network that learns word embeddings by predicting a word's context neighbours.",
+   "category": "Tokens"
+  },
+  {
+   "id": "context_independent_embeddings",
+   "label": "Static Token Embeddings",
+   "desc": "The initial lookup gives each token the same vector regardless of its surrounding words.",
+   "category": "Tokens"
+  },
+  {
+   "id": "logits",
+   "label": "Logits",
+   "desc": "The raw score vector the model outputs at a position, one entry per vocabulary token.",
+   "category": "Tokens"
+  },
+  {
+   "id": "softmax",
+   "label": "Softmax",
+   "desc": "A function that exponentiates and normalises scores into a probability distribution summing to one.",
+   "category": "Tokens"
+  },
+  {
+   "id": "generation_stopping",
+   "label": "Generation Loop & Stopping",
+   "desc": "Repeatedly score, select and append one token until <eos>, a length limit or a stop rule ends it.",
+   "category": "Tokens"
+  },
+  {
+   "id": "context_window",
+   "label": "Context Window",
+   "desc": "The maximum number of tokens (prompt plus output) a model can process at once.",
+   "category": "Tokens"
+  },
+  {
+   "id": "inference_walkthrough",
+   "label": "5-Token Walkthrough",
+   "desc": "A hand-run example of generation with a 5-token window that drops its oldest token when full.",
+   "category": "Tokens"
+  },
+  {
+   "id": "detokenization",
+   "label": "Detokenization",
+   "desc": "Turning generated token IDs back into text via their byte sequences and UTF-8 decoding.",
+   "category": "Tokens"
+  },
+  {
+   "id": "training_loop",
+   "label": "Training Loop",
+   "desc": "Next-token training: shift targets by one, compute cross-entropy, backpropagate and update weights.",
+   "category": "Tokens"
+  },
+  {
+   "id": "static_vs_contextual",
+   "label": "Static vs Contextual",
+   "desc": "Embeddings start identical for a token everywhere; contextual vectors adapt to the surrounding words.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "recurrence_vs_attention_paths",
+   "label": "Recurrence vs Attention",
+   "desc": "Two ways to route information between positions: a step-by-step chain or weighted direct links.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "rnn_forward_pass",
+   "label": "RNN Forward Pass",
+   "desc": "Each step embeds the token and mixes it with the previous hidden state through learned weights and a nonlinearity.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "rnn_output_layer",
+   "label": "RNN Output Layer",
+   "desc": "A linear layer maps the hidden state to logits, softmax gives probabilities, argmax picks a token.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "seq2seq_encoder_decoder",
+   "label": "Encoder-Decoder RNN",
+   "desc": "An encoder compresses the input into a context vector that seeds a decoder generating the output.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "seq2seq_translation_walkthrough",
+   "label": "Seq2Seq Translation Demo",
+   "desc": "Step-by-step translation of 'I love machine learning' into Swedish with <bos> and <eos>.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "context_bottleneck",
+   "label": "Context Bottleneck",
+   "desc": "One fixed-size vector cannot hold all details of long inputs, motivating attention.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "rnn",
+   "label": "Recurrent Neural Network",
+   "desc": "A network that reads a sequence token by token, updating a hidden state that serves as memory.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "seq2seq",
+   "label": "Seq2Seq",
+   "desc": "Encoder-decoder architecture that transforms one sequence into another of possibly different length.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_scores",
+   "label": "Attention Scores",
+   "desc": "Relevance numbers comparing the decoder state with each encoder state, via dot product or a learned additive function.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_weights_context",
+   "label": "Weights & Context Vector",
+   "desc": "Softmax-normalized scores used to average encoder states into a per-step context vector.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "decoder_update_attention",
+   "label": "Decoder Update",
+   "desc": "The decoder combines previous token, previous state and context vector to form its new state and output.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_step_by_step",
+   "label": "Attention Step by Step",
+   "desc": "Walkthrough showing attention shifting across source words as each Swedish word is produced.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_maps",
+   "label": "Attention Maps",
+   "desc": "Heatmaps of attention weights, target by source, that reveal learned alignments.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_benefits",
+   "label": "Why Attention Helps",
+   "desc": "Removes the bottleneck, shortens gradient paths and yields interpretable soft alignments.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention",
+   "label": "Attention",
+   "desc": "A mechanism that computes relevance weights and reads a weighted mix of representations from chosen positions.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_is_all_you_need",
+   "label": "Attention Is All You Need",
+   "desc": "The 2017 paper that introduced the Transformer by dropping recurrence in favour of attention.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "cross_to_self_attention",
+   "label": "Cross- to Self-Attention",
+   "desc": "Moving from attending to another sequence to attending within the same sequence.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "qkv_roles",
+   "label": "Q, K, V Roles",
+   "desc": "Query asks, key is matched, value is delivered - the library view of attention.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "qkv_projections",
+   "label": "Q, K, V Projections",
+   "desc": "Three learned matrices per layer that map each token vector to its query, key and value.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "scaled_dot_product",
+   "label": "Scaled Dot-Product",
+   "desc": "Match by dot product over sqrt(d_k), normalize by softmax, aggregate values.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "attention_matrix_form",
+   "label": "Attention Matrix",
+   "desc": "Matrix form softmax(QK^T/sqrt(d_k))V computing all positions at once; rows sum to one.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "multi_head_attention",
+   "label": "Multi-Head Attention",
+   "desc": "Several attention heads with separate projections, concatenated and mixed by W_O.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "head_patterns",
+   "label": "Head Patterns",
+   "desc": "Observed head behaviours like previous-token or coreference attention, learned rather than assigned.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "transformer",
+   "label": "Transformer",
+   "desc": "Architecture built from stacked attention and feed-forward layers with residuals and normalization, without recurrence.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "self_attention",
+   "label": "Self-Attention",
+   "desc": "Attention in which every token of a sequence gathers information from tokens of the same sequence.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "qkv",
+   "label": "Queries, Keys, Values",
+   "desc": "The three learned projections of each token used to match (query, key) and to carry information (value).",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "multi_head",
+   "label": "Multi-Head",
+   "desc": "Running several attention operations in parallel so different relation types can be captured.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "permutation_equivariance",
+   "label": "Permutation Equivariance",
+   "desc": "Without position info, shuffling inputs to self-attention just shuffles its outputs.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "sinusoidal_pe",
+   "label": "Sinusoidal PE",
+   "desc": "Fixed sine and cosine vectors at many frequencies added to embeddings to encode position.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "pe_frequency_scales",
+   "label": "PE Frequency Scales",
+   "desc": "Fast waves in low dimensions give local position, slow waves in high dimensions give global position.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "pe_meaning_distortion",
+   "label": "PE and Meaning",
+   "desc": "Adding position shifts the embedding on purpose; the model learns to separate what from where.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "unmasked_attention",
+   "label": "Unmasked Attention",
+   "desc": "Bidirectional encoder attention where each token sees all past and future tokens.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "causal_mask_matrix",
+   "label": "Causal Mask Matrix",
+   "desc": "Adding minus infinity above the diagonal makes attention weights lower-triangular.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "parallel_training_sequential_generation",
+   "label": "Parallel Train, Serial Gen",
+   "desc": "Masked training predicts all positions at once, while inference appends one token at a time.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "positional_encoding",
+   "label": "Positional Encoding",
+   "desc": "Information about token position injected into the model so attention can use word order.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "causal_mask",
+   "label": "Causal Mask",
+   "desc": "A mask that blocks attention to future positions so predictions depend only on the prefix.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "transformer_layer_components",
+   "label": "Transformer Layer Parts",
+   "desc": "Attention, FFN, residual connections and layer normalization arranged as MHA, Add & Norm, FFN, Add & Norm.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "position_wise_ffn",
+   "label": "Position-wise FFN",
+   "desc": "A two-layer network applied to each token separately, expanding 512 to 2048 and back.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "residual_connections",
+   "label": "Residual Connections",
+   "desc": "Skip paths that add a sublayer's input to its output so it only learns an update.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "layer_norm_add_norm",
+   "label": "LayerNorm & Add & Norm",
+   "desc": "Per-token normalization with learned scale and shift, applied after each residual addition.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "stacking_layers",
+   "label": "Stacking Layers",
+   "desc": "Chaining L identical blocks so later layers build on features from earlier ones.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "width_depth_scale",
+   "label": "Width & Depth",
+   "desc": "d_model and the number of layers, the two main knobs of model size.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "transformer_families",
+   "label": "Three Families",
+   "desc": "Encoder-decoder, encoder-only and decoder-only Transformers and their typical tasks.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "lm_head_last_state",
+   "label": "LM Head",
+   "desc": "Linear layer mapping final hidden states to vocabulary logits; at generation only the last state is used.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "weight_tying",
+   "label": "Weight Tying",
+   "desc": "Reusing the transposed embedding matrix as the output projection to halve those parameters.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "transformer_design_principles",
+   "label": "Why Transformers Won",
+   "desc": "Parallelism, direct connections and stable depth made Transformers replace RNNs.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "ffn",
+   "label": "Feed-Forward Network",
+   "desc": "The per-token nonlinear sublayer of a Transformer block that transforms features within a token.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "residual_norm",
+   "label": "Residual & Norm",
+   "desc": "Residual connections plus layer normalization that keep deep Transformer stacks trainable.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "pre_layernorm",
+   "label": "Pre-LN vs Post-LN",
+   "desc": "Placement of normalization in a block; Pre-LN normalizes the sublayer input and keeps the residual path an identity.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "rmsnorm",
+   "label": "RMSNorm",
+   "desc": "Normalization that divides a token vector by its root mean square and applies a learned weight, without mean centering.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "rope",
+   "label": "RoPE",
+   "desc": "Rotary Position Embeddings: queries and keys are rotated by position-dependent angles so attention sees relative distance.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "mqa",
+   "label": "Multi-Query Attention",
+   "desc": "Attention variant in which all query heads share a single key and value projection, minimizing the KV cache.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "gqa",
+   "label": "Grouped-Query Attention",
+   "desc": "Query heads are split into groups that each share one key and value head; a tunable middle ground between MHA and MQA.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "glu_gating",
+   "label": "Gating & GLU",
+   "desc": "A Gated Linear Unit multiplies a value projection by a sigmoid gate that controls how much of each feature passes.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "swiglu",
+   "label": "SwiGLU FFN",
+   "desc": "Feed-forward layer using a SiLU-gated linear unit that can both suppress and amplify features.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "modern_decoder_block",
+   "label": "Modern Decoder Block",
+   "desc": "Pre-RMSNorm, RoPE, grouped-query attention and a SwiGLU FFN on the classic attention-then-FFN skeleton.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "kv_cache",
+   "label": "KV Cache",
+   "desc": "Store the keys and values of already-processed tokens per layer so each new token only computes its own query instead of re-running the whole prefix.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe",
+   "label": "Mixture of Experts",
+   "desc": "A layer that replaces the dense FFN with several expert FFNs plus a router, so each token runs only a few experts and gains capacity without more compute.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "router",
+   "label": "Router",
+   "desc": "A learned gate that scores every expert for a token and selects the top-k, deciding which experts run and how their outputs are weighted.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "topk_routing",
+   "label": "Top-k Routing",
+   "desc": "Selecting the k highest-scoring experts per token per layer; selection is discrete and reused by tokens that pick the same expert.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "expert_ffn",
+   "label": "Expert FFN",
+   "desc": "One of several interchangeable feed-forward networks inside a MoE layer, each with its own weights, applied only to tokens routed to it.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "active_params",
+   "label": "Active Parameters",
+   "desc": "The subset of a model's parameters actually used to process one token, versus the total parameters stored, which include all experts.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "load_balancing",
+   "label": "Load Balancing",
+   "desc": "An auxiliary training loss that encourages the router to spread tokens across experts instead of overusing a favoured few.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "ssm",
+   "label": "State Space Model",
+   "desc": "A sequence model that keeps a fixed-size state, updated with linear maps as each token arrives, avoiding a growing KV cache.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "mamba",
+   "label": "Mamba",
+   "desc": "A selective state space model whose update parameters depend on the input, so it can choose per token what to retain and write.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "lstm",
+   "label": "LSTM",
+   "desc": "A recurrent network with a separate cell state and three gates (forget, input, output) that regulate memory over long spans.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "linear_attention",
+   "label": "Linear Attention",
+   "desc": "Attention that folds past keys and values into one fixed-size matrix using a kernel feature map, giving linear cost in sequence length.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "gated_deltanet",
+   "label": "Gated DeltaNet",
+   "desc": "Linear attention with a retention gate and error-driven updates that correct stale associations by writing only the delta.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "looped_llm",
+   "label": "Looped LLM",
+   "desc": "A model that applies one shared block repeatedly, gaining processing steps without adding parameters, at the cost of latency.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "xlstm",
+   "label": "xLSTM",
+   "desc": "An extended LSTM with scalar and matrix memory that keeps recurrent gated memory competitive with attention.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "bigo_scaling",
+   "label": "Big-O Scaling",
+   "desc": "How compute and memory grow with context length N for each architecture family, holding model size fixed.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "fixed_memory",
+   "label": "Fixed-Size Memory",
+   "desc": "A state of constant size that summarises the past, trading exact recall of specific tokens for memory that does not grow.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "ttft_tpot",
+   "label": "TTFT & TPOT",
+   "desc": "Time to first token (prefill-sensitive) and time per output token (decode-sensitive), the two main latency metrics.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "architecture_choice",
+   "label": "Architecture Choice",
+   "desc": "Selecting a model family from application needs: retrieval accuracy, concurrent users, device memory and latency budget.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "training_data",
+   "label": "Training Data",
+   "desc": "The text corpus an LLM learns from; its quality, coverage and mixture largely decide what the model can do.",
+   "category": "Training"
+  },
+  {
+   "id": "data_shapes_capabilities",
+   "label": "Data Becomes Weights",
+   "desc": "Next-token training stores the corpus's grammar, facts, style and task patterns in the weights; missing data means missing skills.",
+   "category": "Training"
+  },
+  {
+   "id": "data_sources",
+   "label": "Data Sources",
+   "desc": "Wikipedia, books, code, papers and above all web crawls such as Common Crawl make up pretraining corpora.",
+   "category": "Training"
+  },
+  {
+   "id": "data_transparency",
+   "label": "Crawlers & Transparency",
+   "desc": "Company crawlers collect data whose composition is rarely disclosed; engineers must track provenance, licenses and privacy.",
+   "category": "Training"
+  },
+  {
+   "id": "fineweb",
+   "label": "FineWeb",
+   "desc": "Hugging Face's open 44 TB English web dataset built from 96 Common Crawl snapshots with a documented pipeline.",
+   "category": "Training"
+  },
+  {
+   "id": "fineweb_pipeline",
+   "label": "Cleaning Pipeline",
+   "desc": "Staged processing: text extraction, URL blocklist, language filter, deduplication and heuristic quality filters.",
+   "category": "Training"
+  },
+  {
+   "id": "filtering_dedup",
+   "label": "Filtering & Dedup",
+   "desc": "Filters reshape the data distribution; deduplication reduces memorization, and train-test overlap must be checked.",
+   "category": "Training"
+  },
+  {
+   "id": "fineweb_edu",
+   "label": "FineWeb-Edu",
+   "desc": "Subset of FineWeb chosen by an LLM-trained classifier for educational value, giving better results with less data.",
+   "category": "Training"
+  },
+  {
+   "id": "data_mixing",
+   "label": "Data Mixing",
+   "desc": "Choosing the token share of each source, upsampling valuable small sources and downsampling dominant ones.",
+   "category": "Training"
+  },
+  {
+   "id": "synthetic_data",
+   "label": "Synthetic Data (Phi-1)",
+   "desc": "Training text generated by another model, e.g. GPT-3.5-written textbooks used to train the Phi-1 code model.",
+   "category": "Training"
+  },
+  {
+   "id": "data_bias",
+   "label": "Data Bias",
+   "desc": "Models copy and can amplify skewed correlations in their corpus because they optimize likelihood, not truth or fairness.",
+   "category": "Training"
+  },
+  {
+   "id": "language_gap",
+   "label": "Language Gap",
+   "desc": "Performance differs by language, e.g. GPT-4 MMLU 85.5% in English vs 62.0% in Telugu.",
+   "category": "Training"
+  },
+  {
+   "id": "pretraining",
+   "label": "Pretraining",
+   "desc": "Self-supervised next-token training on a large corpus; there is no human labeling because the text shifts itself into targets.",
+   "category": "Training"
+  },
+  {
+   "id": "cross_entropy",
+   "label": "Cross-Entropy Loss",
+   "desc": "The negative log probability the model gives the correct next token; low probability means high loss.",
+   "category": "Training"
+  },
+  {
+   "id": "flops",
+   "label": "FLOPs",
+   "desc": "Floating-point operations measuring training compute; about 6 per parameter per token for dense autoregressive LLMs.",
+   "category": "Training"
+  },
+  {
+   "id": "pretraining_objective",
+   "label": "Pretraining Objective",
+   "desc": "Predict the next token given all previous ones, trained in parallel across positions with causal masking.",
+   "category": "Training"
+  },
+  {
+   "id": "learning_rate_schedules",
+   "label": "LR Schedules",
+   "desc": "Linear warm-up to a peak followed by cosine decay, keeping Adam's updates stable and converging smoothly.",
+   "category": "Training"
+  },
+  {
+   "id": "training_batches",
+   "label": "Training Batches",
+   "desc": "The set of token sequences whose gradients combine into one optimizer update; B * L tokens per batch.",
+   "category": "Training"
+  },
+  {
+   "id": "training_hardware",
+   "label": "Training Hardware",
+   "desc": "GPUs such as the H100 provide parallel matrix math, high bandwidth and fast interconnects that make pretraining feasible.",
+   "category": "Training"
+  },
+  {
+   "id": "precision",
+   "label": "Numeric Precision",
+   "desc": "The numeric format of weights, activations, gradients and optimizer states; it controls stability, memory, speed and feasible model size.",
+   "category": "Training"
+  },
+  {
+   "id": "parallelism",
+   "label": "Parallelism",
+   "desc": "Distributing training across GPUs with data, tensor and pipeline strategies, combined with ZeRO sharding of training states.",
+   "category": "Training"
+  },
+  {
+   "id": "single_gpu_limit",
+   "label": "Single-GPU Limit",
+   "desc": "Large models, gradients, optimizer states and activations exceed one GPU's memory and compute, forcing distribution.",
+   "category": "Training"
+  },
+  {
+   "id": "gradient_accumulation",
+   "label": "Gradient Accumulation",
+   "desc": "Summing gradients over N micro-batches to apply one averaged update, simulating a large batch within limited memory.",
+   "category": "Training"
+  },
+  {
+   "id": "data_parallelism",
+   "label": "Data Parallelism",
+   "desc": "Each GPU holds the full model and different data; gradients are averaged so all replicas update identically.",
+   "category": "Training"
+  },
+  {
+   "id": "tensor_parallelism",
+   "label": "Tensor Parallelism",
+   "desc": "Splitting individual weight matrices across GPUs, combining partial outputs, at the cost of frequent communication.",
+   "category": "Training"
+  },
+  {
+   "id": "pipeline_parallelism",
+   "label": "Pipeline Parallelism",
+   "desc": "Assigning groups of consecutive layers to different GPUs and streaming micro-batches through the stages.",
+   "category": "Training"
+  },
+  {
+   "id": "zero_fsdp",
+   "label": "ZeRO / FSDP",
+   "desc": "ZeRO shards optimizer states, gradients and parameters across data-parallel GPUs; PyTorch FSDP implements this style.",
+   "category": "Training"
+  },
+  {
+   "id": "parallelism_choices",
+   "label": "Choosing Parallelism",
+   "desc": "Matching each technique to its bottleneck and combining them to balance memory, throughput and communication.",
+   "category": "Training"
+  },
+  {
+   "id": "base_model",
+   "label": "Base Model",
+   "desc": "Pretraining's output: a decoder-only Transformer that continues text but is not yet aligned; e.g. Llama 3.1 8B.",
+   "category": "Training"
+  },
+  {
+   "id": "training_recipe",
+   "label": "Training Recipe",
+   "desc": "The coordinated plan of data mixture, data schedule and optimization settings across training phases that shapes a model's capabilities.",
+   "category": "Training"
+  },
+  {
+   "id": "olmo2",
+   "label": "OLMo 2",
+   "desc": "A 7B model trained in stages: ~4T tokens broad pretraining, then three 50B-token midtraining runs averaged element-wise.",
+   "category": "Training"
+  },
+  {
+   "id": "context_extension",
+   "label": "Context Extension",
+   "desc": "Growing the context window in stages, e.g. Llama 3's 8K -> 128K over six stages with ~800B extra tokens.",
+   "category": "Training"
+  },
+  {
+   "id": "domain_upsampling",
+   "label": "Domain Upsampling",
+   "desc": "Raising the sampling probability of chosen domains, e.g. math and code in the final 20% of training, shifting capabilities.",
+   "category": "Training"
+  },
+  {
+   "id": "data_scheduling",
+   "label": "Data Scheduling",
+   "desc": "Deciding when each kind of data appears during training: uniform mixing, or changing the mixture over time (curriculum).",
+   "category": "Training"
+  },
+  {
+   "id": "scaling_laws",
+   "label": "Scaling Laws",
+   "desc": "Empirical power-law formulas linking held-out loss to model size, training data and compute, used to plan budgets and forecast performance.",
+   "category": "Training"
+  },
+  {
+   "id": "kaplan_scaling",
+   "label": "Kaplan Power Law",
+   "desc": "2020 fit of loss to non-embedding parameters with exponent ~0.076; doubling size cuts loss about 5.1%.",
+   "category": "Training"
+  },
+  {
+   "id": "compute_6nd",
+   "label": "Compute C = 6ND",
+   "desc": "Dense-Transformer training compute is about six times parameters times tokens, from forward and backward FLOPs.",
+   "category": "Training"
+  },
+  {
+   "id": "chinchilla",
+   "label": "Chinchilla",
+   "desc": "2022 study showing model size and tokens should grow about equally with compute, correcting earlier over-sizing.",
+   "category": "Training"
+  },
+  {
+   "id": "tokens_per_param",
+   "label": "~20 Tokens per Param",
+   "desc": "Compute-optimal rule of thumb: about twenty training tokens per parameter.",
+   "category": "Training"
+  },
+  {
+   "id": "overtraining",
+   "label": "Overtraining",
+   "desc": "Training beyond the compute-optimal token count so a smaller model is cheaper to serve; not the same as overfitting.",
+   "category": "Training"
+  },
+  {
+   "id": "scaling_limits",
+   "label": "Scaling Limits",
+   "desc": "Data quality, repetition, architecture and recipe break the fit; extrapolation is risky and deployment picks on more than loss.",
+   "category": "Training"
+  },
+  {
+   "id": "icl",
+   "label": "In-Context Learning",
+   "desc": "Learning a new task from prompt examples at inference time, without updating any weights.",
+   "category": "Training"
+  },
+  {
+   "id": "base_model_continuation",
+   "label": "Base Model Continuation",
+   "desc": "A pretrained base model only continues text plausibly; it does not follow instructions or answer questions.",
+   "category": "Training"
+  },
+  {
+   "id": "icl_few_shot",
+   "label": "Few-Shot Prompting",
+   "desc": "Example pairs in the prompt define the task and constrain the output format by pattern continuation.",
+   "category": "Training"
+  },
+  {
+   "id": "algorithmic_semantic_icl",
+   "label": "Algorithmic vs Semantic",
+   "desc": "Two ICL modes: mechanical pattern skills from attention, and task inference from stored world knowledge.",
+   "category": "Training"
+  },
+  {
+   "id": "induction_heads",
+   "label": "Induction Heads",
+   "desc": "Attention circuits that find an earlier match and copy its successor, the mechanism behind algorithmic ICL.",
+   "category": "Training"
+  },
+  {
+   "id": "icl_limits",
+   "label": "Limits of ICL",
+   "desc": "ICL is statistical continuation: picky about format and examples, with no correctness or safety guarantee.",
+   "category": "Training"
+  },
+  {
+   "id": "post_training",
+   "label": "Post-Training",
+   "desc": "The second stage after pretraining that shapes a base model into a helpful, instruction-following assistant.",
+   "category": "Training"
+  },
+  {
+   "id": "sft",
+   "label": "Supervised Fine-Tuning",
+   "desc": "Continued next-token training on human-written instruction-response pairs to teach instruction following.",
+   "category": "Training"
+  },
+  {
+   "id": "instructgpt",
+   "label": "InstructGPT",
+   "desc": "SFT plus RLHF with ~13,000 examples from ~40 annotators; the shift from base models to assistants.",
+   "category": "Training"
+  },
+  {
+   "id": "chatgpt_pipeline",
+   "label": "ChatGPT Stack",
+   "desc": "A product = foundation model + alignment (tuning + RLHF) + interface with memory and safety filters.",
+   "category": "Training"
+  },
+  {
+   "id": "sft_limits",
+   "label": "Limits of SFT",
+   "desc": "Imitation with no notion of better or worse: no negative signal, fluency over truth, style overfitting.",
+   "category": "Training"
+  },
+  {
+   "id": "preference_hard",
+   "label": "Preference Is Hard",
+   "desc": "Many topics have no universally correct answer; culture, politics and identity make a single universal preference impossible to encode.",
+   "category": "Training"
+  },
+  {
+   "id": "absolute_vs_relative",
+   "label": "Absolute vs Relative",
+   "desc": "Absolute 1-7 scores are noisy and hackable; pairwise comparisons and rankings are stable and preferred.",
+   "category": "Training"
+  },
+  {
+   "id": "preference_dataset",
+   "label": "Preference Dataset",
+   "desc": "Diverse prompts with sampled candidate answers ranked by humans, decomposed into (x, y_w, y_l) triples.",
+   "category": "Training"
+  },
+  {
+   "id": "rl_basics",
+   "label": "RL Basics",
+   "desc": "Learning by acting and receiving rewards; in RLHF the LLM is the agent, prompts the state and text the action.",
+   "category": "Training"
+  },
+  {
+   "id": "reward_model",
+   "label": "Reward Model",
+   "desc": "A base-architecture model with a scalar head that scores answers, trained with the Bradley-Terry logistic loss.",
+   "category": "Training"
+  },
+  {
+   "id": "rlhf",
+   "label": "RLHF",
+   "desc": "Reinforcement learning from human feedback: train a reward model, then optimize the SFT model, typically with PPO.",
+   "category": "Training"
+  },
+  {
+   "id": "rlhf_ppo",
+   "label": "PPO + KL Penalty",
+   "desc": "RLHF optimization that maximizes reward while a beta-weighted KL penalty keeps the policy near the SFT reference.",
+   "category": "Training"
+  },
+  {
+   "id": "dpo",
+   "label": "DPO",
+   "desc": "Direct Preference Optimization: a closed-form loss on preference pairs, with the policy's log-ratio as an implicit reward, no RL.",
+   "category": "Training"
+  },
+  {
+   "id": "decoding",
+   "label": "Why Decoding Matters",
+   "desc": "The rule that turns the long-tailed next-token distribution into an actual token, controlling determinism, creativity, safety and hallucination risk.",
+   "category": "Inference"
+  },
+  {
+   "id": "stable_softmax",
+   "label": "Stable Softmax (Log-Sum-Exp)",
+   "desc": "Subtracting the maximum logit before softmax avoids overflow to inf or NaN while leaving probabilities unchanged.",
+   "category": "Inference"
+  },
+  {
+   "id": "greedy",
+   "label": "Greedy Decoding",
+   "desc": "Always pick the argmax token; deterministic and fast but repetitive and prone to error snowballing.",
+   "category": "Inference"
+  },
+  {
+   "id": "sampling",
+   "label": "Random Sampling",
+   "desc": "Draw a token in proportion to its probability using cumulative probabilities and a uniform random number.",
+   "category": "Inference"
+  },
+  {
+   "id": "temperature",
+   "label": "Temperature",
+   "desc": "Divide logits by T before softmax: T < 1 sharpens (more deterministic), T > 1 flattens (more random).",
+   "category": "Inference"
+  },
+  {
+   "id": "top_k",
+   "label": "Top-k Sampling",
+   "desc": "Keep only the k most probable tokens, renormalize and sample; fixed k can be too strict or too loose.",
+   "category": "Inference"
+  },
+  {
+   "id": "top_p",
+   "label": "Top-p Sampling",
+   "desc": "Keep the smallest token set whose cumulative probability reaches p and sample; the set adapts to the distribution.",
+   "category": "Inference"
+  },
+  {
+   "id": "strategy_comparison",
+   "label": "Comparing Strategies",
+   "desc": "Greedy is safe and factual, temperature tunable, top-k medium, top-p high-diversity for open-ended tasks.",
+   "category": "Inference"
+  },
+  {
+   "id": "evaluation",
+   "label": "Why and How We Evaluate",
+   "desc": "Continuous testing of quality, reliability, safety and fit at three levels: intrinsic, task-level and practical capability.",
+   "category": "Inference"
+  },
+  {
+   "id": "perplexity",
+   "label": "Perplexity",
+   "desc": "Exponential of the cross-entropy loss; the effective number of choices the model is uncertain among. Lower is better.",
+   "category": "Inference"
+  },
+  {
+   "id": "task_metrics",
+   "label": "Accuracy, BLEU, ROUGE",
+   "desc": "Task-level scores: accuracy for classification, BLEU (precision) for translation, ROUGE (recall) for summarisation.",
+   "category": "Inference"
+  },
+  {
+   "id": "pass_at_k",
+   "label": "Pass@k for Code",
+   "desc": "Probability that at least one of k generated samples passes the unit tests, used for code generation.",
+   "category": "Inference"
+  },
+  {
+   "id": "benchmark",
+   "label": "Benchmarks",
+   "desc": "Standardized task suites with a fixed scoring rule so that model scores are comparable across releases and teams.",
+   "category": "Inference"
+  },
+  {
+   "id": "mmlu",
+   "label": "MMLU Knowledge Benchmark",
+   "desc": "57-subject multiple-choice knowledge and reasoning test scored by accuracy; below 50% is under undergraduate, ~95% expert.",
+   "category": "Inference"
+  },
+  {
+   "id": "big_bench",
+   "label": "BIG-Bench Suite",
+   "desc": "About 200 community tasks probing logic, reasoning and off-distribution skills; no single score, reveals emergent abilities.",
+   "category": "Inference"
+  },
+  {
+   "id": "humaneval",
+   "label": "HumanEval Benchmark",
+   "desc": "164 hand-written Python tasks graded by hidden unit tests and reported as pass@k.",
+   "category": "Inference"
+  },
+  {
+   "id": "long_horizon",
+   "label": "Long-Horizon Reasoning",
+   "desc": "Multi-step dependent tasks scored by pass rate; benchmarks include SWE-bench and Aider Polyglot.",
+   "category": "Inference"
+  },
+  {
+   "id": "safety_factuality",
+   "label": "Safety & Factuality",
+   "desc": "Toxicity, bias, jailbreak, privacy, plus hallucination and deception checks such as FActScore.",
+   "category": "Inference"
+  },
+  {
+   "id": "multi_turn",
+   "label": "Multi-Turn Instruction",
+   "desc": "Holding instructions and constraints across many turns; shaped by SFT/RLHF, not classical metrics.",
+   "category": "Inference"
+  },
+  {
+   "id": "tool_use",
+   "label": "Tool Use & Tau-2 Bench",
+   "desc": "Schema-correct tool calls and agent tasks across retail, airline and telecom in a dual-control setting.",
+   "category": "Inference"
+  },
+  {
+   "id": "modality_domain",
+   "label": "Modality & Domain Evals",
+   "desc": "Multimodal tests (VQA, ChartQA, VideoMME) and high-stakes domain tests (HealthBench, LegalEval, GSM8K).",
+   "category": "Inference"
+  },
+  {
+   "id": "benchmark_limits",
+   "label": "Benchmark Limitations",
+   "desc": "Contamination and saturation inflate scores; no single number captures quality, so test many dimensions.",
+   "category": "Inference"
+  },
+  {
+   "id": "prompt_engineering",
+   "label": "Prompt Engineering",
+   "desc": "Adapting a model's behaviour through input text alone, without changing any weights.",
+   "category": "Prompting"
+  },
+  {
+   "id": "prompting_first",
+   "label": "Prompt First, Then Finetune",
+   "desc": "The principle of pushing prompting to its limit before spending effort on finetuning or retrieval.",
+   "category": "Prompting"
+  },
+  {
+   "id": "system_prompt",
+   "label": "System Prompt",
+   "desc": "The highest-priority role that sets global rules, persona, tone and constraints for a chat model.",
+   "category": "Prompting"
+  },
+  {
+   "id": "role_hierarchy",
+   "label": "Role Hierarchy",
+   "desc": "System beats user beats assistant history; learned during alignment and essential for safety and consistency.",
+   "category": "Prompting"
+  },
+  {
+   "id": "zero_shot",
+   "label": "Zero-Shot Prompting",
+   "desc": "Giving the model only an instruction, no examples, relying on pretraining and alignment.",
+   "category": "Prompting"
+  },
+  {
+   "id": "zero_shot_tradeoffs",
+   "label": "Zero-Shot Trade-offs",
+   "desc": "Fast and strong on simple tasks, a good baseline, but weak on specialised or ambiguous ones.",
+   "category": "Prompting"
+  },
+  {
+   "id": "few_shot",
+   "label": "Few-Shot Prompting",
+   "desc": "Placing a few solved examples in the prompt so the model infers the pattern via in-context learning.",
+   "category": "Prompting"
+  },
+  {
+   "id": "few_shot_practice",
+   "label": "Few-Shot Tips",
+   "desc": "Short, clean, well-ordered examples help; examples cost context and can be copied too literally.",
+   "category": "Prompting"
+  },
+  {
+   "id": "chain_of_thought",
+   "label": "Chain-of-Thought",
+   "desc": "Asking the model to reason step by step before answering, boosting maths, logic and planning.",
+   "category": "Prompting"
+  },
+  {
+   "id": "cot_emergent_ability",
+   "label": "CoT Emergence",
+   "desc": "The step-by-step benefit unlocks mainly in large models, evidence of an emergent ability.",
+   "category": "Prompting"
+  },
+  {
+   "id": "cot_properties",
+   "label": "CoT Properties",
+   "desc": "One autoregressive pass, no internal planner; more accurate but slower and not real subtask solving.",
+   "category": "Prompting"
+  },
+  {
+   "id": "context_management",
+   "label": "Context Management",
+   "desc": "Deciding what enters the context window and how it is structured so the model reasons well.",
+   "category": "Prompting"
+  },
+  {
+   "id": "lost_in_the_middle",
+   "label": "Lost in the Middle",
+   "desc": "Primacy and recency biases give a U-shaped attention profile; the middle is a weak dead zone.",
+   "category": "Prompting"
+  },
+  {
+   "id": "chunking_summarization",
+   "label": "Chunking & Summarization",
+   "desc": "Splitting documents at natural boundaries and compressing history into short task-focused summaries.",
+   "category": "Prompting"
+  },
+  {
+   "id": "message_pruning",
+   "label": "Pruning & Reiteration",
+   "desc": "Deleting noisy turns to stabilise output, and repeating critical rules at the end of the context.",
+   "category": "Prompting"
+  },
+  {
+   "id": "prompt_ordering",
+   "label": "Prompt Ordering",
+   "desc": "Placing rules, instructions, examples and the task in the order the model attends to best.",
+   "category": "Prompting"
+  },
+  {
+   "id": "context_challenges",
+   "label": "Context Challenges",
+   "desc": "Finite windows, growing latency and drifting behaviour that make context management necessary.",
+   "category": "Prompting"
+  },
+  {
+   "id": "instruction_persona",
+   "label": "Instruction & Persona",
+   "desc": "Direct task commands and role-play personas that shape tone, expertise and style.",
+   "category": "Prompting"
+  },
+  {
+   "id": "example_cot_patterns",
+   "label": "Example & CoT",
+   "desc": "Few-shot demonstrations and step-by-step reasoning patterns for mappings, structure and logic.",
+   "category": "Prompting"
+  },
+  {
+   "id": "critique_refine",
+   "label": "Critique & Self-Check",
+   "desc": "Self-evaluating and self-correcting patterns that reduce errors and improve quality.",
+   "category": "Prompting"
+  },
+  {
+   "id": "decomposition_patterns",
+   "label": "Decomposition",
+   "desc": "Breaking hard tasks into steps, subtasks, expert roles or pseudo-code modules.",
+   "category": "Prompting"
+  },
+  {
+   "id": "tree_of_thought",
+   "label": "Tree-of-Thought",
+   "desc": "Branching into several candidate strategies, scoring them and picking the best; plus problem rewriting.",
+   "category": "Prompting"
+  },
+  {
+   "id": "style_hard_constraints",
+   "label": "Style & Hard Rules",
+   "desc": "Controlling tone and voice, and enforcing explicit must-follow output rules.",
+   "category": "Prompting"
+  },
+  {
+   "id": "soft_steering_guardrails",
+   "label": "Soft Steering & Guardrails",
+   "desc": "Gently nudging behaviour or combining style and rules to block unsafe output.",
+   "category": "Prompting"
+  },
+  {
+   "id": "structured_output",
+   "label": "Structured Output",
+   "desc": "Forcing the model to answer in a fixed schema such as JSON so downstream code can parse it reliably.",
+   "category": "Prompting"
+  },
+  {
+   "id": "function_calling",
+   "label": "Function Calling",
+   "desc": "Letting the model trigger external tools via schemas, offloading maths and search to real systems.",
+   "category": "Prompting"
+  },
+  {
+   "id": "tool_awareness",
+   "label": "Prompt vs Native Tools",
+   "desc": "Tool schemas as system-prompt text for open models, or on a separate trained channel for closed APIs.",
+   "category": "Prompting"
+  },
+  {
+   "id": "function_calling_example",
+   "label": "get_weather Example",
+   "desc": "A weather tool declared with a JSON schema whose required city string is filled by the model's tool call.",
+   "category": "Prompting"
+  },
+  {
+   "id": "prompt_failure_modes",
+   "label": "Prompt Failure Modes",
+   "desc": "Common failure types: hallucination, ignored constraints, style drift, wrong reasoning, wrong length, unstable output.",
+   "category": "Prompting"
+  },
+  {
+   "id": "debug_improve",
+   "label": "Improve & Test",
+   "desc": "Fixing a prompt with explicit rules, role, examples and structure, then testing phrasings and edge cases.",
+   "category": "Prompting"
+  },
+  {
+   "id": "apo_motivation",
+   "label": "Why Automate Prompts",
+   "desc": "Hand-written prompts are slow and inconsistent; optimization treats prompting as a search problem.",
+   "category": "Prompting"
+  },
+  {
+   "id": "apo_loop",
+   "label": "The APO Loop",
+   "desc": "Generate prompt variants by mutation and crossover, score them with metrics, keep the best, repeat until convergence.",
+   "category": "Prompting"
+  },
+  {
+   "id": "parametric_vs_nonparametric",
+   "label": "Parametric vs Non-Parametric",
+   "desc": "Weights are static, opaque and stale; RAG injects external, updatable facts at inference time.",
+   "category": "RAG"
+  },
+  {
+   "id": "rag",
+   "label": "RAG",
+   "desc": "Generation conditioned on the query plus retrieved evidence, p(y | x, RAG(x)); retrieval is an information bottleneck.",
+   "category": "RAG"
+  },
+  {
+   "id": "rag_pipeline",
+   "label": "RAG Pipeline",
+   "desc": "Offline chunk-embed-store plus online embed-search-rerank-assemble-generate.",
+   "category": "RAG"
+  },
+  {
+   "id": "rag_vs_alignment",
+   "label": "RAG vs Alignment",
+   "desc": "Alignment decides how to answer; RAG decides what to answer with; they are complementary.",
+   "category": "RAG"
+  },
+  {
+   "id": "rag_hallucination",
+   "label": "Hallucinations & RAG",
+   "desc": "RAG grounds answers and reduces hallucination, moving failure from fabrication to retrieval quality.",
+   "category": "RAG"
+  },
+  {
+   "id": "embedding_model",
+   "label": "Embedding Models",
+   "desc": "Maps text into R^d (e.g. 384, 768, 1536) so similar meanings sit close; retrieval becomes nearest-neighbor search.",
+   "category": "RAG"
+  },
+  {
+   "id": "sentence_bert_pooling",
+   "label": "Sentence-BERT & Pooling",
+   "desc": "BERT plus pooling collapses token vectors into one sentence vector: mean, max, [CLS] or weighted.",
+   "category": "RAG"
+  },
+  {
+   "id": "siamese_training",
+   "label": "Siamese Bi-Encoder",
+   "desc": "Two shared-weight BERT towers with a contrastive, cosine-based loss; enables precomputed document embeddings.",
+   "category": "RAG"
+  },
+  {
+   "id": "embedding_model_types",
+   "label": "Embedding Model Types",
+   "desc": "General-purpose, domain-adapted and cross-lingual models, plus instruction-tuned and asymmetric encoders.",
+   "category": "RAG"
+  },
+  {
+   "id": "chunking",
+   "label": "Chunking",
+   "desc": "Splits documents into contiguous segments (200-500 tokens, often with overlap) as the atomic unit of RAG knowledge.",
+   "category": "RAG"
+  },
+  {
+   "id": "contextual_retrieval",
+   "label": "Contextual Retrieval",
+   "desc": "An LLM prepends a short document-level context to each chunk before embedding, making it self-contained.",
+   "category": "RAG"
+  },
+  {
+   "id": "embedding_quality_recall",
+   "label": "Embedding Quality & Recall",
+   "desc": "Embedding quality sets the recall ceiling; chunks that are not near the query can never be retrieved.",
+   "category": "RAG"
+  },
+  {
+   "id": "vector_store",
+   "label": "Vector Store",
+   "desc": "Stores embeddings and retrieves by similarity, offering ANN search and metadata filtering instead of exact keys.",
+   "category": "RAG"
+  },
+  {
+   "id": "ann",
+   "label": "ANN Search",
+   "desc": "Approximate nearest-neighbor search: a structured index inspects a small subset, trading exactness for speed.",
+   "category": "RAG"
+  },
+  {
+   "id": "ivf",
+   "label": "IVF Index",
+   "desc": "Clusters vectors with k-means and searches only the clusters nearest the query; recall depends on clusters probed.",
+   "category": "RAG"
+  },
+  {
+   "id": "quantization",
+   "label": "Quantization",
+   "desc": "Compresses vectors into codebooks (PQ, scalar) to cut memory and speed access, with a small recall loss.",
+   "category": "RAG"
+  },
+  {
+   "id": "faiss_comparison",
+   "label": "FAISS & Index Comparison",
+   "desc": "Open-source ANN library with Flat, IVF, HNSW, PQ, IVF-PQ; indexes trade memory, recall and speed.",
+   "category": "RAG"
+  },
+  {
+   "id": "nsw_build",
+   "label": "NSW: Building",
+   "desc": "Insert nodes with greedy search, then pick up to M edges preferring close, diverse neighbors.",
+   "category": "RAG"
+  },
+  {
+   "id": "nsw_search",
+   "label": "NSW: Searching",
+   "desc": "Greedy walk from a random entry toward more similar nodes until a local best; return top-k visited.",
+   "category": "RAG"
+  },
+  {
+   "id": "skip_list",
+   "label": "Skip List",
+   "desc": "Stacked linked lists with sparser upper levels; move to local best per level, then drop down.",
+   "category": "RAG"
+  },
+  {
+   "id": "hnsw",
+   "label": "HNSW",
+   "desc": "NSW graphs layered like a skip list: search the sparse top, descend and refine; the RAG default.",
+   "category": "RAG"
+  },
+  {
+   "id": "dense_retrieval",
+   "label": "Dense Retrieval",
+   "desc": "Returns top-k chunks by cosine similarity in a shared vector space; semantic but weak on exact IDs and strings.",
+   "category": "RAG"
+  },
+  {
+   "id": "bm25",
+   "label": "BM25",
+   "desc": "Rule-based sparse ranking with IDF, term-frequency saturation and length normalization; exact-keyword strength.",
+   "category": "RAG"
+  },
+  {
+   "id": "hybrid_retrieval",
+   "label": "Hybrid Retrieval",
+   "desc": "Runs dense and sparse retrieval, fuses the ranked lists, then reranks or generates for greater robustness.",
+   "category": "RAG"
+  },
+  {
+   "id": "rrf",
+   "label": "RRF",
+   "desc": "Reciprocal Rank Fusion: sums 1/(k + rank) over lists, scale-invariant, with a single smoothing constant k of about 60.",
+   "category": "RAG"
+  },
+  {
+   "id": "kv_cache_why",
+   "label": "Why Cache Keys and Values?",
+   "desc": "During generation the model predicts each new token from the prompt plus everything generated so far.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "prefill_decode",
+   "label": "Prefill and Decode",
+   "desc": "Inference runs in two phases.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "prefill_decode_latency",
+   "label": "Where the Latency Goes",
+   "desc": "Total response time is the prefill time plus one decode step for every further output token.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "kv_memory_model",
+   "label": "Sizing the KV Cache",
+   "desc": "The cache stores, per sequence, per layer and per cached position, one key vector and one value vector for every KV head.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "kv_memory_implications",
+   "label": "Capacity, Quantization and B",
+   "desc": "With everything else fixed, the cache grows with cached positions, concurrent sequences, attention layers, KV heads and bytes per element.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "batching_bandwidth",
+   "label": "Batching and Memory Bandwidt",
+   "desc": "A server can batch requests from several users so that each decode step processes one new position per sequence on the same model instance.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "kv_levers",
+   "label": "Levers to Shrink the Cache",
+   "desc": "You can shrink the cache along three axes.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe_motivation",
+   "label": "More Capacity, Same Compute",
+   "desc": "In a dense Transformer the same feed-forward network processes every token in every layer.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "conditional_computation",
+   "label": "Conditional Computation: Den",
+   "desc": "Conditional computation lets a network hold more parameters than it uses for any single input, by choosing which components to run based on that input.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe_layer",
+   "label": "Experts, Router, Combination",
+   "desc": "A sparse MoE layer replaces the dense FFN sublayer of a Transformer block with several feed-forward networks, called experts, plus a learned router.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "router_scores",
+   "label": "Inside the Router",
+   "desc": "The router multiplies the token representation by a learned router matrix, giving one score per expert.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "expert_outputs",
+   "label": "Combining Expert Outputs",
+   "desc": "Each selected expert is a separate feed-forward network that receives the same token representation and transforms it with its own weights, so different experts.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe_learning",
+   "label": "How Router and Experts Learn",
+   "desc": "Router and experts are trained jointly from the ordinary next-token prediction loss, with no predefined topic labels telling experts what to specialise in.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "shared_fine_grained",
+   "label": "Shared and Fine-Grained Expe",
+   "desc": "Two design choices refine the basic MoE layer.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe_efficiency",
+   "label": "Efficiency: Compute, Memory,",
+   "desc": "Sparse activation affects resources differently.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "moe_practice",
+   "label": "MoE in Practice",
+   "desc": "Publicly documented models use MoE in different ways.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "beyond_attention",
+   "label": "Why Look Beyond Attention",
+   "desc": "Self-attention lets every token look back at all earlier tokens, but that explicit access is expensive: the KV cache grows with the sequence and each new token .",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "parallel_recurrence",
+   "label": "Recurrence Without Sequentia",
+   "desc": "Recurrent models pass information from one token to the next, which seems to force strictly sequential computation.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "hybrid_nemotron",
+   "label": "Hybrid: Nemotron 3 Nano",
+   "desc": "Real models increasingly mix mechanisms.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "complexity_limits",
+   "label": "What Big-O Hides",
+   "desc": "Two models with the same Big-O can perform very differently on real hardware.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "fixed_memory_tradeoff",
+   "label": "What Fixed-Size Memory Gives",
+   "desc": "Full attention keeps token-specific keys and values, so a later question can directly attend to an earlier detail, although correct retrieval is still not guara.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "prefill_decode_perf",
+   "label": "Prefill vs Decode Performanc",
+   "desc": "Inference has two phases with different bottlenecks.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "model_budget",
+   "label": "Ways to Spend the Model Budg",
+   "desc": "Architects trade capacity, active computation, memory and information access in different ways.",
+   "category": "LLM Foundations"
+  },
+  {
+   "id": "choosing",
+   "label": "Choosing an Architecture",
+   "desc": "There is no universally best architecture; the choice follows application requirements.",
+   "category": "LLM Foundations"
+  }
+ ],
+ "edges": [
+  [
+   "chatgpt_name",
+   "chatgpt_success",
+   "launched with"
+  ],
+  [
+   "chatgpt_name",
+   "transformer",
+   "is built on"
+  ],
+  [
+   "chatgpt_name",
+   "pretraining",
+   "relies on"
+  ],
+  [
+   "chatgpt_name",
+   "llm",
+   "is a product of"
+  ],
+  [
+   "chatgpt_success",
+   "task_specific_to_general",
+   "illustrates"
+  ],
+  [
+   "task_specific_to_general",
+   "foundation_model",
+   "is enabled by"
+  ],
+  [
+   "task_specific_to_general",
+   "genai_drivers",
+   "is explained by"
+  ],
+  [
+   "genai_drivers",
+   "transformer",
+   "includes"
+  ],
+  [
+   "genai_drivers",
+   "training_data",
+   "includes"
+  ],
+  [
+   "genai_drivers",
+   "pretraining",
+   "includes"
+  ],
+  [
+   "genai_drivers",
+   "scaling_laws",
+   "depends on"
+  ],
+  [
+   "chatgpt_success",
+   "ai_race",
+   "triggered"
+  ],
+  [
+   "ai_race",
+   "ai_in_the_news",
+   "raises stakes of"
+  ],
+  [
+   "ai_in_the_news",
+   "ai_engineering",
+   "motivates responsible"
+  ],
+  [
+   "next_token",
+   "token",
+   "operates on"
+  ],
+  [
+   "next_token",
+   "softmax",
+   "outputs probabilities via"
+  ],
+  [
+   "next_token",
+   "generation_loop",
+   "is repeated in"
+  ],
+  [
+   "generation_loop",
+   "autoregressive",
+   "is an instance of"
+  ],
+  [
+   "generation_loop",
+   "decoding",
+   "selects tokens via"
+  ],
+  [
+   "language_model",
+   "next_token",
+   "factorises into"
+  ],
+  [
+   "lm_in_asr",
+   "language_model",
+   "applies"
+  ],
+  [
+   "self_supervised_training",
+   "language_model",
+   "trains"
+  ],
+  [
+   "self_supervised_training",
+   "pretraining",
+   "is the basis of"
+  ],
+  [
+   "self_supervised_training",
+   "cross_entropy",
+   "is optimised with"
+  ],
+  [
+   "bigram_model",
+   "language_model",
+   "is the simplest"
+  ],
+  [
+   "bigram_model",
+   "transformer",
+   "is outgrown by"
+  ],
+  [
+   "beyond_next_token",
+   "next_token",
+   "extends"
+  ],
+  [
+   "beyond_next_token",
+   "attention",
+   "relies on"
+  ],
+  [
+   "beyond_next_token",
+   "pretraining",
+   "relies on"
+  ],
+  [
+   "beyond_next_token",
+   "decoding",
+   "is shaped by"
+  ],
+  [
+   "language_model",
+   "llm",
+   "scales up to"
+  ],
+  [
+   "llm",
+   "language_model",
+   "scales up"
+  ],
+  [
+   "llm",
+   "transformer",
+   "is built on"
+  ],
+  [
+   "llm",
+   "next_token",
+   "is trained on"
+  ],
+  [
+   "llm",
+   "scaling_laws",
+   "grows according to"
+  ],
+  [
+   "llm",
+   "emergent_abilities",
+   "exhibits"
+  ],
+  [
+   "emergent_abilities",
+   "icl",
+   "includes"
+  ],
+  [
+   "llm",
+   "foundation_model",
+   "is a type of"
+  ],
+  [
+   "foundation_model",
+   "prompt_engineering",
+   "is adapted by"
+  ],
+  [
+   "foundation_model",
+   "sft",
+   "is adapted by"
+  ],
+  [
+   "foundation_model",
+   "pretraining",
+   "is created by"
+  ],
+  [
+   "ai_system",
+   "foundation_model",
+   "wraps"
+  ],
+  [
+   "ai_system",
+   "rag",
+   "adds context via"
+  ],
+  [
+   "ai_system",
+   "function_calling",
+   "uses tools via"
+  ],
+  [
+   "chatgpt_stack",
+   "foundation_model",
+   "is built on"
+  ],
+  [
+   "chatgpt_stack",
+   "sft",
+   "is aligned with"
+  ],
+  [
+   "chatgpt_stack",
+   "rlhf",
+   "is aligned with"
+  ],
+  [
+   "chatgpt_stack",
+   "ai_system",
+   "is an example of"
+  ],
+  [
+   "fm_modalities",
+   "foundation_model",
+   "generalises"
+  ],
+  [
+   "fm_modalities",
+   "embedding",
+   "learns joint"
+  ],
+  [
+   "ai_engineering",
+   "ai_system",
+   "builds"
+  ],
+  [
+   "ai_engineering",
+   "foundation_model",
+   "uses as core"
+  ],
+  [
+   "ai_engineering",
+   "evaluation",
+   "requires"
+  ],
+  [
+   "ai_engineering",
+   "ai_engineering_stack",
+   "is organised as"
+  ],
+  [
+   "ai_engineering_stack",
+   "prompt_engineering",
+   "includes layer"
+  ],
+  [
+   "ai_engineering_stack",
+   "rag",
+   "includes layer"
+  ],
+  [
+   "ai_engineering_stack",
+   "evaluation",
+   "is crossed by"
+  ],
+  [
+   "ai_engineering_stack",
+   "open_weights",
+   "includes local models"
+  ],
+  [
+   "capabilities_to_domains",
+   "app_archetypes",
+   "are combined into"
+  ],
+  [
+   "app_archetypes",
+   "rag",
+   "knowledge assistant uses"
+  ],
+  [
+   "app_archetypes",
+   "function_calling",
+   "agents use"
+  ],
+  [
+   "app_archetypes",
+   "demo_vs_system",
+   "must mature from"
+  ],
+  [
+   "demo_vs_system",
+   "failure_modes",
+   "must handle"
+  ],
+  [
+   "failure_modes",
+   "rag",
+   "arise in"
+  ],
+  [
+   "failure_modes",
+   "evaluation",
+   "are detected by"
+  ],
+  [
+   "failure_modes",
+   "ai_system",
+   "threaten"
+  ],
+  [
+   "vibe_coding",
+   "llm",
+   "is powered by"
+  ],
+  [
+   "image_video_generation",
+   "foundation_model",
+   "uses"
+  ],
+  [
+   "image_video_generation",
+   "fm_modalities",
+   "demonstrates"
+  ],
+  [
+   "open_weights",
+   "llm",
+   "releases parameters of"
+  ],
+  [
+   "ollama_local",
+   "open_weights",
+   "runs"
+  ],
+  [
+   "ollama_local",
+   "weight_memory",
+   "is limited by"
+  ],
+  [
+   "weight_memory",
+   "precision",
+   "depends on"
+  ],
+  [
+   "weight_memory",
+   "kv_cache",
+   "is increased by"
+  ],
+  [
+   "hardware_challenge",
+   "weight_memory",
+   "applies"
+  ],
+  [
+   "hardware_challenge",
+   "precision",
+   "compares"
+  ],
+  [
+   "langchain_langflow",
+   "ai_system",
+   "helps build"
+  ],
+  [
+   "langchain_langflow",
+   "rag",
+   "supports"
+  ],
+  [
+   "langchain_langflow",
+   "vector_store",
+   "integrates"
+  ],
+  [
+   "langchain_langflow",
+   "ollama_local",
+   "can call models from"
+  ],
+  [
+   "course_roadmap",
+   "ai_engineering",
+   "teaches"
+  ],
+  [
+   "course_roadmap",
+   "token",
+   "starts with"
+  ],
+  [
+   "course_roadmap",
+   "transformer",
+   "covers"
+  ],
+  [
+   "course_roadmap",
+   "prompt_engineering",
+   "covers"
+  ],
+  [
+   "course_roadmap",
+   "rag",
+   "covers"
+  ],
+  [
+   "course_roadmap",
+   "course_logistics",
+   "is practised in"
+  ],
+  [
+   "course_logistics",
+   "rag",
+   "includes lab on"
+  ],
+  [
+   "course_logistics",
+   "ifn_research",
+   "leads to"
+  ],
+  [
+   "ifn_research",
+   "precision",
+   "improves low"
+  ],
+  [
+   "ifn_research",
+   "weight_memory",
+   "reduces"
+  ],
+  [
+   "text_to_text_pipeline",
+   "pipeline_input_side",
+   "starts with"
+  ],
+  [
+   "text_to_text_pipeline",
+   "pipeline_output_side",
+   "ends with"
+  ],
+  [
+   "pipeline_input_side",
+   "tokenizer",
+   "uses"
+  ],
+  [
+   "pipeline_input_side",
+   "embedding",
+   "uses"
+  ],
+  [
+   "pipeline_output_side",
+   "logits",
+   "produces"
+  ],
+  [
+   "pipeline_output_side",
+   "detokenization",
+   "finishes with"
+  ],
+  [
+   "text_to_text_pipeline",
+   "llm",
+   "wraps"
+  ],
+  [
+   "text_to_text_pipeline",
+   "autoregressive",
+   "repeats as"
+  ],
+  [
+   "autoregressive",
+   "next_token",
+   "predicts one"
+  ],
+  [
+   "autoregressive",
+   "causal_mask",
+   "enforced in training by"
+  ],
+  [
+   "token",
+   "vocabulary_granularity",
+   "sized by"
+  ],
+  [
+   "vocabulary_granularity",
+   "bpe",
+   "balanced by"
+  ],
+  [
+   "bpe",
+   "byte_level_bpe",
+   "extended to"
+  ],
+  [
+   "byte_level_bpe",
+   "tokenizer",
+   "powers"
+  ],
+  [
+   "tokenizer",
+   "token",
+   "produces"
+  ],
+  [
+   "special_tokens",
+   "token",
+   "are reserved"
+  ],
+  [
+   "special_tokens",
+   "system_prompt",
+   "mark roles for"
+  ],
+  [
+   "token_cost",
+   "context_window",
+   "consumes"
+  ],
+  [
+   "tokenizer",
+   "token_cost",
+   "determines"
+  ],
+  [
+   "tokenizer_model_coupling",
+   "logits",
+   "sets size of"
+  ],
+  [
+   "tokenizer",
+   "tokenizer_model_coupling",
+   "bound by"
+  ],
+  [
+   "token",
+   "embedding",
+   "mapped to"
+  ],
+  [
+   "token",
+   "next_token",
+   "is the unit of"
+  ],
+  [
+   "token",
+   "ids_need_embeddings",
+   "is just an index, so"
+  ],
+  [
+   "ids_need_embeddings",
+   "embedding",
+   "solved by"
+  ],
+  [
+   "one_hot_projection",
+   "embedding",
+   "equivalent to"
+  ],
+  [
+   "embedding",
+   "embedding_geometry",
+   "learns"
+  ],
+  [
+   "embedding_geometry",
+   "norm_vs_direction",
+   "shows"
+  ],
+  [
+   "norm_vs_direction",
+   "cosine_similarity",
+   "motivates"
+  ],
+  [
+   "cosine_similarity",
+   "embedding",
+   "compares"
+  ],
+  [
+   "word2vec",
+   "embedding",
+   "early method for"
+  ],
+  [
+   "embedding",
+   "context_independent_embeddings",
+   "is initially"
+  ],
+  [
+   "context_independent_embeddings",
+   "self_attention",
+   "made contextual by"
+  ],
+  [
+   "embedding",
+   "transformer",
+   "is input to"
+  ],
+  [
+   "cosine_similarity",
+   "embedding_model",
+   "scores vectors of"
+  ],
+  [
+   "word2vec",
+   "embedding_model",
+   "precursor of"
+  ],
+  [
+   "embedding_geometry",
+   "pretraining",
+   "learned during"
+  ],
+  [
+   "logits",
+   "softmax",
+   "normalised by"
+  ],
+  [
+   "softmax",
+   "generation_stopping",
+   "feeds selection in"
+  ],
+  [
+   "logits",
+   "decoding",
+   "consumed by"
+  ],
+  [
+   "softmax",
+   "temperature",
+   "scaled by"
+  ],
+  [
+   "generation_stopping",
+   "autoregressive",
+   "implements"
+  ],
+  [
+   "generation_stopping",
+   "context_window",
+   "grows"
+  ],
+  [
+   "generation_stopping",
+   "special_tokens",
+   "stops at <eos> from"
+  ],
+  [
+   "context_window",
+   "kv_cache",
+   "cached in"
+  ],
+  [
+   "context_window",
+   "rag",
+   "overflow handled by"
+  ],
+  [
+   "inference_walkthrough",
+   "context_window",
+   "illustrates"
+  ],
+  [
+   "inference_walkthrough",
+   "detokenization",
+   "uses"
+  ],
+  [
+   "generation_stopping",
+   "detokenization",
+   "outputs via"
+  ],
+  [
+   "detokenization",
+   "tokenizer",
+   "inverts"
+  ],
+  [
+   "training_loop",
+   "cross_entropy",
+   "minimises"
+  ],
+  [
+   "training_loop",
+   "pretraining",
+   "core of"
+  ],
+  [
+   "training_loop",
+   "softmax",
+   "uses"
+  ],
+  [
+   "tokenizer_model_coupling",
+   "softmax",
+   "sets width of"
+  ],
+  [
+   "embedding",
+   "static_vs_contextual",
+   "provides static start for"
+  ],
+  [
+   "static_vs_contextual",
+   "recurrence_vs_attention_paths",
+   "motivates"
+  ],
+  [
+   "recurrence_vs_attention_paths",
+   "rnn",
+   "describes"
+  ],
+  [
+   "recurrence_vs_attention_paths",
+   "attention",
+   "contrasts with"
+  ],
+  [
+   "rnn_forward_pass",
+   "rnn",
+   "explains"
+  ],
+  [
+   "embedding",
+   "rnn_forward_pass",
+   "feeds"
+  ],
+  [
+   "rnn_forward_pass",
+   "rnn_output_layer",
+   "produces state for"
+  ],
+  [
+   "rnn_output_layer",
+   "logits",
+   "computes"
+  ],
+  [
+   "rnn_output_layer",
+   "softmax",
+   "applies"
+  ],
+  [
+   "rnn",
+   "seq2seq",
+   "is building block of"
+  ],
+  [
+   "seq2seq_encoder_decoder",
+   "seq2seq",
+   "defines"
+  ],
+  [
+   "seq2seq_translation_walkthrough",
+   "seq2seq_encoder_decoder",
+   "illustrates"
+  ],
+  [
+   "seq2seq",
+   "autoregressive",
+   "decodes in"
+  ],
+  [
+   "seq2seq",
+   "context_bottleneck",
+   "suffers from"
+  ],
+  [
+   "context_bottleneck",
+   "attention",
+   "is solved by"
+  ],
+  [
+   "context_bottleneck",
+   "attention",
+   "motivates"
+  ],
+  [
+   "attention",
+   "seq2seq",
+   "extends"
+  ],
+  [
+   "attention_scores",
+   "attention",
+   "first step of"
+  ],
+  [
+   "attention_scores",
+   "attention_weights_context",
+   "are normalized into"
+  ],
+  [
+   "attention_weights_context",
+   "softmax",
+   "uses"
+  ],
+  [
+   "attention_weights_context",
+   "decoder_update_attention",
+   "feeds"
+  ],
+  [
+   "decoder_update_attention",
+   "rnn",
+   "is computed by"
+  ],
+  [
+   "attention_step_by_step",
+   "decoder_update_attention",
+   "repeats"
+  ],
+  [
+   "attention_maps",
+   "attention_weights_context",
+   "visualizes"
+  ],
+  [
+   "attention_benefits",
+   "context_bottleneck",
+   "removes"
+  ],
+  [
+   "attention",
+   "self_attention",
+   "generalizes to"
+  ],
+  [
+   "attention",
+   "qkv",
+   "is reformulated as"
+  ],
+  [
+   "attention_is_all_you_need",
+   "transformer",
+   "introduced"
+  ],
+  [
+   "transformer",
+   "rnn",
+   "replaces"
+  ],
+  [
+   "transformer",
+   "self_attention",
+   "is built on"
+  ],
+  [
+   "attention",
+   "self_attention",
+   "generalizes to"
+  ],
+  [
+   "cross_to_self_attention",
+   "self_attention",
+   "explains"
+  ],
+  [
+   "qkv_roles",
+   "qkv",
+   "defines"
+  ],
+  [
+   "qkv_projections",
+   "qkv",
+   "computes"
+  ],
+  [
+   "embedding",
+   "qkv_projections",
+   "is input to"
+  ],
+  [
+   "qkv",
+   "scaled_dot_product",
+   "is combined by"
+  ],
+  [
+   "scaled_dot_product",
+   "softmax",
+   "uses"
+  ],
+  [
+   "scaled_dot_product",
+   "self_attention",
+   "implements"
+  ],
+  [
+   "attention_matrix_form",
+   "scaled_dot_product",
+   "vectorizes"
+  ],
+  [
+   "multi_head_attention",
+   "multi_head",
+   "defines"
+  ],
+  [
+   "multi_head",
+   "self_attention",
+   "parallelizes"
+  ],
+  [
+   "head_patterns",
+   "multi_head_attention",
+   "interprets"
+  ],
+  [
+   "self_attention",
+   "positional_encoding",
+   "needs"
+  ],
+  [
+   "multi_head",
+   "gqa",
+   "is varied by"
+  ],
+  [
+   "self_attention",
+   "permutation_equivariance",
+   "exhibits"
+  ],
+  [
+   "permutation_equivariance",
+   "positional_encoding",
+   "motivates"
+  ],
+  [
+   "sinusoidal_pe",
+   "positional_encoding",
+   "implements"
+  ],
+  [
+   "positional_encoding",
+   "embedding",
+   "is added to"
+  ],
+  [
+   "pe_frequency_scales",
+   "sinusoidal_pe",
+   "explains"
+  ],
+  [
+   "pe_meaning_distortion",
+   "sinusoidal_pe",
+   "analyzes"
+  ],
+  [
+   "positional_encoding",
+   "rope",
+   "is modernized by"
+  ],
+  [
+   "unmasked_attention",
+   "self_attention",
+   "is encoder form of"
+  ],
+  [
+   "causal_mask_matrix",
+   "causal_mask",
+   "defines"
+  ],
+  [
+   "causal_mask",
+   "self_attention",
+   "restricts"
+  ],
+  [
+   "causal_mask",
+   "softmax",
+   "is applied before"
+  ],
+  [
+   "causal_mask",
+   "autoregressive",
+   "enforces"
+  ],
+  [
+   "parallel_training_sequential_generation",
+   "causal_mask",
+   "is enabled by"
+  ],
+  [
+   "parallel_training_sequential_generation",
+   "kv_cache",
+   "motivates"
+  ],
+  [
+   "transformer_layer_components",
+   "transformer",
+   "makes up"
+  ],
+  [
+   "transformer",
+   "multi_head",
+   "contains"
+  ],
+  [
+   "transformer",
+   "ffn",
+   "contains"
+  ],
+  [
+   "transformer",
+   "residual_norm",
+   "contains"
+  ],
+  [
+   "position_wise_ffn",
+   "ffn",
+   "defines"
+  ],
+  [
+   "ffn",
+   "multi_head",
+   "complements"
+  ],
+  [
+   "residual_connections",
+   "residual_norm",
+   "is part of"
+  ],
+  [
+   "layer_norm_add_norm",
+   "residual_norm",
+   "is part of"
+  ],
+  [
+   "residual_norm",
+   "stacking_layers",
+   "enables"
+  ],
+  [
+   "stacking_layers",
+   "width_depth_scale",
+   "sets depth for"
+  ],
+  [
+   "width_depth_scale",
+   "scaling_laws",
+   "relates to"
+  ],
+  [
+   "transformer_families",
+   "transformer",
+   "classifies"
+  ],
+  [
+   "transformer_families",
+   "llm",
+   "includes decoder-only"
+  ],
+  [
+   "lm_head_last_state",
+   "logits",
+   "produces"
+  ],
+  [
+   "lm_head_last_state",
+   "next_token",
+   "predicts"
+  ],
+  [
+   "weight_tying",
+   "embedding",
+   "reuses"
+  ],
+  [
+   "weight_tying",
+   "lm_head_last_state",
+   "shares weights with"
+  ],
+  [
+   "transformer_design_principles",
+   "rnn",
+   "explains replacement of"
+  ],
+  [
+   "transformer_design_principles",
+   "rope",
+   "leads to variants like"
+  ],
+  [
+   "ffn",
+   "moe",
+   "is replaced by experts in"
+  ],
+  [
+   "pre_layernorm",
+   "residual_norm",
+   "refines"
+  ],
+  [
+   "rmsnorm",
+   "residual_norm",
+   "replaces LayerNorm in"
+  ],
+  [
+   "rmsnorm",
+   "pre_layernorm",
+   "plugs into"
+  ],
+  [
+   "rope",
+   "positional_encoding",
+   "is a form of"
+  ],
+  [
+   "rope",
+   "qkv",
+   "rotates"
+  ],
+  [
+   "rope",
+   "self_attention",
+   "adds relative position to"
+  ],
+  [
+   "rope",
+   "context_window",
+   "helps extend"
+  ],
+  [
+   "mqa",
+   "multi_head",
+   "simplifies"
+  ],
+  [
+   "gqa",
+   "multi_head",
+   "generalizes"
+  ],
+  [
+   "gqa",
+   "mqa",
+   "interpolates toward"
+  ],
+  [
+   "mqa",
+   "kv_cache",
+   "shrinks"
+  ],
+  [
+   "gqa",
+   "kv_cache",
+   "shrinks"
+  ],
+  [
+   "glu_gating",
+   "ffn",
+   "upgrades"
+  ],
+  [
+   "swiglu",
+   "glu_gating",
+   "extends"
+  ],
+  [
+   "swiglu",
+   "ffn",
+   "replaces ReLU in"
+  ],
+  [
+   "modern_decoder_block",
+   "transformer",
+   "modernizes"
+  ],
+  [
+   "modern_decoder_block",
+   "rmsnorm",
+   "uses"
+  ],
+  [
+   "modern_decoder_block",
+   "rope",
+   "uses"
+  ],
+  [
+   "modern_decoder_block",
+   "gqa",
+   "uses"
+  ],
+  [
+   "modern_decoder_block",
+   "swiglu",
+   "uses"
+  ],
+  [
+   "modern_decoder_block",
+   "causal_mask",
+   "applies"
+  ],
+  [
+   "modern_decoder_block",
+   "attention",
+   "builds on"
+  ],
+  [
+   "kv_cache",
+   "self_attention",
+   "speeds up generation in"
+  ],
+  [
+   "kv_cache",
+   "causal_mask",
+   "relies on"
+  ],
+  [
+   "kv_cache",
+   "rope",
+   "caches rotated keys from"
+  ],
+  [
+   "kv_cache",
+   "context_window",
+   "grows with"
+  ],
+  [
+   "kv_cache",
+   "precision",
+   "byte size depends on"
+  ],
+  [
+   "gqa",
+   "kv_cache",
+   "shrinks"
+  ],
+  [
+   "gqa",
+   "multi_head",
+   "generalizes"
+  ],
+  [
+   "gqa",
+   "self_attention",
+   "is a variant of"
+  ],
+  [
+   "rope",
+   "qkv",
+   "rotates"
+  ],
+  [
+   "moe",
+   "ffn",
+   "replaces the dense"
+  ],
+  [
+   "moe",
+   "transformer",
+   "sparsifies the FFN of"
+  ],
+  [
+   "moe",
+   "residual_norm",
+   "keeps"
+  ],
+  [
+   "router",
+   "moe",
+   "selects experts in"
+  ],
+  [
+   "topk_routing",
+   "router",
+   "is the selection rule of"
+  ],
+  [
+   "expert_ffn",
+   "moe",
+   "is a component of"
+  ],
+  [
+   "moe",
+   "active_params",
+   "is measured by"
+  ],
+  [
+   "load_balancing",
+   "router",
+   "regularizes"
+  ],
+  [
+   "moe",
+   "gqa",
+   "coexists with"
+  ],
+  [
+   "ssm",
+   "rnn",
+   "is a linear form of"
+  ],
+  [
+   "ssm",
+   "kv_cache",
+   "avoids a growing"
+  ],
+  [
+   "ssm",
+   "self_attention",
+   "is an alternative to"
+  ],
+  [
+   "mamba",
+   "ssm",
+   "extends with selectivity"
+  ],
+  [
+   "mamba",
+   "kv_cache",
+   "replaces with a fixed state"
+  ],
+  [
+   "lstm",
+   "rnn",
+   "adds gated memory to"
+  ],
+  [
+   "lstm",
+   "ssm",
+   "is recalled and modernised in"
+  ],
+  [
+   "linear_attention",
+   "self_attention",
+   "is a fixed-memory variant of"
+  ],
+  [
+   "linear_attention",
+   "kv_cache",
+   "avoids the growing"
+  ],
+  [
+   "gated_deltanet",
+   "linear_attention",
+   "corrects the memory of"
+  ],
+  [
+   "looped_llm",
+   "transformer",
+   "reuses a block of"
+  ],
+  [
+   "moe",
+   "ssm",
+   "combines with in hybrids"
+  ],
+  [
+   "transformer",
+   "kv_cache",
+   "uses"
+  ],
+  [
+   "bigo_scaling",
+   "self_attention",
+   "describes the cost of"
+  ],
+  [
+   "bigo_scaling",
+   "ssm",
+   "describes the cost of"
+  ],
+  [
+   "bigo_scaling",
+   "kv_cache",
+   "covers the growth of"
+  ],
+  [
+   "bigo_scaling",
+   "context_window",
+   "scales with"
+  ],
+  [
+   "bigo_scaling",
+   "gqa",
+   "is unchanged by"
+  ],
+  [
+   "fixed_memory",
+   "ssm",
+   "is a property of"
+  ],
+  [
+   "fixed_memory",
+   "kv_cache",
+   "contrasts with"
+  ],
+  [
+   "fixed_memory",
+   "context_window",
+   "limits recall over long"
+  ],
+  [
+   "ttft_tpot",
+   "kv_cache",
+   "is measured for"
+  ],
+  [
+   "ttft_tpot",
+   "context_window",
+   "depends on"
+  ],
+  [
+   "architecture_choice",
+   "bigo_scaling",
+   "is guided by"
+  ],
+  [
+   "architecture_choice",
+   "kv_cache",
+   "balances"
+  ],
+  [
+   "architecture_choice",
+   "ssm",
+   "may pick"
+  ],
+  [
+   "architecture_choice",
+   "moe",
+   "may pick"
+  ],
+  [
+   "architecture_choice",
+   "gqa",
+   "may pick"
+  ],
+  [
+   "architecture_choice",
+   "precision",
+   "must budget"
+  ],
+  [
+   "training_data",
+   "pretraining",
+   "is consumed by"
+  ],
+  [
+   "data_shapes_capabilities",
+   "training_data",
+   "explains role of"
+  ],
+  [
+   "data_shapes_capabilities",
+   "next_token",
+   "arises from"
+  ],
+  [
+   "data_sources",
+   "training_data",
+   "supply"
+  ],
+  [
+   "data_transparency",
+   "data_sources",
+   "concerns"
+  ],
+  [
+   "fineweb",
+   "data_sources",
+   "is built from"
+  ],
+  [
+   "fineweb_pipeline",
+   "fineweb",
+   "produces"
+  ],
+  [
+   "filtering_dedup",
+   "fineweb_pipeline",
+   "details steps of"
+  ],
+  [
+   "fineweb_edu",
+   "fineweb",
+   "filters"
+  ],
+  [
+   "fineweb_edu",
+   "benchmark",
+   "improves MMLU"
+  ],
+  [
+   "data_mixing",
+   "training_data",
+   "composes"
+  ],
+  [
+   "synthetic_data",
+   "training_data",
+   "augments"
+  ],
+  [
+   "synthetic_data",
+   "llm",
+   "is generated by"
+  ],
+  [
+   "data_bias",
+   "training_data",
+   "originates in"
+  ],
+  [
+   "language_gap",
+   "data_bias",
+   "is an example of"
+  ],
+  [
+   "language_gap",
+   "tokenizer",
+   "is influenced by"
+  ],
+  [
+   "training_data",
+   "token",
+   "is split into"
+  ],
+  [
+   "data_mixing",
+   "data_scheduling",
+   "is extended in time by"
+  ],
+  [
+   "pretraining",
+   "training_data",
+   "learns from"
+  ],
+  [
+   "pretraining_objective",
+   "pretraining",
+   "defines the objective of"
+  ],
+  [
+   "pretraining_objective",
+   "next_token",
+   "predicts"
+  ],
+  [
+   "cross_entropy",
+   "pretraining",
+   "is the training loss of"
+  ],
+  [
+   "cross_entropy",
+   "next_token",
+   "scores the prediction of"
+  ],
+  [
+   "learning_rate_schedules",
+   "pretraining",
+   "stabilizes"
+  ],
+  [
+   "training_batches",
+   "pretraining",
+   "organize the data for"
+  ],
+  [
+   "training_batches",
+   "training_data",
+   "consume"
+  ],
+  [
+   "flops",
+   "pretraining",
+   "measure the compute of"
+  ],
+  [
+   "flops",
+   "transformer",
+   "quantifies the cost of"
+  ],
+  [
+   "training_hardware",
+   "flops",
+   "delivers throughput for"
+  ],
+  [
+   "training_hardware",
+   "precision",
+   "supports low-precision math"
+  ],
+  [
+   "precision",
+   "pretraining",
+   "determines the memory and speed of"
+  ],
+  [
+   "precision",
+   "training_hardware",
+   "is accelerated by"
+  ],
+  [
+   "single_gpu_limit",
+   "precision",
+   "follows from"
+  ],
+  [
+   "single_gpu_limit",
+   "parallelism",
+   "motivates"
+  ],
+  [
+   "gradient_accumulation",
+   "parallelism",
+   "is a form of"
+  ],
+  [
+   "gradient_accumulation",
+   "training_batches",
+   "enlarges"
+  ],
+  [
+   "data_parallelism",
+   "parallelism",
+   "is a form of"
+  ],
+  [
+   "tensor_parallelism",
+   "parallelism",
+   "is a form of"
+  ],
+  [
+   "tensor_parallelism",
+   "transformer",
+   "splits layers of"
+  ],
+  [
+   "pipeline_parallelism",
+   "parallelism",
+   "is a form of"
+  ],
+  [
+   "pipeline_parallelism",
+   "transformer",
+   "splits layers of"
+  ],
+  [
+   "zero_fsdp",
+   "data_parallelism",
+   "removes redundancy in"
+  ],
+  [
+   "zero_fsdp",
+   "parallelism",
+   "extends"
+  ],
+  [
+   "parallelism_choices",
+   "parallelism",
+   "combines strategies of"
+  ],
+  [
+   "base_model",
+   "pretraining",
+   "is the result of"
+  ],
+  [
+   "base_model",
+   "llm",
+   "is an example of a"
+  ],
+  [
+   "base_model",
+   "transformer",
+   "is a"
+  ],
+  [
+   "training_recipe",
+   "training_data",
+   "schedules"
+  ],
+  [
+   "training_recipe",
+   "pretraining",
+   "guides"
+  ],
+  [
+   "training_recipe",
+   "data_mixing",
+   "extends over time"
+  ],
+  [
+   "olmo2",
+   "training_recipe",
+   "is an example of"
+  ],
+  [
+   "olmo2",
+   "pretraining",
+   "uses multi-stage"
+  ],
+  [
+   "olmo2",
+   "training_data",
+   "selects high-quality"
+  ],
+  [
+   "context_extension",
+   "training_recipe",
+   "is a stage of"
+  ],
+  [
+   "context_extension",
+   "context_window",
+   "grows the"
+  ],
+  [
+   "context_extension",
+   "attention",
+   "is limited by quadratic"
+  ],
+  [
+   "domain_upsampling",
+   "training_recipe",
+   "is a scheduling choice in"
+  ],
+  [
+   "domain_upsampling",
+   "training_data",
+   "reweights"
+  ],
+  [
+   "domain_upsampling",
+   "benchmark",
+   "improves math and code"
+  ],
+  [
+   "scaling_laws",
+   "pretraining",
+   "guides"
+  ],
+  [
+   "scaling_laws",
+   "flops",
+   "is measured in"
+  ],
+  [
+   "scaling_laws",
+   "llm",
+   "guides training of"
+  ],
+  [
+   "scaling_laws",
+   "foundation_model",
+   "explains scaling of"
+  ],
+  [
+   "kaplan_scaling",
+   "scaling_laws",
+   "is an instance of"
+  ],
+  [
+   "compute_6nd",
+   "flops",
+   "defines"
+  ],
+  [
+   "compute_6nd",
+   "scaling_laws",
+   "underlies"
+  ],
+  [
+   "chinchilla",
+   "scaling_laws",
+   "refines"
+  ],
+  [
+   "chinchilla",
+   "kaplan_scaling",
+   "corrects"
+  ],
+  [
+   "tokens_per_param",
+   "chinchilla",
+   "rule of thumb from"
+  ],
+  [
+   "overtraining",
+   "tokens_per_param",
+   "exceeds"
+  ],
+  [
+   "scaling_limits",
+   "scaling_laws",
+   "bounds"
+  ],
+  [
+   "icl",
+   "llm",
+   "is an ability of"
+  ],
+  [
+   "icl",
+   "pretraining",
+   "emerges from"
+  ],
+  [
+   "icl",
+   "prompt_engineering",
+   "underlies"
+  ],
+  [
+   "base_model_continuation",
+   "icl",
+   "is the baseline before"
+  ],
+  [
+   "icl_few_shot",
+   "icl",
+   "is an example of"
+  ],
+  [
+   "icl_few_shot",
+   "few_shot",
+   "implements"
+  ],
+  [
+   "algorithmic_semantic_icl",
+   "icl",
+   "are modes of"
+  ],
+  [
+   "induction_heads",
+   "algorithmic_semantic_icl",
+   "enable"
+  ],
+  [
+   "induction_heads",
+   "self_attention",
+   "rely on"
+  ],
+  [
+   "icl_limits",
+   "icl",
+   "bound"
+  ],
+  [
+   "post_training",
+   "pretraining",
+   "follows"
+  ],
+  [
+   "sft",
+   "post_training",
+   "is part of"
+  ],
+  [
+   "sft",
+   "pretraining",
+   "continues"
+  ],
+  [
+   "instructgpt",
+   "sft",
+   "uses"
+  ],
+  [
+   "instructgpt",
+   "rlhf",
+   "adds"
+  ],
+  [
+   "chatgpt_pipeline",
+   "foundation_model",
+   "is built on"
+  ],
+  [
+   "chatgpt_pipeline",
+   "sft",
+   "uses"
+  ],
+  [
+   "chatgpt_pipeline",
+   "rlhf",
+   "uses"
+  ],
+  [
+   "sft_limits",
+   "sft",
+   "is a limit of"
+  ],
+  [
+   "sft_limits",
+   "rlhf",
+   "is addressed by"
+  ],
+  [
+   "preference_hard",
+   "rlhf",
+   "motivates"
+  ],
+  [
+   "absolute_vs_relative",
+   "preference_dataset",
+   "shapes"
+  ],
+  [
+   "preference_dataset",
+   "sft",
+   "is sampled from"
+  ],
+  [
+   "preference_dataset",
+   "rlhf",
+   "feeds"
+  ],
+  [
+   "rl_basics",
+   "rlhf",
+   "underlies"
+  ],
+  [
+   "reward_model",
+   "preference_dataset",
+   "is trained on"
+  ],
+  [
+   "reward_model",
+   "rlhf",
+   "is used by"
+  ],
+  [
+   "rlhf",
+   "sft",
+   "starts from"
+  ],
+  [
+   "rlhf_ppo",
+   "rlhf",
+   "implements"
+  ],
+  [
+   "rlhf_ppo",
+   "reward_model",
+   "optimizes against"
+  ],
+  [
+   "dpo",
+   "rlhf",
+   "is an alternative to"
+  ],
+  [
+   "dpo",
+   "reward_model",
+   "avoids"
+  ],
+  [
+   "dpo",
+   "preference_dataset",
+   "trains on"
+  ],
+  [
+   "dpo",
+   "sft",
+   "starts from"
+  ],
+  [
+   "decoding",
+   "softmax",
+   "selects from"
+  ],
+  [
+   "decoding",
+   "logits",
+   "operates on"
+  ],
+  [
+   "decoding",
+   "llm",
+   "applied to"
+  ],
+  [
+   "decoding",
+   "autoregressive",
+   "drives"
+  ],
+  [
+   "stable_softmax",
+   "softmax",
+   "stabilizes"
+  ],
+  [
+   "stable_softmax",
+   "logits",
+   "subtracts max from"
+  ],
+  [
+   "greedy",
+   "decoding",
+   "is a strategy of"
+  ],
+  [
+   "sampling",
+   "decoding",
+   "is a strategy of"
+  ],
+  [
+   "sampling",
+   "softmax",
+   "draws from"
+  ],
+  [
+   "temperature",
+   "sampling",
+   "modulates"
+  ],
+  [
+   "temperature",
+   "softmax",
+   "rescales logits before"
+  ],
+  [
+   "top_k",
+   "sampling",
+   "truncates candidates for"
+  ],
+  [
+   "top_p",
+   "sampling",
+   "truncates candidates for"
+  ],
+  [
+   "top_k",
+   "temperature",
+   "combines with"
+  ],
+  [
+   "top_p",
+   "top_k",
+   "adapts set size versus"
+  ],
+  [
+   "strategy_comparison",
+   "decoding",
+   "summarizes"
+  ],
+  [
+   "strategy_comparison",
+   "temperature",
+   "compares"
+  ],
+  [
+   "strategy_comparison",
+   "top_k",
+   "compares"
+  ],
+  [
+   "strategy_comparison",
+   "top_p",
+   "compares"
+  ],
+  [
+   "evaluation",
+   "llm",
+   "assesses"
+  ],
+  [
+   "evaluation",
+   "perplexity",
+   "includes"
+  ],
+  [
+   "evaluation",
+   "benchmark",
+   "uses"
+  ],
+  [
+   "evaluation",
+   "rlhf",
+   "compares"
+  ],
+  [
+   "perplexity",
+   "cross_entropy",
+   "is exp of"
+  ],
+  [
+   "perplexity",
+   "pretraining",
+   "measures"
+  ],
+  [
+   "task_metrics",
+   "evaluation",
+   "is a level of"
+  ],
+  [
+   "task_metrics",
+   "benchmark",
+   "underlies"
+  ],
+  [
+   "task_metrics",
+   "llm",
+   "scores"
+  ],
+  [
+   "pass_at_k",
+   "evaluation",
+   "is a metric of"
+  ],
+  [
+   "pass_at_k",
+   "benchmark",
+   "used by"
+  ],
+  [
+   "pass_at_k",
+   "humaneval",
+   "scores"
+  ],
+  [
+   "mmlu",
+   "benchmark",
+   "is a"
+  ],
+  [
+   "big_bench",
+   "benchmark",
+   "is a"
+  ],
+  [
+   "humaneval",
+   "benchmark",
+   "is a"
+  ],
+  [
+   "humaneval",
+   "pass_at_k",
+   "scored by"
+  ],
+  [
+   "long_horizon",
+   "benchmark",
+   "assessed by"
+  ],
+  [
+   "long_horizon",
+   "humaneval",
+   "extends beyond"
+  ],
+  [
+   "safety_factuality",
+   "benchmark",
+   "checked by"
+  ],
+  [
+   "safety_factuality",
+   "rlhf",
+   "relates to"
+  ],
+  [
+   "multi_turn",
+   "evaluation",
+   "is a capability test of"
+  ],
+  [
+   "multi_turn",
+   "sft",
+   "shaped by"
+  ],
+  [
+   "multi_turn",
+   "rlhf",
+   "shaped by"
+  ],
+  [
+   "tool_use",
+   "function_calling",
+   "tests"
+  ],
+  [
+   "tool_use",
+   "multi_turn",
+   "combines"
+  ],
+  [
+   "tool_use",
+   "long_horizon",
+   "combines"
+  ],
+  [
+   "modality_domain",
+   "benchmark",
+   "extends"
+  ],
+  [
+   "modality_domain",
+   "rag",
+   "relevant to"
+  ],
+  [
+   "benchmark_limits",
+   "benchmark",
+   "limits"
+  ],
+  [
+   "benchmark_limits",
+   "evaluation",
+   "guides"
+  ],
+  [
+   "benchmark",
+   "evaluation",
+   "is a tool of"
+  ],
+  [
+   "prompt_engineering",
+   "llm",
+   "adapts"
+  ],
+  [
+   "prompt_engineering",
+   "icl",
+   "relies on"
+  ],
+  [
+   "prompting_first",
+   "prompt_engineering",
+   "prefers"
+  ],
+  [
+   "system_prompt",
+   "prompt_engineering",
+   "is a core part of"
+  ],
+  [
+   "system_prompt",
+   "context_window",
+   "occupies"
+  ],
+  [
+   "role_hierarchy",
+   "system_prompt",
+   "orders"
+  ],
+  [
+   "role_hierarchy",
+   "sft",
+   "is learned during"
+  ],
+  [
+   "role_hierarchy",
+   "llm",
+   "applies to"
+  ],
+  [
+   "zero_shot",
+   "prompt_engineering",
+   "is a form of"
+  ],
+  [
+   "zero_shot_tradeoffs",
+   "zero_shot",
+   "characterize"
+  ],
+  [
+   "few_shot",
+   "zero_shot",
+   "improves on"
+  ],
+  [
+   "few_shot",
+   "icl",
+   "triggers"
+  ],
+  [
+   "few_shot_practice",
+   "few_shot",
+   "refines"
+  ],
+  [
+   "few_shot",
+   "context_window",
+   "consumes"
+  ],
+  [
+   "chain_of_thought",
+   "prompt_engineering",
+   "is a form of"
+  ],
+  [
+   "chain_of_thought",
+   "few_shot",
+   "can combine with"
+  ],
+  [
+   "cot_emergent_ability",
+   "chain_of_thought",
+   "explains"
+  ],
+  [
+   "cot_properties",
+   "chain_of_thought",
+   "limit"
+  ],
+  [
+   "context_management",
+   "context_window",
+   "manages"
+  ],
+  [
+   "lost_in_the_middle",
+   "context_window",
+   "describes bias in"
+  ],
+  [
+   "lost_in_the_middle",
+   "attention",
+   "reflects"
+  ],
+  [
+   "chunking_summarization",
+   "context_management",
+   "is a technique of"
+  ],
+  [
+   "chunking_summarization",
+   "rag",
+   "supports"
+  ],
+  [
+   "message_pruning",
+   "context_management",
+   "is a technique of"
+  ],
+  [
+   "prompt_ordering",
+   "lost_in_the_middle",
+   "exploits"
+  ],
+  [
+   "context_challenges",
+   "context_management",
+   "motivate"
+  ],
+  [
+   "instruction_persona",
+   "prompt_engineering",
+   "is a pattern of"
+  ],
+  [
+   "instruction_persona",
+   "system_prompt",
+   "relates to"
+  ],
+  [
+   "example_cot_patterns",
+   "few_shot",
+   "implements"
+  ],
+  [
+   "example_cot_patterns",
+   "chain_of_thought",
+   "implements"
+  ],
+  [
+   "critique_refine",
+   "prompt_engineering",
+   "is a pattern of"
+  ],
+  [
+   "critique_refine",
+   "chain_of_thought",
+   "extends"
+  ],
+  [
+   "decomposition_patterns",
+   "prompt_engineering",
+   "is a pattern of"
+  ],
+  [
+   "tree_of_thought",
+   "chain_of_thought",
+   "extends"
+  ],
+  [
+   "style_hard_constraints",
+   "structured_output",
+   "supports"
+  ],
+  [
+   "soft_steering_guardrails",
+   "system_prompt",
+   "relates to"
+  ],
+  [
+   "soft_steering_guardrails",
+   "sft",
+   "is learned during"
+  ],
+  [
+   "structured_output",
+   "prompt_engineering",
+   "is a form of"
+  ],
+  [
+   "structured_output",
+   "llm",
+   "turns into a component"
+  ],
+  [
+   "function_calling",
+   "structured_output",
+   "builds on"
+  ],
+  [
+   "function_calling",
+   "llm",
+   "equips"
+  ],
+  [
+   "tool_awareness",
+   "function_calling",
+   "describes variants of"
+  ],
+  [
+   "tool_awareness",
+   "system_prompt",
+   "may use"
+  ],
+  [
+   "tool_awareness",
+   "sft",
+   "is trained via"
+  ],
+  [
+   "function_calling_example",
+   "function_calling",
+   "illustrates"
+  ],
+  [
+   "function_calling",
+   "rag",
+   "can invoke"
+  ],
+  [
+   "prompt_failure_modes",
+   "evaluation",
+   "is a step of"
+  ],
+  [
+   "prompt_failure_modes",
+   "context_window",
+   "checks"
+  ],
+  [
+   "debug_improve",
+   "prompt_failure_modes",
+   "follows"
+  ],
+  [
+   "debug_improve",
+   "structured_output",
+   "adds"
+  ],
+  [
+   "debug_improve",
+   "prompt_engineering",
+   "improves"
+  ],
+  [
+   "apo_motivation",
+   "prompt_engineering",
+   "automates"
+  ],
+  [
+   "apo_loop",
+   "apo_motivation",
+   "implements"
+  ],
+  [
+   "apo_loop",
+   "evaluation",
+   "uses"
+  ],
+  [
+   "apo_loop",
+   "benchmark",
+   "scores with"
+  ],
+  [
+   "parametric_vs_nonparametric",
+   "rag",
+   "motivates"
+  ],
+  [
+   "rag",
+   "rag_pipeline",
+   "is realized by"
+  ],
+  [
+   "rag",
+   "llm",
+   "conditions"
+  ],
+  [
+   "rag",
+   "context_window",
+   "fills"
+  ],
+  [
+   "rag_pipeline",
+   "chunking",
+   "uses"
+  ],
+  [
+   "rag_pipeline",
+   "embedding",
+   "uses"
+  ],
+  [
+   "rag_pipeline",
+   "vector_store",
+   "uses"
+  ],
+  [
+   "rag_vs_alignment",
+   "rag",
+   "contrasts with"
+  ],
+  [
+   "rag_vs_alignment",
+   "sft",
+   "involves"
+  ],
+  [
+   "rag_hallucination",
+   "rag",
+   "is reduced by"
+  ],
+  [
+   "rag_hallucination",
+   "evaluation",
+   "is measured by"
+  ],
+  [
+   "embedding_model",
+   "rag",
+   "powers retrieval in"
+  ],
+  [
+   "embedding_model",
+   "embedding",
+   "is a kind of"
+  ],
+  [
+   "embedding_model",
+   "cosine_similarity",
+   "is compared with"
+  ],
+  [
+   "sentence_bert_pooling",
+   "embedding_model",
+   "builds"
+  ],
+  [
+   "siamese_training",
+   "sentence_bert_pooling",
+   "trains"
+  ],
+  [
+   "siamese_training",
+   "cosine_similarity",
+   "uses"
+  ],
+  [
+   "embedding_model_types",
+   "embedding_model",
+   "specializes"
+  ],
+  [
+   "embedding_model_types",
+   "evaluation",
+   "is judged by recall"
+  ],
+  [
+   "chunking",
+   "embedding",
+   "produces inputs for"
+  ],
+  [
+   "chunking",
+   "rag",
+   "structures"
+  ],
+  [
+   "chunking",
+   "vector_store",
+   "fills"
+  ],
+  [
+   "chunking",
+   "context_window",
+   "is limited by"
+  ],
+  [
+   "contextual_retrieval",
+   "chunking",
+   "enriches"
+  ],
+  [
+   "contextual_retrieval",
+   "embedding",
+   "improves"
+  ],
+  [
+   "embedding_quality_recall",
+   "embedding_model",
+   "depends on"
+  ],
+  [
+   "embedding_quality_recall",
+   "chunking",
+   "depends on"
+  ],
+  [
+   "embedding_quality_recall",
+   "evaluation",
+   "is measured by recall"
+  ],
+  [
+   "vector_store",
+   "ann",
+   "provides"
+  ],
+  [
+   "vector_store",
+   "embedding",
+   "stores"
+  ],
+  [
+   "vector_store",
+   "rag",
+   "serves"
+  ],
+  [
+   "ann",
+   "vector_store",
+   "indexes"
+  ],
+  [
+   "ann",
+   "hnsw",
+   "is implemented by"
+  ],
+  [
+   "ivf",
+   "ann",
+   "is a kind of"
+  ],
+  [
+   "ivf",
+   "embedding",
+   "clusters"
+  ],
+  [
+   "quantization",
+   "ann",
+   "is a kind of"
+  ],
+  [
+   "quantization",
+   "ivf",
+   "combines with"
+  ],
+  [
+   "faiss_comparison",
+   "ann",
+   "implements"
+  ],
+  [
+   "faiss_comparison",
+   "ivf",
+   "includes"
+  ],
+  [
+   "faiss_comparison",
+   "hnsw",
+   "includes"
+  ],
+  [
+   "faiss_comparison",
+   "quantization",
+   "includes"
+  ],
+  [
+   "nsw_build",
+   "ann",
+   "builds a graph index for"
+  ],
+  [
+   "nsw_build",
+   "embedding",
+   "connects"
+  ],
+  [
+   "nsw_search",
+   "nsw_build",
+   "operates on"
+  ],
+  [
+   "nsw_search",
+   "ann",
+   "performs"
+  ],
+  [
+   "skip_list",
+   "hnsw",
+   "inspires"
+  ],
+  [
+   "hnsw",
+   "nsw_build",
+   "extends"
+  ],
+  [
+   "hnsw",
+   "nsw_search",
+   "extends"
+  ],
+  [
+   "hnsw",
+   "skip_list",
+   "combines with"
+  ],
+  [
+   "hnsw",
+   "vector_store",
+   "indexes"
+  ],
+  [
+   "hnsw",
+   "rag",
+   "defaults in"
+  ],
+  [
+   "dense_retrieval",
+   "embedding_model",
+   "uses"
+  ],
+  [
+   "dense_retrieval",
+   "cosine_similarity",
+   "ranks by"
+  ],
+  [
+   "dense_retrieval",
+   "rag",
+   "is the first stage of"
+  ],
+  [
+   "bm25",
+   "dense_retrieval",
+   "complements"
+  ],
+  [
+   "bm25",
+   "rag",
+   "serves"
+  ],
+  [
+   "hybrid_retrieval",
+   "dense_retrieval",
+   "combines"
+  ],
+  [
+   "hybrid_retrieval",
+   "bm25",
+   "combines"
+  ],
+  [
+   "hybrid_retrieval",
+   "rrf",
+   "is fused by"
+  ],
+  [
+   "rrf",
+   "evaluation",
+   "is judged by recall"
+  ]
+ ],
+ "categories": {
+  "Intro": "#3fa7ff",
+  "Tokens": "#35d6a0",
+  "LLM Foundations": "#ff8a3d",
+  "Training": "#b583ff",
+  "Inference": "#ff4f79",
+  "Prompting": "#ffd23f",
+  "RAG": "#2ec4b6"
+ },
+ "demo": {
+  "welcome_caption": "A complete AI engineering course: from a token to a running AI system.",
+  "welcome_say": "Welcome to the AI Engineering course. In this tour you will travel from raw text to tokens, through attention and training, all the way to retrieval and prompt engineering.",
+  "focus_node": "text_to_text_pipeline",
+  "hop_start": "chatgpt_name",
+  "path_from": "chatgpt_name",
+  "path_to": "parametric_vs_nonparametric",
+  "question": "How does retrieval augmented generation reduce hallucination?",
+  "tour": [
+   "chatgpt_name",
+   "text_to_text_pipeline",
+   "static_vs_contextual",
+   "data_shapes_capabilities",
+   "decoding",
+   "prompt_engineering",
+   "parametric_vs_nonparametric"
+  ],
+  "tour_end": "That was the AI Engineering course overview. Each chapter is a full lesson with cards, labs and a quiz.",
+  "summary": "Tokens, embeddings, attention, transformers, KV cache, mixture of experts, training and alignment, decoding, evaluation, prompting and RAG.",
+  "chips": [
+   "What is byte pair encoding?",
+   "How does self-attention work?",
+   "Why does a KV cache save compute?",
+   "What is the difference between dense and sparse retrieval?"
+  ],
+  "unknown_hint": "Try terms like: tokenizer, attention, KV cache, mixture of experts, RAG, fine-tuning.",
+  "category_say": {
+   "Intro": "Chapter 1, Introduction & AI Engineering. Explain what ChatGPT is, why it spread so fast, and which shift and ingredients made general-purpose generative AI possible.",
+   "Tokens": "Chapter 2, From Text to Tokens and Back. Trace how a sentence travels through an LLM system, from raw text to token IDs, vectors, scores and back to text, one token at a time.",
+   "LLM Foundations": "Chapter 3, Foundations of LLMs. Understand how recurrent networks turn a token sequence into context-aware hidden states, how an encoder-decoder maps one sequence to another, and why a single fixed context vector becomes a bottleneck.",
+   "Training": "Chapter 4, Training & Alignment. Understand where LLM training text comes from, how raw web crawls are turned into clean, well-mixed corpora, and how data choices shape model quality and bias.",
+   "Inference": "Chapter 5, Inference & Evaluation. Explain how a model's next-token probabilities are turned into actual text, and how greedy, sampling, temperature, top-k and top-p trade determinism against creativity.",
+   "Prompting": "Chapter 6, Prompt Engineering. Understand what prompt engineering is and how system, user and assistant roles shape a chat model's behaviour.",
+   "RAG": "Chapter 7, Retrieval-Augmented Generation. Explain why parametric language models need external knowledge and how Retrieval-Augmented Generation supplies it."
+  },
+  "story": [
+   {
+    "title": "1.  Introduction & AI Engineering",
+    "caption": "Explain what ChatGPT is, why it spread so fast, and which shift and ingredients made general-purpose generative AI possible.",
+    "say": "Explain what ChatGPT is, why it spread so fast, and which shift and ingredients made general-purpose generative AI possible.",
+    "focus": [
+     "chatgpt_name",
+     "chatgpt_success",
+     "task_specific_to_general"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "2.  From Text to Tokens and Back",
+    "caption": "Trace how a sentence travels through an LLM system, from raw text to token IDs, vectors, scores and back to text, one token at a time.",
+    "say": "Trace how a sentence travels through an LLM system, from raw text to token IDs, vectors, scores and back to text, one token at a time.",
+    "focus": [
+     "text_to_text_pipeline",
+     "pipeline_input_side",
+     "pipeline_output_side"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "3.  Foundations of LLMs",
+    "caption": "Understand how recurrent networks turn a token sequence into context-aware hidden states, how an encoder-decoder maps one sequence to another, and why a single fixed context vector becomes a bottleneck.",
+    "say": "Understand how recurrent networks turn a token sequence into context-aware hidden states, how an encoder-decoder maps one sequence to another, and why a single fixed context vector becomes a bottleneck.",
+    "focus": [
+     "static_vs_contextual",
+     "recurrence_vs_attention_paths",
+     "rnn_forward_pass"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "4.  Training & Alignment",
+    "caption": "Understand where LLM training text comes from, how raw web crawls are turned into clean, well-mixed corpora, and how data choices shape model quality and bias.",
+    "say": "Understand where LLM training text comes from, how raw web crawls are turned into clean, well-mixed corpora, and how data choices shape model quality and bias.",
+    "focus": [
+     "data_shapes_capabilities",
+     "data_sources",
+     "data_transparency"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "5.  Inference & Evaluation",
+    "caption": "Explain how a model's next-token probabilities are turned into actual text, and how greedy, sampling, temperature, top-k and top-p trade determinism against creativity.",
+    "say": "Explain how a model's next-token probabilities are turned into actual text, and how greedy, sampling, temperature, top-k and top-p trade determinism against creativity.",
+    "focus": [
+     "decoding",
+     "stable_softmax",
+     "greedy"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "6.  Prompt Engineering",
+    "caption": "Understand what prompt engineering is and how system, user and assistant roles shape a chat model's behaviour.",
+    "say": "Understand what prompt engineering is and how system, user and assistant roles shape a chat model's behaviour.",
+    "focus": [
+     "prompt_engineering",
+     "prompting_first",
+     "system_prompt"
+    ],
+    "min": 7.0
+   },
+   {
+    "title": "7.  Retrieval-Augmented Generation",
+    "caption": "Explain why parametric language models need external knowledge and how Retrieval-Augmented Generation supplies it.",
+    "say": "Explain why parametric language models need external knowledge and how Retrieval-Augmented Generation supplies it.",
+    "focus": [
+     "parametric_vs_nonparametric",
+     "rag",
+     "rag_pipeline"
+    ],
+    "min": 7.0
+   }
+  ]
+ }
+}

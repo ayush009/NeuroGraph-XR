@@ -65,3 +65,6 @@ doc_graph.json
 
 # local test captures
 /_webcheck/
+
+# lecture slide extracts (lecturer's material, local only)
+/_slides/

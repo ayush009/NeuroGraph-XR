@@ -1,0 +1,1 @@
+[{"t": 0.1, "w": "Large"}, {"t": 0.543, "w": "raw"}, {"t": 0.777, "w": "scores"}, {"t": 1.272, "w": "push"}, {"t": 1.584, "w": "softmax"}, {"t": 2.392, "w": "toward"}, {"t": 2.73, "w": "one-hot"}, {"t": 3.251, "w": "distributions"}, {"t": 4.462, "w": "scaling"}, {"t": 5.113, "w": "keeps"}, {"t": 5.412, "w": "it"}, {"t": 5.543, "w": "smooth"}]

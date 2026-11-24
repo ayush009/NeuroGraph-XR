@@ -21,7 +21,7 @@
 &nbsp;
 <a href="https://github.com/ayush009/NeuroGraph-XR/releases/latest/download/NeuroGraph_XR_Windows.zip"><img src="https://img.shields.io/badge/⬇%20DOWNLOAD%20FOR%20WINDOWS-VR%20·%20AI%20·%20voice-478CBF?style=for-the-badge" height="42" alt="Download for Windows"/></a>
 
-<sub>The browser demo has the 3D graph, guided tour, quiz and all labs. The Windows app adds VR, the local AI tutor and voice questions.</sub>
+<sub>The browser demo has the 3D graph, the **full AI Engineering course**, guided tour, quiz and all labs. The Windows app adds VR, the local AI tutor and voice questions.</sub>
 
 <br/><br/>
 
@@ -103,8 +103,60 @@ answers from the knowledge graph and speaks the answer back. No cloud, no API ke
 | 🏷️ **Category filter** | Isolate *Training*, *Retrieval*, *Generation* … clusters |
 | 📸 **Screenshots** | Press `P` to save the current view |
 | 🧩 **Bring your own course** | All content is plain JSON in `data/` — add concepts, edges, quiz questions and a story without touching code |
+| 🎓 **Whole curriculum included** | 7 chapters, 43 lessons, 277 narrated cards, 234 quiz questions and 15 labs, all in the app's own words |
+| 🧪 **Eleven extra labs** | Embeddings, bigrams, position encoding, KV cache, MoE, precision, scaling, retrieval, HNSW, pass@k and prompting |
 
 </details>
+
+---
+
+## 🎓 The full AI Engineering course
+
+Press **`U`** (or the **🎓 Course** button, or the *AI COURSE* tile on the home screen) and the app becomes
+a complete, self-contained course — the whole AI-engineering curriculum, rewritten in the app's own words.
+
+| | |
+|---|---|
+| **7 chapters** | Introduction & AI Engineering · From Text to Tokens and Back · Foundations of LLMs · Training & Alignment · Inference & Evaluation · Prompt Engineering · Retrieval-Augmented Generation |
+| **43 lessons** | Each with a goal, **277 illustrated concept cards** (text, key points, formulas, worked examples) and **spoken narration** for every card |
+| **234 quiz questions** | Four options each, with the explanation of *why* the answer is right — and a spoken explanation |
+| **15 hands-on labs** | Every lesson links straight into the lab that belongs to it |
+| **Progress tracking** | Lessons finished, cards read and best quiz score are saved; finished lessons get a ✓ |
+
+Chapters and lessons are plain JSON in `data/aie_course.json` and `data/aie_graph.json` — the same
+bring-your-own-course format used by the other two courses, so you can extend or translate it without touching code.
+
+<table>
+<tr>
+<td width="33%"><img src="docs/media/09_course_chapters.jpg" alt="Course chapters and lessons"/></td>
+<td width="33%"><img src="docs/media/10_course_lesson.jpg" alt="A lesson card with narration"/></td>
+<td width="33%"><img src="docs/media/11_course_quiz.jpg" alt="A lesson quiz"/></td>
+</tr>
+<tr>
+<td><b>Chapter map</b><br/>Seven chapters, 43 lessons, progress at a glance. Each lesson shows its card count, its goal and whether you finished it.</td>
+<td><b>Lesson player</b><br/>Read the card, press <b>🔊 Listen</b> for the natural voice, open the matching lab, or jump to the concept in the 3D graph.</td>
+<td><b>Lesson quiz</b><br/>Four choices per question, an explanation after every answer, and a score that is remembered per lesson.</td>
+</tr>
+</table>
+
+### 🧪 The labs
+
+Three labs were there from the start (**Token**, **Attention**, **Sampling**). The course adds eleven more,
+each a small interactive model of one idea:
+
+| Lab | What you can do |
+|---|---|
+| **Embedding Lab** | Click words in a 2D embedding space, see cosine nearest neighbours, and run `king − man + woman` |
+| **Bigram Lab** | Count letter pairs in a real corpus, sample the greedy continuation, and watch it get stuck in a loop |
+| **Position Encoding Lab** | The sinusoid table as a heat map, plus the similarity-versus-distance curve that makes positions readable |
+| **KV Cache Lab** | Compare prefill vs decode compute, and the cache memory and memory-bandwidth time for any context length |
+| **Mixture of Experts Lab** | A router picking top-1 / top-2 / top-4 experts: active parameters stay flat while total parameters grow |
+| **Numerics & Precision Lab** | Bit layouts of FP32/TF32/FP16/BF16/FP8/INT8/NF4, model size per format, and a live rounding demo |
+| **Scaling Lab** | The Chinchilla trade-off on a log-loss curve — drag the compute budget and see the optimal parameters/tokens split |
+| **Retrieval Lab** | One query ranked by BM25, by embeddings, and fused with reciprocal rank fusion |
+| **HNSW Lab** | Walk a layered proximity graph greedily, count comparisons against brute force, and tune the search width |
+| **pass@k Lab** | pass@k = 1 − (1 − p)^k against pass^k = p^k — why "solved once" and "solved every time" differ |
+| **Prompt Lab** | Build a prompt from role / context / format / examples / constraints and watch specificity change |
 
 ---
 
@@ -140,6 +192,7 @@ Tested on a **VR headset via SteamVR**. Any **OpenXR-compatible headset** should
 | `Q` | Quiz | `L` `A` `K` | Token / Attention / Sampling lab |
 | `E` | Explode layers | `F` | Forward-pass animation |
 | `C` | Switch course | `H` | Home menu |
+| `U` | 🎓 AI Engineering course | `←` `→` / `Space` | Previous / next card in a lesson |
 | `Space` | Next tour step / next question | `Esc` | Stop the tour |
 | `M` / `V` | Music / narration on-off | `P` | Screenshot |
 | Mouse | Drag = orbit · wheel = zoom · click = select · Ctrl+click = shortest path | | |

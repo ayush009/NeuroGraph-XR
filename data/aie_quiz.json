@@ -1,0 +1,1558 @@
+{
+ "questions": [
+  {
+   "q": "What does the 'P' in ChatGPT stand for?",
+   "answer": "chatgpt_name",
+   "why": "GPT means Generative Pretrained Transformer: the model first learns broad knowledge from large text corpora.",
+   "text_answer": "Pretrained",
+   "lesson": "1.1"
+  },
+  {
+   "q": "Which of these did NOT contribute to ChatGPT's rapid adoption?",
+   "answer": "vibe_coding",
+   "why": "A central success factor was that no technical expertise was needed at all.",
+   "text_answer": "Users had to write code to interact with it",
+   "lesson": "1.1"
+  },
+  {
+   "q": "What is the key shift from traditional machine learning to generative AI?",
+   "answer": "task_specific_to_general",
+   "why": "Classic ML trained a separate model for each task; a foundation model is general-purpose.",
+   "text_answer": "From one specialised model per task to one model handling many tasks",
+   "lesson": "1.1"
+  },
+  {
+   "q": "Which Transformer property is named as a driver of generative AI?",
+   "answer": "self_supervised_training",
+   "why": "Parallel self-attention made training on web-scale data with GPU clusters practical.",
+   "text_answer": "Self-attention that can be trained in a highly parallel way",
+   "lesson": "1.1"
+  },
+  {
+   "q": "What is the main downside of the AI race described in this lesson?",
+   "answer": "rag_vs_alignment",
+   "why": "Competition speeds progress but pushes companies to ship early.",
+   "text_answer": "Pressure to release products before they are mature",
+   "lesson": "1.1"
+  },
+  {
+   "q": "What is autoregressive generation?",
+   "answer": "next_token",
+   "why": "Each chosen token is appended to the input and the model predicts again.",
+   "text_answer": "Repeatedly predicting, selecting and appending one token at a time",
+   "lesson": "1.2"
+  },
+  {
+   "q": "Why is language model training called self-supervised?",
+   "answer": "next_token",
+   "why": "Each next word in the text serves as the target, so no manual annotation is needed.",
+   "text_answer": "The labels (next words) come directly from the raw text",
+   "lesson": "1.2"
+  },
+  {
+   "q": "In speech recognition, why is 'I eat ice cream' chosen over 'I eat I scream'?",
+   "answer": "language_model",
+   "why": "Both sound identical; the LM re-ranks acoustic hypotheses by linguistic plausibility.",
+   "text_answer": "The language model assigns the first sentence a higher probability",
+   "lesson": "1.2"
+  },
+  {
+   "q": "Beyond next-token prediction, which three aspects explain a model's capabilities?",
+   "answer": "beyond_next_token",
+   "why": "Prediction is only the generation mechanism; capability comes from how the model is built, trained and prompted.",
+   "text_answer": "Architecture; training and alignment; inference and context",
+   "lesson": "1.2"
+  },
+  {
+   "q": "Which is NOT one of the three scaling dimensions of LLMs?",
+   "answer": "self_supervised_training",
+   "why": "LLMs scale data, parameters and compute; being self-supervised, they do not depend on annotators.",
+   "text_answer": "Number of human annotators",
+   "lesson": "1.3"
+  },
+  {
+   "q": "An LLM trained only on next-token prediction can also translate and write code. What are such skills called?",
+   "answer": "emergent_abilities",
+   "why": "They emerge at scale from the prediction objective without explicit task training.",
+   "text_answer": "Emergent abilities",
+   "lesson": "1.3"
+  },
+  {
+   "q": "Why was 'foundation model' preferred over 'general-purpose model'?",
+   "answer": "language_model",
+   "why": "'General-purpose' signals versatility but hides that the model must be adapted to downstream tasks.",
+   "text_answer": "It conveys that the model is an unfinished base that needs adaptation",
+   "lesson": "1.3"
+  },
+  {
+   "q": "Which statement correctly relates LLMs, foundation models and AI systems?",
+   "answer": "foundation_model",
+   "why": "LLMs are the text specialisation of foundation models; AI systems wrap models into usable applications.",
+   "text_answer": "An LLM is a type of foundation model; an AI system combines models with context, data, tools and logic",
+   "lesson": "1.3"
+  },
+  {
+   "q": "Which statement about ChatGPT is correct?",
+   "answer": "foundation_model",
+   "why": "ChatGPT = foundation model + alignment + interface, and it launched on GPT-3.5.",
+   "text_answer": "It uses a foundation model but is not itself a foundation model",
+   "lesson": "1.3"
+  },
+  {
+   "q": "Which model is the example of an audio/speech foundation model?",
+   "answer": "fm_modalities",
+   "why": "Whisper learns from raw and transcribed speech; CLIP is vision, Sora is video, DALL-E generates images.",
+   "text_answer": "Whisper",
+   "lesson": "1.3"
+  },
+  {
+   "q": "AI engineering is best described as the discipline of...",
+   "answer": "open_weights",
+   "why": "It centres on building applications with foundation models as core components.",
+   "text_answer": "building reliable, useful and maintainable systems around AI models",
+   "lesson": "1.4"
+  },
+  {
+   "q": "In the AI engineering stack, which concerns cut across all layers?",
+   "answer": "ai_engineering_stack",
+   "why": "Testing, red teaming, guardrails, monitoring and feedback loops apply to every layer.",
+   "text_answer": "Evaluation, safety and monitoring",
+   "lesson": "1.4"
+  },
+  {
+   "q": "What is the typical loop of a coding assistant?",
+   "answer": "vibe_coding",
+   "why": "Coding assistants iterate using execution and testing tools; search-compare-decide-act is the agent pattern.",
+   "text_answer": "Generate code -> run tests -> inspect results -> refine",
+   "lesson": "1.4"
+  },
+  {
+   "q": "A demo asks 'Can the model do this?'. What does a production AI system ask?",
+   "answer": "demo_vs_system",
+   "why": "Production requires consistent behaviour across many cases plus safety, latency and cost control.",
+   "text_answer": "Can the system do this reliably, safely and efficiently?",
+   "lesson": "1.4"
+  },
+  {
+   "q": "The model invents a contract clause that sounds plausible but does not exist. Which failure category is this?",
+   "answer": "safety_factuality",
+   "why": "Plausible but incorrect content is a factuality failure, often called hallucination.",
+   "text_answer": "Factuality",
+   "lesson": "1.4"
+  },
+  {
+   "q": "Why does 'open-weight' not mean 'open-source'?",
+   "answer": "vibe_coding",
+   "why": "Only the trained parameters are released, under a license; other artefacts may stay closed.",
+   "text_answer": "Published weights do not imply that training code, data or the full process are public",
+   "lesson": "1.5"
+  },
+  {
+   "q": "What is the role of llama.cpp within Ollama?",
+   "answer": "ollama_local",
+   "why": "Ollama builds on llama.cpp and adds model downloading plus CLI, GUI and HTTP access.",
+   "text_answer": "It is the open-source inference library Ollama uses to run LLMs locally",
+   "lesson": "1.5"
+  },
+  {
+   "q": "Approximately how much weight memory does an 8B-parameter model need at 4-bit precision?",
+   "answer": "positional_encoding",
+   "why": "8e9 parameters x 4 bits / 8 = 4e9 bytes, about 4 GB.",
+   "text_answer": "About 4 GB",
+   "lesson": "1.5"
+  },
+  {
+   "q": "What is the engineering lesson of the 'find a model that fits your hardware' challenge?",
+   "answer": "hardware_challenge",
+   "why": "A smaller or quantised model may be nearly as good while far faster and lighter.",
+   "text_answer": "Model selection is a trade-off between quality, memory and speed",
+   "lesson": "1.5"
+  },
+  {
+   "q": "What is LangFlow?",
+   "answer": "langchain_langflow",
+   "why": "LangFlow is the drag-and-drop front end for LangChain and can export Python code.",
+   "text_answer": "A visual GUI for building LangChain workflows by connecting blocks",
+   "lesson": "1.5"
+  },
+  {
+   "q": "What does 'vibe coding' describe?",
+   "answer": "vibe_coding",
+   "why": "The term, coined in early 2025, refers to programming through natural-language instructions to an AI.",
+   "text_answer": "Building software mainly by describing it to an AI and accepting its code with little review",
+   "lesson": "1.5"
+  },
+  {
+   "q": "In the newer course roadmap, which part contains retrieval-augmented generation (RAG)?",
+   "answer": "open_weights",
+   "why": "Part 2, Build with Models, holds prompt engineering, agents, RAG and fine-tuning.",
+   "text_answer": "Build with Models",
+   "lesson": "1.6"
+  },
+  {
+   "q": "What is required to pass each graded computer lab unit?",
+   "answer": "chatgpt_name",
+   "why": "Every graded unit requires at least half of the points; Unit 0 is optional.",
+   "text_answer": "At least 50% of the points",
+   "lesson": "1.6"
+  },
+  {
+   "q": "What does BOF4 stand for?",
+   "answer": "position_wise_ffn",
+   "why": "BOF4 is a 4-bit block-wise quantisation format for LLM weights, published at ICLR 2026.",
+   "text_answer": "4-bit Block-Wise Optimal Float",
+   "lesson": "1.6"
+  },
+  {
+   "q": "Which order correctly describes the text-to-text pipeline?",
+   "answer": "embedding",
+   "why": "Text becomes IDs, IDs become vectors, the model scores every token, one is chosen, and it is decoded back to text.",
+   "text_answer": "Tokenization -> embedding lookup -> forward pass -> token selection -> detokenization",
+   "lesson": "2.1"
+  },
+  {
+   "q": "What does the LLM itself output right before a token is chosen?",
+   "answer": "logits",
+   "why": "The forward pass only scores candidates; a separate selection step makes the choice.",
+   "text_answer": "Logits: one raw score for every vocabulary token",
+   "lesson": "2.1"
+  },
+  {
+   "q": "How many new tokens does one forward pass of a causal LLM produce during generation?",
+   "answer": "one_hot_projection",
+   "why": "Generation is autoregressive: each pass scores only the next token, which is appended before the next pass.",
+   "text_answer": "Exactly one",
+   "lesson": "2.1"
+  },
+  {
+   "q": "Why does the pipeline need an embedding lookup after tokenization?",
+   "answer": "token",
+   "why": "An ID is just a catalogue number; the learned vector is what the network computes with.",
+   "text_answer": "Token IDs are arbitrary indices; the network needs meaningful continuous vectors",
+   "lesson": "2.1"
+  },
+  {
+   "q": "Why does byte-level BPE never encounter an unknown input character?",
+   "answer": "byte_level_bpe",
+   "why": "Any text is a byte sequence, and each byte is already a token.",
+   "text_answer": "Its base vocabulary holds all 256 byte values, and every UTF-8 character is 1-4 bytes",
+   "lesson": "2.2"
+  },
+  {
+   "q": "What is a main drawback of a word-level vocabulary?",
+   "answer": "vocabulary_granularity",
+   "why": "Word-level tokenizers need an entry per word and turn new words into out-of-vocabulary tokens.",
+   "text_answer": "A huge vocabulary and no way to handle unseen words",
+   "lesson": "2.2"
+  },
+  {
+   "q": "Why are per-token API prices of different models not directly comparable?",
+   "answer": "token",
+   "why": "The same text could be 120 tokens for one tokenizer and 165 for another.",
+   "text_answer": "Different tokenizers produce different token counts for the same text",
+   "lesson": "2.2"
+  },
+  {
+   "q": "What is true of the padding token <pad>?",
+   "answer": "token",
+   "why": "Padding exists only for batching; it is masked and never predicted by decoder-only models.",
+   "text_answer": "It aligns sequences in a batch and is ignored by the loss",
+   "lesson": "2.2"
+  },
+  {
+   "q": "What happens if you replace a trained model's tokenizer with a different one?",
+   "answer": "text_to_text_pipeline",
+   "why": "Tokenizer and model form a coupled system, and the output layer is sized to the vocabulary.",
+   "text_answer": "The text-to-ID mapping changes, so the model must be adapted or retrained",
+   "lesson": "2.2"
+  },
+  {
+   "q": "Why are raw token IDs not suitable as direct semantic input?",
+   "answer": "ids_need_embeddings",
+   "why": "ID 2317 is not closer in meaning to 2318 than to 57; embeddings provide meaningful geometry.",
+   "text_answer": "They are arbitrary indices whose numeric distance has no linguistic meaning",
+   "lesson": "2.3"
+  },
+  {
+   "q": "How many parameters does an embedding matrix with vocabulary size V and width d_model have?",
+   "answer": "tokenizer_model_coupling",
+   "why": "E has one row of length d_model per vocabulary entry, e.g. 100,000 × 4,096 ≈ 410 million.",
+   "text_answer": "V · d_model",
+   "lesson": "2.3"
+  },
+  {
+   "q": "In trained embeddings, what does a large vector norm mainly indicate?",
+   "answer": "training_loop",
+   "why": "Frequent words collect more gradient updates and longer vectors; direction carries meaning.",
+   "text_answer": "The word is frequent or generic in the training data",
+   "lesson": "2.3"
+  },
+  {
+   "q": "What does Word2Vec skip-gram predict?",
+   "answer": "context_window",
+   "why": "Skip-gram takes the centre word as input and maximises the probability of its neighbours.",
+   "text_answer": "The surrounding context words from a centre word",
+   "lesson": "2.3"
+  },
+  {
+   "q": "'bank' appears in a finance sentence and a river sentence. What is true of its initial embedding?",
+   "answer": "static_vs_contextual",
+   "why": "The lookup is context-independent; contextual meaning is built later by attention layers.",
+   "text_answer": "It is identical in both sentences",
+   "lesson": "2.3"
+  },
+  {
+   "q": "What are logits?",
+   "answer": "token",
+   "why": "Logits are scores; softmax turns them into probabilities and a decoding strategy then chooses a token.",
+   "text_answer": "Raw, unnormalised scores, one for every vocabulary token",
+   "lesson": "2.4"
+  },
+  {
+   "q": "Which of these is NOT a typical stopping condition for generation?",
+   "answer": "token",
+   "why": "Generation stops on <eos>, length limits or other configured criteria, never on a logit threshold.",
+   "text_answer": "The logit of the top token exceeds 1.0",
+   "lesson": "2.4"
+  },
+  {
+   "q": "With a fixed context window, what is the effect of a longer prompt?",
+   "answer": "special_tokens",
+   "why": "Prompt and generated tokens share the same window: n_prompt + n_generated <= L.",
+   "text_answer": "Less room remains for generated tokens",
+   "lesson": "2.4"
+  },
+  {
+   "q": "What context window length did GPT-3 have?",
+   "answer": "special_tokens",
+   "why": "GPT-1 512, GPT-2 1,024, GPT-3 2,048, GPT-4 32,768.",
+   "text_answer": "2,048 tokens",
+   "lesson": "2.4"
+  },
+  {
+   "q": "Why is detokenization not simply joining token strings with spaces?",
+   "answer": "token",
+   "why": "Tokens may be word pieces with leading spaces; decoding follows the tokenizer's byte rules.",
+   "text_answer": "Token boundaries do not match word boundaries; spaces are part of the tokens",
+   "lesson": "2.4"
+  },
+  {
+   "q": "During training, what is the predicted distribution compared against in the cross-entropy loss?",
+   "answer": "one_hot_projection",
+   "why": "The target is the input shifted by one; the loss is minus the log probability of the correct token.",
+   "text_answer": "A one-hot vector for the correct next token",
+   "lesson": "2.4"
+  },
+  {
+   "q": "Why do two occurrences of 'bank' in different sentences have the same vector right after the embedding lookup?",
+   "answer": "prefill_decode_latency",
+   "why": "An embedding table maps each ID to one fixed row; context only enters through later layers.",
+   "text_answer": "The embedding lookup depends only on the token ID, not on context",
+   "lesson": "3.1"
+  },
+  {
+   "q": "In an RNN, which matrix carries information from the previous time step into the new hidden state?",
+   "answer": "router_scores",
+   "why": "W_hh (H x H) multiplies h_(t-1), linking each step to the past.",
+   "text_answer": "The recurrent hidden-to-hidden matrix W_hh",
+   "lesson": "3.1"
+  },
+  {
+   "q": "What does the seq2seq decoder receive as its very first input token?",
+   "answer": "prefill_decode_latency",
+   "why": "Generation starts from <bos>; afterwards each predicted token is fed back in.",
+   "text_answer": "<bos>, the beginning-of-sequence token",
+   "lesson": "3.1"
+  },
+  {
+   "q": "In the example 'I love machine learning' -> 'Jag älskar maskininlärning', what does the length difference show?",
+   "answer": "seq2seq",
+   "why": "Four source tokens map to three target tokens plus <eos>; seq2seq decouples the lengths.",
+   "text_answer": "Input and output sequences in seq2seq can have different lengths",
+   "lesson": "3.1"
+  },
+  {
+   "q": "What is the core limitation of basic RNN seq2seq that motivates attention?",
+   "answer": "attention_weights_context",
+   "why": "The fixed vector cannot keep every detail of long inputs, and the decoder cannot look at individual encoder states.",
+   "text_answer": "All source information must pass through one fixed-size context vector",
+   "lesson": "3.1"
+  },
+  {
+   "q": "Which scoring function does Luong-style attention typically use?",
+   "answer": "seq2seq_encoder_decoder",
+   "why": "Luong attention scores with s . h; the additive tanh network is Bahdanau's version.",
+   "text_answer": "A dot product between decoder state and encoder state",
+   "lesson": "3.2"
+  },
+  {
+   "q": "After softmax, what is true about the attention weights for one decoding step?",
+   "answer": "moe_learning",
+   "why": "Softmax produces a probability distribution; uniform 0.25 was only an illustration.",
+   "text_answer": "They are positive and sum to 1",
+   "lesson": "3.2"
+  },
+  {
+   "q": "How is the context vector c_t computed in attention-based seq2seq?",
+   "answer": "attention_is_all_you_need",
+   "why": "c_t = sum of alpha_t,i h_i, recomputed at every step.",
+   "text_answer": "As the attention-weighted sum of all encoder hidden states",
+   "lesson": "3.2"
+  },
+  {
+   "q": "In the translation example, which source word gets the largest weight when 'älskar' is generated?",
+   "answer": "seq2seq_translation_walkthrough",
+   "why": "At t = 2 attention concentrates on 'love', the source word that 'älskar' translates.",
+   "text_answer": "love",
+   "lesson": "3.2"
+  },
+  {
+   "q": "What does a bend away from the diagonal in a translation attention map indicate?",
+   "answer": "model_budget",
+   "why": "Non-monotonic alignment appears when the target language orders words differently.",
+   "text_answer": "The model learned a word reordering between the languages",
+   "lesson": "3.2"
+  },
+  {
+   "q": "What is the key architectural change the 2017 Transformer made compared with attention-based RNN seq2seq?",
+   "answer": "attention",
+   "why": "Without a recurrent chain, all known positions can be processed in parallel.",
+   "text_answer": "It removed recurrence and relies entirely on attention",
+   "lesson": "3.3"
+  },
+  {
+   "q": "In self-attention, why must queries and keys have the same dimension d_k?",
+   "answer": "scaled_dot_product",
+   "why": "A dot product is only defined for vectors of equal length; values may use a different size d_v.",
+   "text_answer": "Because they are compared with a dot product",
+   "lesson": "3.3"
+  },
+  {
+   "q": "Why are attention scores divided by sqrt(d_k)?",
+   "answer": "moe_learning",
+   "why": "Large raw scores push softmax toward one-hot distributions; scaling keeps it smooth.",
+   "text_answer": "To keep dot products from growing with dimension and making the softmax too peaked",
+   "lesson": "3.3"
+  },
+  {
+   "q": "What property holds for every row of a (softmax) attention matrix?",
+   "answer": "attention_weights_context",
+   "why": "Each row is a probability distribution over the keys for one query.",
+   "text_answer": "Its weights sum to 1",
+   "lesson": "3.3"
+  },
+  {
+   "q": "Which statement about attention head roles is correct?",
+   "answer": "kv_cache_why",
+   "why": "Heads have separate learned projections; any role is an observed tendency, not a specification.",
+   "text_answer": "Roles emerge during training and may overlap or be uninterpretable",
+   "lesson": "3.3"
+  },
+  {
+   "q": "What happens to the outputs of unmasked self-attention without positional information if you shuffle the input tokens?",
+   "answer": "expert_outputs",
+   "why": "Self-attention is permutation-equivariant: SelfAttn(PX) = P SelfAttn(X).",
+   "text_answer": "The outputs are shuffled in the same way and otherwise unchanged",
+   "lesson": "3.4"
+  },
+  {
+   "q": "How are sinusoidal positional encodings combined with token embeddings in the original Transformer?",
+   "answer": "position_wise_ffn",
+   "why": "x_pos = e_token + PE(pos), both of size d_model.",
+   "text_answer": "They are added element-wise",
+   "lesson": "3.4"
+  },
+  {
+   "q": "Which dimensions of the sinusoidal encoding carry fine, local position information?",
+   "answer": "pe_frequency_scales",
+   "why": "Low indices oscillate quickly from position to position; high indices vary slowly and encode coarse position.",
+   "text_answer": "The low dimension indices with high-frequency waves",
+   "lesson": "3.4"
+  },
+  {
+   "q": "In the causal mask, what value is placed at positions j > i before softmax?",
+   "answer": "causal_mask_matrix",
+   "why": "exp(minus infinity) = 0, so future tokens receive zero weight.",
+   "text_answer": "Minus infinity",
+   "lesson": "3.4"
+  },
+  {
+   "q": "Why can a decoder Transformer train in parallel but must generate sequentially?",
+   "answer": "kv_memory_model",
+   "why": "Masking simulates the prefix-only view during training; at inference each new token must be generated before the next.",
+   "text_answer": "In training the full sequence is known and masked; in inference future tokens do not exist yet",
+   "lesson": "3.4"
+  },
+  {
+   "q": "In the original Transformer layer, what is the order of sublayers?",
+   "answer": "multi_head_attention",
+   "why": "The original design is Post-Norm: Add & Norm follows each of the two sublayers.",
+   "text_answer": "Multi-head attention, Add & Norm, FFN, Add & Norm",
+   "lesson": "3.5"
+  },
+  {
+   "q": "In Transformer Base (d_model = 512, d_ff = 2048), roughly how many weights does one FFN have compared with one attention block?",
+   "answer": "task_specific_to_general",
+   "why": "FFN = 2 x 512 x 2048 = 2,097,152; attention = 4 x 512^2 = 1,048,576.",
+   "text_answer": "About 2.10M vs about 1.05M, so roughly twice as many",
+   "lesson": "3.5"
+  },
+  {
+   "q": "What is the main benefit of a residual connection y = x + Sublayer(x)?",
+   "answer": "decoder_update_attention",
+   "why": "The identity path preserves information and gives gradients a shortcut to early layers.",
+   "text_answer": "The sublayer only learns an update and gradients flow directly backwards",
+   "lesson": "3.5"
+  },
+  {
+   "q": "Which model has d_model = 12288 and 96 layers?",
+   "answer": "active_params",
+   "why": "Transformer Base is 512 wide and Big is 1024 wide, both 6+6 layers; GPT-3 is 12288 wide with 96 layers.",
+   "text_answer": "GPT-3 with 175B parameters",
+   "lesson": "3.5"
+  },
+  {
+   "q": "When generating the next token after 'The cat sat on', which hidden state is projected by the LM head?",
+   "answer": "prefill_decode_latency",
+   "why": "With causal attention the last state already contains all available context.",
+   "text_answer": "Only the final state, the one for 'on'",
+   "lesson": "3.5"
+  },
+  {
+   "q": "With V = 50,000 and d = 4,096, how many parameters does weight tying save?",
+   "answer": "stacking_layers",
+   "why": "One V x d matrix (204.8M) is shared instead of learning two.",
+   "text_answer": "About 204.8M (from 409.6M down to 204.8M)",
+   "lesson": "3.5"
+  },
+  {
+   "q": "Why does Pre-LN allow much deeper Transformers than Post-LN?",
+   "answer": "residual_norm",
+   "why": "Post-LN puts LayerNorm on the residual path; Pre-LN only normalizes the sublayer input, leaving a direct gradient highway.",
+   "text_answer": "The residual skip path stays a pure identity, so gradients flow back without being reshaped by every norm.",
+   "lesson": "3.6"
+  },
+  {
+   "q": "What does RMSNorm leave out compared with LayerNorm?",
+   "answer": "prefill_decode_latency",
+   "why": "RMSNorm only divides by the root mean square and multiplies by gamma; it never re-centers the vector.",
+   "text_answer": "Subtracting the mean (centering)",
+   "lesson": "3.6"
+  },
+  {
+   "q": "With RoPE, the attention score between a query at position m and a key at position n depends on...",
+   "answer": "kv_memory_model",
+   "why": "The two rotations combine into one rotation by n - m; values are not rotated at all.",
+   "text_answer": "their content and the relative offset n - m",
+   "lesson": "3.6"
+  },
+  {
+   "q": "A model has 32 query heads. How many KV heads do MHA, GQA with 8 groups and MQA have?",
+   "answer": "kv_memory_implications",
+   "why": "MHA keeps one K/V per query head, GQA one per group, MQA one shared by all.",
+   "text_answer": "32, 8 and 1",
+   "lesson": "3.6"
+  },
+  {
+   "q": "What can a SwiGLU gate do that a sigmoid GLU gate cannot?",
+   "answer": "qkv",
+   "why": "SiLU is unbounded above, while the sigmoid saturates below 1 and can only attenuate.",
+   "text_answer": "Amplify features with gate values above 1",
+   "lesson": "3.6"
+  },
+  {
+   "q": "Why can the KV cache avoid recomputing earlier positions at each step?",
+   "answer": "kv_cache_why",
+   "why": "Each token only attends to earlier ones, so appending a token never changes earlier representations, keys or values.",
+   "text_answer": "Causal masking keeps earlier keys and values unchanged when a new token is appended",
+   "lesson": "3.7"
+  },
+  {
+   "q": "Which phase processes the whole prompt in parallel and produces the first output token?",
+   "answer": "prefill_decode",
+   "why": "Prefill builds the initial KV cache for every layer and its final position's logits pick the first token; decode then adds one token at a time.",
+   "text_answer": "Prefill",
+   "lesson": "3.7"
+  },
+  {
+   "q": "A long output with a short prompt is dominated by which cost?",
+   "answer": "prefill_decode_latency",
+   "why": "Total latency is roughly first-token time plus one decode step per token, so many output tokens make decode the dominant cost.",
+   "text_answer": "The sequential decode steps",
+   "lesson": "3.7"
+  },
+  {
+   "q": "In the example model (32 layers, 32 query heads, head dimension 128, FP16), which factor do GQA's 8 KV heads and MQA's 1 KV head reduce?",
+   "answer": "kv_memory_model",
+   "why": "Cache size scales linearly with the KV-head count: MHA 16 GiB, GQA 4 GiB and MQA 512 MiB at 32,768 positions.",
+   "text_answer": "The number of KV heads, so the cache shrinks to 1/4 or 1/32 of full MHA",
+   "lesson": "3.7"
+  },
+  {
+   "q": "Does quantizing the model weights shrink the KV cache?",
+   "answer": "kv_memory_implications",
+   "why": "Weight quantization touches parameters; the cache holds keys and values, so it must be quantized separately.",
+   "text_answer": "No, because the cache stores activations and only KV-cache quantization reduces bytes per element",
+   "lesson": "3.7"
+  },
+  {
+   "q": "What is the main goal of a sparse Mixture-of-Experts layer?",
+   "answer": "router_scores",
+   "why": "Only a few experts run per token, so capacity grows while active compute stays low.",
+   "text_answer": "To add trainable parameters without proportionally increasing the compute per token",
+   "lesson": "3.8"
+  },
+  {
+   "q": "With router scores 2.0, 0.2, 1.0 and -0.5 and k equal to 2, which experts run and with what weights?",
+   "answer": "moe_learning",
+   "why": "Top-k keeps the two largest scores, and the softmax is taken over only those two: exp(2.0) and exp(1.0) normalise to 0.73 and 0.27.",
+   "text_answer": "Experts 1 and 3, with weights about 0.73 and 0.27",
+   "lesson": "3.8"
+  },
+  {
+   "q": "With 100M parameters per expert, what are the total and active expert parameters for 8 experts with 2 selected?",
+   "answer": "moe_learning",
+   "why": "Total is E * P_expert = 8 * 100M; active is k * P_expert = 2 * 100M.",
+   "text_answer": "800M total and 200M active",
+   "lesson": "3.8"
+  },
+  {
+   "q": "Why is an auxiliary loss used when training a router?",
+   "answer": "expert_outputs",
+   "why": "Without help routers can favour a few experts; the auxiliary loss levels the load, though perfect equality is not required.",
+   "text_answer": "To encourage balanced expert usage so no expert is starved of training signals",
+   "lesson": "3.8"
+  },
+  {
+   "q": "What does quantizing the weights do for a MoE model's memory?",
+   "answer": "fixed_memory",
+   "why": "Sparse activation reduces compute, but every expert's weights remain in memory and available to be selected.",
+   "text_answer": "It does not remove experts: weight memory does not drop, because all experts must stay stored",
+   "lesson": "3.8"
+  },
+  {
+   "q": "For one token, which experts receive a gradient during training?",
+   "answer": "moe",
+   "why": "Gradients reach selected experts via their outputs and the router via the softmax weights; unselected experts get none from that token.",
+   "text_answer": "Only the selected experts, through their output vectors",
+   "lesson": "3.8"
+  },
+  {
+   "q": "In a state space model, what does the state vector represent?",
+   "answer": "fixed_memory",
+   "why": "The SSM keeps one compact state whose size never depends on sequence length, unlike a KV cache.",
+   "text_answer": "A fixed-size summary of everything seen so far, updated with each new token",
+   "lesson": "3.9"
+  },
+  {
+   "q": "What does Mamba add to a basic SSM?",
+   "answer": "mamba",
+   "why": "Selectivity makes the update content-dependent, letting important tokens be remembered and filler fade.",
+   "text_answer": "Input-dependent parameters, so the model can decide per token what to retain and write",
+   "lesson": "3.9"
+  },
+  {
+   "q": "In an LSTM, which gate decides how much previous cell memory to keep?",
+   "answer": "prefill_decode_latency",
+   "why": "The forget gate scales the old cell state, the input gate writes new content and the output gate exposes it.",
+   "text_answer": "The forget gate",
+   "lesson": "3.9"
+  },
+  {
+   "q": "How can Mamba and mLSTM be trained on a whole sequence in parallel despite being recurrent?",
+   "answer": "kv_memory_model",
+   "why": "Composable, input-only updates allow a parallel scan; generation is still sequential token by token.",
+   "text_answer": "Their updates depend only on the input tokens and can be combined algebraically",
+   "lesson": "3.9"
+  },
+  {
+   "q": "What does Gated DeltaNet do that plain linear attention cannot?",
+   "answer": "kv_memory_model",
+   "why": "A retention gate plus an error-driven write correct stale associations instead of adding conflicting ones.",
+   "text_answer": "It forgets selectively and writes only the error (delta) between the new and predicted value",
+   "lesson": "3.9"
+  },
+  {
+   "q": "What is the prefill and per-token decode compute complexity of full attention in N context tokens?",
+   "answer": "prefill_decode",
+   "why": "Full attention compares every prompt token with every other, and each decode step attends to all previous positions.",
+   "text_answer": "Quadratic prefill O(N^2) and linear decode O(N) per token",
+   "lesson": "3.10"
+  },
+  {
+   "q": "Which architecture class has linear prefill and constant per-token decode and state memory?",
+   "answer": "gated_deltanet",
+   "why": "They keep a fixed-size state, so prefill is O(N) and decode and state are O(1).",
+   "text_answer": "Recurrent and linear-attention models such as Mamba, xLSTM and Gated DeltaNet",
+   "lesson": "3.10"
+  },
+  {
+   "q": "Two models have the same Big-O. What can still make them run at different speeds?",
+   "answer": "batching_bandwidth",
+   "why": "Big-O shows how cost scales, but real runtime depends on kernels, bandwidth and hardware utilisation.",
+   "text_answer": "Kernel quality, memory bandwidth and GPU utilisation",
+   "lesson": "3.10"
+  },
+  {
+   "q": "Why is exact long-context recall harder for a fixed-state model than for full attention?",
+   "answer": "ssm",
+   "why": "Full attention keeps token-specific keys and values for direct access, while a fixed state has limited capacity for exact detail.",
+   "text_answer": "It must squeeze every detail into one evolving state, so specific facts like a phone number can blur",
+   "lesson": "3.10"
+  },
+  {
+   "q": "For a service with many concurrent users and a memory limit, what does the lesson recommend?",
+   "answer": "fixed_memory",
+   "why": "Fewer KV heads or a fixed state means each request needs less cache memory, which lets more users fit on one device.",
+   "text_answer": "GQA or MQA, or fixed-state models, to reduce per-request memory",
+   "lesson": "3.10"
+  },
+  {
+   "q": "FineWeb-Edu kept only documents with an educational score of at least 3. What happened to MMLU accuracy for a 1.71B model trained on 350B tokens?",
+   "answer": "fineweb",
+   "why": "Same model and token budget, better data: selecting educational text alone gave about 4 percentage points on MMLU.",
+   "text_answer": "It rose from 33% to 37%",
+   "lesson": "4.1"
+  },
+  {
+   "q": "Why is deduplication an important step in building a pretraining corpus?",
+   "answer": "compute_6nd",
+   "why": "Overrepresented copies push the model to memorize them; removing them reduces memorization and improves efficiency.",
+   "text_answer": "Repeated documents increase memorization and verbatim regurgitation and waste training compute",
+   "lesson": "4.1"
+  },
+  {
+   "q": "In a data mixture, what does upsampling a source mean?",
+   "answer": "data_mixing",
+   "why": "Mixture weights set token shares independent of availability; small valuable sources like code or math are sampled more often.",
+   "text_answer": "Drawing tokens from that source more often than its share of available data, possibly repeating it",
+   "lesson": "4.1"
+  },
+  {
+   "q": "In the Phi-1 controlled experiment with a 350M model, what did adding synthetic textbook data change?",
+   "answer": "filtering_dedup",
+   "why": "Synthetic textbooks added 2.4 percentage points without more parameters, showing data is a design lever, but not proving synthetic data always wins.",
+   "text_answer": "The unit-test pass rate improved from 17.7% to 20.1%",
+   "lesson": "4.1"
+  },
+  {
+   "q": "GPT-4 scores 85.5% on MMLU in English but 62.0% in Telugu. Which statement is most accurate?",
+   "answer": "data_shapes_capabilities",
+   "why": "Plausible causes include training-data imbalance, tokenization efficiency and translation effects; a measured disparity does not identify which one dominates.",
+   "text_answer": "Data imbalance is a likely cause, but the evaluation alone does not prove the cause",
+   "lesson": "4.1"
+  },
+  {
+   "q": "Roughly how large was the August 2025 Common Crawl archive?",
+   "answer": "data_sources",
+   "why": "The CC-MAIN-2025-33 crawl contained around 2.44 billion pages, roughly 47 TB.",
+   "text_answer": "About 2.44 billion web pages",
+   "lesson": "4.1"
+  },
+  {
+   "q": "The model assigns probability 0.10 to the correct next token. What is the cross-entropy loss at that position?",
+   "answer": "flops",
+   "why": "Cross-entropy is the negative log of the target probability: a low probability gives a large loss.",
+   "text_answer": "About 2.30, since -ln(0.10) ≈ 2.30",
+   "lesson": "4.2"
+  },
+  {
+   "q": "Using the ~6 FLOPs per parameter per token rule, how many FLOPs does one step of a 7B model with 2,048 tokens per step need?",
+   "answer": "flops",
+   "why": "6 * 7e9 * 2048 ≈ 8.6e13; a 70B model would be about ten times higher, near 8.6e14.",
+   "text_answer": "About 8.6e13 FLOPs",
+   "lesson": "4.2"
+  },
+  {
+   "q": "Why does LLM training begin with a linear learning-rate warm-up?",
+   "answer": "training_recipe",
+   "why": "Warm-up ramps the rate from near zero so the optimizer can build trustworthy mean and variance estimates before taking big steps.",
+   "text_answer": "Adam's moment estimates are still unreliable early, so large steps could destabilize training",
+   "lesson": "4.2"
+  },
+  {
+   "q": "How do batch sizes affect gradient estimates in pretraining?",
+   "answer": "training_batches",
+   "why": "A larger batch averages more examples, reducing gradient noise, though it does not automatically speed up convergence.",
+   "text_answer": "Small batches give noisy gradients; large batches give smoother gradients and better hardware efficiency",
+   "lesson": "4.2"
+  },
+  {
+   "q": "Which numbers describe the NVIDIA H100 used for LLM training?",
+   "answer": "training_hardware",
+   "why": "The H100 SXM has 80 GB HBM3, 3.35 TB/s memory bandwidth, NVLink up to 900 GB/s and up to 700 W.",
+   "text_answer": "80 GB HBM3 memory, 3.35 TB/s bandwidth, up to 700 W",
+   "lesson": "4.2"
+  },
+  {
+   "q": "A batch has 2,048 token sequences of length 4,096. Roughly how many tokens does one optimizer step process?",
+   "answer": "tokens_per_param",
+   "why": "Tokens per batch = B * L = 2,048 * 4,096 ≈ 8.4 million.",
+   "text_answer": "About 8.4 million tokens",
+   "lesson": "4.2"
+  },
+  {
+   "q": "Why is BF16 the standard format for LLM training rather than FP16?",
+   "answer": "token_cost",
+   "why": "Exponent bits set range: BF16 matches FP32's 8 exponent bits with only 7 fraction bits, so it is stable and half the size.",
+   "text_answer": "BF16 keeps FP32's 8 exponent bits, giving a wide range at 16-bit cost, while FP16's smaller range can overflow",
+   "lesson": "4.3"
+  },
+  {
+   "q": "Why can a 70B-parameter model not be trained on a single H100?",
+   "answer": "data_shapes_capabilities",
+   "why": "70B * 2 bytes ≈ 140 GB for weights alone, and gradients, optimizer states and activations add much more.",
+   "text_answer": "Its BF16 weights alone need about 140 GB, more than the H100's 80 GB, before gradients and activations",
+   "lesson": "4.3"
+  },
+  {
+   "q": "What does gradient accumulation do?",
+   "answer": "training_batches",
+   "why": "Micro-batches run sequentially into one averaged update, keeping peak activation memory low but not accelerating training.",
+   "text_answer": "It sums gradients over N micro-batches and applies one averaged optimizer step, simulating a large batch",
+   "lesson": "4.3"
+  },
+  {
+   "q": "In data parallelism, what is replicated on every GPU and what is combined?",
+   "answer": "data_parallelism",
+   "why": "DP gives each GPU the whole model and different data, then all-reduces gradients so all copies update identically.",
+   "text_answer": "The full model is replicated; gradients are averaged across GPUs before each synchronized update",
+   "lesson": "4.3"
+  },
+  {
+   "q": "What does ZeRO stage 3 add over stages 1 and 2?",
+   "answer": "reward_model",
+   "why": "ZeRO shards optimizer states (stage 1), then gradients (stage 2), then parameters (stage 3), cutting per-GPU memory at the cost of more communication.",
+   "text_answer": "It also shards the model parameters, on top of optimizer states and gradients",
+   "lesson": "4.3"
+  },
+  {
+   "q": "Which description fits the Llama 3.1 8B base model?",
+   "answer": "context_extension",
+   "why": "Llama 3.1 8B base is a decoder-only causal Transformer: ~8B parameters, 32 blocks, d_model 4096, 32 heads, FFN ~14,336, 128k context.",
+   "text_answer": "A decoder-only causal Transformer with 32 blocks, hidden size 4096, 32 heads and up to 128k context",
+   "lesson": "4.3"
+  },
+  {
+   "q": "What is the difference between a data mixture and a data schedule in a training recipe?",
+   "answer": "training_recipe",
+   "why": "Both matter: the same 30% code share can be uniform, early or late, and timing changes the capabilities the model ends up with.",
+   "text_answer": "The mixture sets the token proportion per domain; the schedule decides when each domain appears during training",
+   "lesson": "4.4"
+  },
+  {
+   "q": "How is the final OLMo 2 7B model produced?",
+   "answer": "olmo2",
+   "why": "Stage 1 is ~4T tokens; stage 2 is three 50B-token continuations on Dolmino Mix with different shuffles, averaged into one model.",
+   "text_answer": "Three midtraining runs of 50B tokens from the same checkpoint, averaged element-wise",
+   "lesson": "4.4"
+  },
+  {
+   "q": "Why does Llama 3 extend its context length in stages rather than training at 128K from the start?",
+   "answer": "context_extension",
+   "why": "The 8K -> 128K extension took six progressive stages and about 800B extra tokens, because attention compute is quadratic in sequence length.",
+   "text_answer": "Attention cost grows quadratically with length, so short-context training is much cheaper",
+   "lesson": "4.4"
+  },
+  {
+   "q": "In the 7B, 1T-token experiment, what did upsampling selected domains only in the final 20% of training do?",
+   "answer": "language_gap",
+   "why": "MMLU 35.69 -> 42.59, GSM8K 14.71 -> 22.97 and HumanEval 17.23 -> 23.40 rose, but language understanding eased from 61.52 to 60.08: capabilities shift, not lift everywhere.",
+   "text_answer": "It raised math and code scores, e.g. GSM8K 14.71 -> 22.97, while language understanding dipped slightly",
+   "lesson": "4.4"
+  },
+  {
+   "q": "Which statement best captures why a training recipe matters?",
+   "answer": "data_scheduling",
+   "why": "Order matters because each update changes the starting point for later gradients, so how data is exposed over time shapes what the model learns.",
+   "text_answer": "With the same model, data, token count and compute, different scheduling decisions yield different capabilities",
+   "lesson": "4.4"
+  },
+  {
+   "q": "In Kaplan's fit L(N) ~ (N_c / N)^0.076, what happens to held-out loss when the model size doubles?",
+   "answer": "cross_entropy",
+   "why": "The exponent 0.076 is tiny, so doubling N gives a constant ratio 2^-0.076 ~ 0.949, a small relative gain.",
+   "text_answer": "Loss is multiplied by 2^-0.076, about 0.949, roughly 5.1% lower",
+   "lesson": "4.5"
+  },
+  {
+   "q": "In the dense-Transformer formula C ~ 6 N D, where does the factor six come from?",
+   "answer": "flops",
+   "why": "Each parameter is used per token: roughly 2 operations going forward and 4 in the backward pass, ignoring attention overhead.",
+   "text_answer": "About 2 FLOPs per parameter per token forward plus about 4 backward",
+   "lesson": "4.5"
+  },
+  {
+   "q": "Chinchilla found that for a 10x compute increase the model and the data should grow about equally. Which exponents describe this?",
+   "answer": "tokens_per_param",
+   "why": "Chinchilla's near-equal exponents corrected Kaplan, whose implied recipe grew parameters far faster than tokens.",
+   "text_answer": "N_opt ~ C^0.49 and D_opt ~ C^0.51, giving about 3.09x parameters and 3.24x tokens",
+   "lesson": "4.5"
+  },
+  {
+   "q": "What is the Chinchilla rule of thumb for compute-optimal training?",
+   "answer": "tokens_per_param",
+   "why": "Chinchilla used 70B parameters on 1.4T tokens, about 20 tokens per parameter, and beat the larger but data-starved Gopher.",
+   "text_answer": "About 20 training tokens per parameter",
+   "lesson": "4.5"
+  },
+  {
+   "q": "Why do many production models use far more than 20 tokens per parameter?",
+   "answer": "base_model_continuation",
+   "why": "Deployment-optimal training trades extra one-time training cost for lower per-request cost, which pays off above the break-even request count.",
+   "text_answer": "Inference cost dominates over many requests, so an overtrained smaller model is cheaper lifetime-wise",
+   "lesson": "4.5"
+  },
+  {
+   "q": "What defines in-context learning?",
+   "answer": "data_shapes_capabilities",
+   "why": "ICL adapts hidden states to the prompt pattern at inference time; parameters are never updated.",
+   "text_answer": "The model learns a task from examples in the prompt without any change to its weights",
+   "lesson": "4.6"
+  },
+  {
+   "q": "Why does a base model ramble about a Paris trip instead of answering?",
+   "answer": "base_model",
+   "why": "Pretraining only teaches next-token continuation, so a bare base model imitates the expected genre, here a blog-style narrative.",
+   "text_answer": "A base model continues text in a statistically likely way rather than following instructions",
+   "lesson": "4.6"
+  },
+  {
+   "q": "Why does ending a list like 'Milch -> milk, ..., Blume ->' make a base model answer with just 'flower'?",
+   "answer": "single_gpu_limit",
+   "why": "The model predicts the most probable continuation; consistent one-word examples make a one-word answer most probable.",
+   "text_answer": "Every example ends with a single English word, so the format constrains the continuation to one word",
+   "lesson": "4.6"
+  },
+  {
+   "q": "What are the two modes of in-context learning?",
+   "answer": "algorithmic_semantic_icl",
+   "why": "Algorithmic skills come from self-attention and scale, while semantic skills use world knowledge learned during pretraining.",
+   "text_answer": "Algorithmic ICL (copying, sorting, sequence patterns) and semantic ICL (inferring a task from stored knowledge)",
+   "lesson": "4.6"
+  },
+  {
+   "q": "What role do induction heads play?",
+   "answer": "algorithmic_semantic_icl",
+   "why": "Induction heads are attention circuits that complete patterns such as 'A B C A B ?' -> C, and they appear as models scale up.",
+   "text_answer": "They look back for an earlier occurrence of the current token and copy what followed, driving algorithmic ICL",
+   "lesson": "4.6"
+  },
+  {
+   "q": "Why are pretraining and post-training kept as separate stages?",
+   "answer": "pretraining",
+   "why": "Separating them gives clearer control over alignment while protecting the costly knowledge acquired during pretraining.",
+   "text_answer": "Pretraining is expensive and done once, while alignment is cheaper to iterate without destroying pretrained knowledge",
+   "lesson": "4.7"
+  },
+  {
+   "q": "What data does supervised fine-tuning train on?",
+   "answer": "cross_entropy",
+   "why": "SFT reuses the pretraining loss but on curated demonstrations such as 'Summarize this text' followed by a clean summary.",
+   "text_answer": "High-quality human-written instruction-response pairs, using the same next-token loss",
+   "lesson": "4.7"
+  },
+  {
+   "q": "In the InstructGPT work, roughly how much human data was used?",
+   "answer": "instructgpt",
+   "why": "A small, carefully curated set under strict guidelines proved more valuable than a much larger noisy one.",
+   "text_answer": "About 13,000 examples written by about 40 trained annotators",
+   "lesson": "4.7"
+  },
+  {
+   "q": "How is ChatGPT best described?",
+   "answer": "rlhf",
+   "why": "ChatGPT is a product; the foundation model, alignment and interface together produce the assistant behaviour.",
+   "text_answer": "A foundation model plus alignment (instruction tuning and RLHF) plus an interface layer",
+   "lesson": "4.7"
+  },
+  {
+   "q": "Why are absolute 1-7 ratings not used to align models to preferences?",
+   "answer": "data_bias",
+   "why": "Relative comparisons are more stable because 'A beats B' does not depend on a shifting internal scale.",
+   "text_answer": "They are noisy and uncalibrated: annotators disagree and drift, the scale does not transfer across tasks, and models game high-score traits",
+   "lesson": "4.8"
+  },
+  {
+   "q": "What does one entry in a human preference dataset contain?",
+   "answer": "preference_hard",
+   "why": "Each human ranking is broken into pairwise winner-loser triples used for reward-model and DPO training.",
+   "text_answer": "A prompt, a preferred answer and a less preferred answer, (x, y_w, y_l)",
+   "lesson": "4.8"
+  },
+  {
+   "q": "What is the reward model in RLHF?",
+   "answer": "reward_model",
+   "why": "It never generates text; it learns to give preferred answers a higher score than rejected ones on preference pairs.",
+   "text_answer": "A model with the base architecture but a scalar output head that scores a prompt-answer pair, trained with the Bradley-Terry logistic loss",
+   "lesson": "4.8"
+  },
+  {
+   "q": "What is the job of the KL penalty in the RLHF objective?",
+   "answer": "reward_model",
+   "why": "The beta-weighted KL term limits how far the model may drift from the reference policy while chasing reward.",
+   "text_answer": "It keeps the policy close to the SFT reference model to prevent reward hacking and preserve fluent language",
+   "lesson": "4.8"
+  },
+  {
+   "q": "How does DPO differ from RLHF?",
+   "answer": "reward_model",
+   "why": "DPO's log-ratio to the reference model acts as an implicit reward, giving RLHF-quality alignment more cheaply and stably.",
+   "text_answer": "DPO skips the reward model and RL, using a closed-form loss on preference pairs derived from the RLHF objective",
+   "lesson": "4.8"
+  },
+  {
+   "q": "What did the InstructGPT human evaluations show about model size?",
+   "answer": "reward_model",
+   "why": "Alignment through RLHF mattered more than raw parameter count in human preference for helpful, on-instruction answers.",
+   "text_answer": "A 1.3B PPO-aligned model was preferred over the 175B GPT-3",
+   "lesson": "4.8"
+  },
+  {
+   "q": "Why is the maximum logit subtracted before computing the softmax?",
+   "answer": "stable_softmax",
+   "why": "exp(z - m) stays <= 1 and the shift cancels in the ratio, so the result is unchanged but safe.",
+   "text_answer": "To avoid floating-point overflow while keeping the probabilities identical",
+   "lesson": "5.1"
+  },
+  {
+   "q": "With greedy decoding and the candidates store 0.30, restaurant 0.20, park 0.15, ..., which token is always produced?",
+   "answer": "vector_store",
+   "why": "Greedy takes the argmax at every step, so the highest-probability token always wins.",
+   "text_answer": "store (0.30)",
+   "lesson": "5.1"
+  },
+  {
+   "q": "What happens to the next-token distribution when the temperature T is below 1?",
+   "answer": "evaluation",
+   "why": "Dividing logits by T < 1 enlarges the differences between them, sharpening the distribution.",
+   "text_answer": "It becomes sharper and more deterministic",
+   "lesson": "5.1"
+  },
+  {
+   "q": "With top-k sampling (k = 3) and top probabilities 0.30, 0.20, 0.15, what is the renormalized probability of the top token?",
+   "answer": "big_bench",
+   "why": "0.30 / (0.30 + 0.20 + 0.15) = 0.30 / 0.65 = 0.46.",
+   "text_answer": "about 0.46",
+   "lesson": "5.1"
+  },
+  {
+   "q": "In the top-p example with p = 0.8, how many tokens form the nucleus and what is the largest renormalized probability?",
+   "answer": "top_k",
+   "why": "The cumulative mass first reaches 0.8 at the 5th token, and 0.30 / 0.83 = 0.36.",
+   "text_answer": "5 tokens (mass 0.83), top probability 0.36",
+   "lesson": "5.1"
+  },
+  {
+   "q": "How is perplexity related to the loss?",
+   "answer": "perplexity",
+   "why": "PPL = exp(cross-entropy), so it measures next-token prediction quality and lower is better.",
+   "text_answer": "It is the exponential of the cross-entropy loss",
+   "lesson": "5.2"
+  },
+  {
+   "q": "What does a perplexity of 10 mean intuitively?",
+   "answer": "perplexity",
+   "why": "Perplexity equals the effective number of equally likely choices; PPL = k means uniform uncertainty among k tokens.",
+   "text_answer": "The model is about as uncertain as a uniform choice among 10 tokens",
+   "lesson": "5.2"
+  },
+  {
+   "q": "Which pair correctly describes BLEU and ROUGE?",
+   "answer": "task_metrics",
+   "why": "BLEU counts how many of the model's n-grams are in the reference; ROUGE counts how many reference n-grams the model covered.",
+   "text_answer": "BLEU is precision-oriented (translation); ROUGE is recall-oriented (summarisation)",
+   "lesson": "5.2"
+  },
+  {
+   "q": "A model has very low perplexity on held-out text. What can we conclude?",
+   "answer": "tool_use",
+   "why": "Perplexity only measures token prediction, not reasoning, instruction following, tool use, factuality or safety.",
+   "text_answer": "It predicts the next token well, but this says nothing about reasoning, tool use or factuality",
+   "lesson": "5.2"
+  },
+  {
+   "q": "How many subjects does MMLU cover, and how is it scored?",
+   "answer": "task_metrics",
+   "why": "MMLU uses four-option multiple choice over 57 subjects, so guessing yields 25%.",
+   "text_answer": "57 subjects, scored as multiple-choice accuracy",
+   "lesson": "5.3"
+  },
+  {
+   "q": "What makes BIG-Bench different from a knowledge test like MMLU?",
+   "answer": "big_bench",
+   "why": "BIG-Bench mixes logic, puzzles, symbolic and off-distribution tasks with task-specific metrics.",
+   "text_answer": "It is a suite of about 200 diverse tasks probing human-like thinking, with no single score",
+   "lesson": "5.3"
+  },
+  {
+   "q": "In HumanEval, when is a solution counted as correct?",
+   "answer": "humaneval",
+   "why": "Grading is objective pass/fail; any failing test makes the solution wrong, and scores are reported as pass@k.",
+   "text_answer": "When every hidden unit test passes",
+   "lesson": "5.3"
+  },
+  {
+   "q": "Why does Tau-2 Bench include a simulated user who also acts through tools (dual-control)?",
+   "answer": "evaluation",
+   "why": "Dual-control mirrors real support scenarios, as in the 'No Service' example where the agent guides the user to a working 5G connection.",
+   "text_answer": "To test realistic agent behaviour where both the agent and the user change the environment",
+   "lesson": "5.3"
+  },
+  {
+   "q": "Which statement about multi-turn instruction following is correct?",
+   "answer": "perplexity",
+   "why": "Remembering and revising constraints over turns depends on SFT, RLHF and DPO, not on classical metrics.",
+   "text_answer": "It is shaped mainly by alignment training and does not correlate with perplexity or MMLU",
+   "lesson": "5.3"
+  },
+  {
+   "q": "Why can a high MMLU score be misleading for choosing a deployed model?",
+   "answer": "benchmark",
+   "why": "Test-set leakage and saturation inflate and flatten scores, while domain tasks, long instructions and tool calls need their own evaluation.",
+   "text_answer": "Benchmarks can be contaminated by training data and MMLU is saturated above 90%, so it poorly predicts real product performance",
+   "lesson": "5.3"
+  },
+  {
+   "q": "What is the recommended engineering principle for adapting an LLM?",
+   "answer": "prompting_first",
+   "why": "Prompting is fast, cheap and reversible and does not change weights, so it comes first on the adaptation ladder.",
+   "text_answer": "First maximize what prompting can achieve, then finetune or post-train if a gap remains",
+   "lesson": "6.1"
+  },
+  {
+   "q": "What is the priority order when system, user and assistant-history instructions conflict?",
+   "answer": "system_prompt",
+   "why": "Chat models are trained during post-training and alignment to follow the system prompt first, then the user, then history.",
+   "text_answer": "System > User > Assistant history",
+   "lesson": "6.1"
+  },
+  {
+   "q": "Which role is the best place for a rule like 'Always answer in JSON'?",
+   "answer": "system_prompt",
+   "why": "The system prompt defines global rules, persona and formatting constraints with the highest priority.",
+   "text_answer": "The system prompt",
+   "lesson": "6.1"
+  },
+  {
+   "q": "What are the assistant messages in a chat template?",
+   "answer": "lost_in_the_middle",
+   "why": "Assistant-role content is the model's earlier output; it builds ongoing context and strongly influences later turns via recency bias.",
+   "text_answer": "The model's own previous replies, forming the conversation history",
+   "lesson": "6.1"
+  },
+  {
+   "q": "Why does the system-first role hierarchy exist?",
+   "answer": "role_hierarchy",
+   "why": "The hierarchy is not architectural; alignment training makes models follow the system prompt first, which underpins safety and tool use.",
+   "text_answer": "It is taught during post-training and alignment for safety and consistency",
+   "lesson": "6.1"
+  },
+  {
+   "q": "What defines zero-shot prompting?",
+   "answer": "apo_loop",
+   "why": "Zero-shot relies entirely on pretrained knowledge and alignment; a single example would make it one-shot.",
+   "text_answer": "The model receives only an instruction, with no examples",
+   "lesson": "6.2"
+  },
+  {
+   "q": "If a prompt contains exactly one worked example, what is it called?",
+   "answer": "zero_shot",
+   "why": "Few-shot uses a handful of examples; exactly one example is specifically called one-shot.",
+   "text_answer": "One-shot prompting",
+   "lesson": "6.2"
+  },
+  {
+   "q": "Why does adding a few examples raise accuracy?",
+   "answer": "context_management",
+   "why": "Few-shot triggers in-context learning: the examples fix the format and pattern, improving accuracy without any training.",
+   "text_answer": "The model infers the input-output pattern from the demonstrations through in-context learning, with no weight updates",
+   "lesson": "6.2"
+  },
+  {
+   "q": "What did Wei et al. show about chain-of-thought?",
+   "answer": "cot_emergent_ability",
+   "why": "The CoT effect appears strongly only past a certain scale; small models gain little, which is read as an emergent ability.",
+   "text_answer": "CoT unlocks latent reasoning mainly in large models, evidence of an emergent ability",
+   "lesson": "6.2"
+  },
+  {
+   "q": "How is chain-of-thought actually produced?",
+   "answer": "cot_properties",
+   "why": "CoT is just step tokens emitted in one pass; there is no internal loop, planner or independent subtask execution.",
+   "text_answer": "In a single autoregressive inference run, as ordinary tokens generated one after another",
+   "lesson": "6.2"
+  },
+  {
+   "q": "Where should a key document be placed to be most reliably used?",
+   "answer": "lost_in_the_middle",
+   "why": "Accuracy follows a U-shape: primacy and recency peaks at the start and end, with a weak 'dead zone' in the middle.",
+   "text_answer": "At the very start or the very end of the context, not in the middle",
+   "lesson": "6.3"
+  },
+  {
+   "q": "Where should output-format requirements go?",
+   "answer": "lost_in_the_middle",
+   "why": "Recency bias means the end of the context strongly shapes the next token, so repeating format rules there keeps them obeyed.",
+   "text_answer": "At the end, near the query, because later instructions override earlier ones",
+   "lesson": "6.3"
+  },
+  {
+   "q": "What is the key rule when chunking a document?",
+   "answer": "chunking_summarization",
+   "why": "Coherent, labelled chunks keep meaning intact and let you feed only the relevant pieces to the model.",
+   "text_answer": "Split at natural boundaries without cutting mid-sentence or mid-concept, and label each chunk",
+   "lesson": "6.3"
+  },
+  {
+   "q": "What does instruction reiteration do?",
+   "answer": "context_management",
+   "why": "Restating key rules last keeps them reliably obeyed in long sessions, since the context end has the strongest influence.",
+   "text_answer": "Repeats critical rules, especially formats, at the end of the context to counter recency bias and forgetting",
+   "lesson": "6.3"
+  },
+  {
+   "q": "Which describes the recommended prompt order?",
+   "answer": "context_management",
+   "why": "Because both ends are weighted heavily, key rules go first, format and examples go last, and the user's immediate task closes the prompt.",
+   "text_answer": "Global rules, task instructions, examples/schemas, supporting context, then the user's task last",
+   "lesson": "6.3"
+  },
+  {
+   "q": "What does the persona pattern do?",
+   "answer": "style_hard_constraints",
+   "why": "Personas change tone and expertise, useful for domain framing, formality and teaching.",
+   "text_answer": "Assigns the model a role that shifts its tone, assumed expertise and style",
+   "lesson": "6.4"
+  },
+  {
+   "q": "Which pattern is especially helpful for extraction tasks?",
+   "answer": "few_shot",
+   "why": "Demonstrations fix the input-output mapping and structure, which improves extraction accuracy.",
+   "text_answer": "The example (few-shot) pattern, showing input-output demonstrations",
+   "lesson": "6.4"
+  },
+  {
+   "q": "What is the critique-and-refine pattern?",
+   "answer": "prompting_first",
+   "why": "It is a self-improvement loop used for writing, code review and refactoring, followed by a refined output.",
+   "text_answer": "The model evaluates its own draft for weaknesses and then produces an improved version",
+   "lesson": "6.4"
+  },
+  {
+   "q": "What does role decomposition do?",
+   "answer": "lost_in_the_middle",
+   "why": "Role decomposition views a problem as multiple experts, which suits multi-domain reasoning before combining insights.",
+   "text_answer": "Analyses a problem from several expert viewpoints and merges the results",
+   "lesson": "6.4"
+  },
+  {
+   "q": "How does tree-of-thought differ from a single chain of reasoning?",
+   "answer": "apo_loop",
+   "why": "ToT explores and scores multiple paths, which helps with planning, optimisation and creative tasks.",
+   "text_answer": "It branches into several candidate strategies, evaluates them and keeps the best",
+   "lesson": "6.4"
+  },
+  {
+   "q": "What is the difference between hard constraints and soft steering?",
+   "answer": "style_hard_constraints",
+   "why": "Hard constraints such as valid JSON are strictly followed, while soft steering like 'be concise' guides without enforcing.",
+   "text_answer": "Hard constraints are explicit must-follow rules; soft steering gently nudges behaviour and allows variation",
+   "lesson": "6.4"
+  },
+  {
+   "q": "Why is structured output important for applications?",
+   "answer": "structured_output",
+   "why": "A fixed schema turns the LLM into a deterministic component, eliminating invented formats and enabling automation.",
+   "text_answer": "It produces predictable, machine-readable output that downstream code can parse and validate reliably",
+   "lesson": "6.5"
+  },
+  {
+   "q": "What is the main benefit of function calling?",
+   "answer": "function_calling",
+   "why": "Function calling enforces strict arguments and delegates real work to APIs and databases, making the LLM production-ready.",
+   "text_answer": "The model offloads maths, search and retrieval to real external tools instead of inventing answers",
+   "lesson": "6.5"
+  },
+  {
+   "q": "How do open-weights models typically receive tool schemas?",
+   "answer": "system_prompt",
+   "why": "Open-weights models usually get schemas as prompt text, while modern closed APIs pass them through a structured side channel.",
+   "text_answer": "As text inside the system prompt (prompt-based tools)",
+   "lesson": "6.5"
+  },
+  {
+   "q": "In the get_weather example, what is the required parameter?",
+   "answer": "function_calling_example",
+   "why": "The schema declares a single required string parameter, city, and the model fills it with 'Berlin'.",
+   "text_answer": "city, a string",
+   "lesson": "6.5"
+  },
+  {
+   "q": "Instead of prose, what does the model emit when it wants to use a tool?",
+   "answer": "function_calling_example",
+   "why": "The model chooses between normal text and a tool-call token; the app executes the tool and returns the result for the final answer.",
+   "text_answer": "A special tool-call token followed by JSON-like arguments",
+   "lesson": "6.5"
+  },
+  {
+   "q": "What is the first step of systematic prompt debugging?",
+   "answer": "prompt_failure_modes",
+   "why": "You must classify the failure before fixing it; the second step then checks context quality for the root cause.",
+   "text_answer": "Naming the failure mode, such as hallucination, ignored constraints or style drift",
+   "lesson": "6.6"
+  },
+  {
+   "q": "Why check the context when a prompt fails?",
+   "answer": "context_management",
+   "why": "Garbage context gives garbage output: irrelevant history, scrolled-out info or an overridden system prompt are common root causes.",
+   "text_answer": "Many failures come from poor context management, like buried instructions or irrelevant history",
+   "lesson": "6.6"
+  },
+  {
+   "q": "Why does adding structure such as JSON schemas help?",
+   "answer": "apo_loop",
+   "why": "Structured instructions plus explicit rules and examples constrain the output, so behaviour becomes more reliable.",
+   "text_answer": "Structure reduces randomness and makes the model's behaviour more deterministic",
+   "lesson": "6.6"
+  },
+  {
+   "q": "What are the two generators of new prompts in the APO loop?",
+   "answer": "apo_motivation",
+   "why": "The optimiser uses mutation and optional crossover to create candidates, which are then scored and selected.",
+   "text_answer": "Mutation (rewriting, adding or removing constraints) and crossover (combining strong parts of two good prompts)",
+   "lesson": "6.6"
+  },
+  {
+   "q": "How are candidate prompts scored in automated prompt optimization?",
+   "answer": "debug_improve",
+   "why": "Each candidate is evaluated on a test set with the right metric, then the best prompt is kept and the loop repeats until convergence.",
+   "text_answer": "With automatic, task-appropriate metrics such as accuracy, BLEU, ROUGE, Pass@k or schema validation on a test set",
+   "lesson": "6.6"
+  },
+  {
+   "q": "What is the main weakness of parametric knowledge in an LLM?",
+   "answer": "parametric_vs_nonparametric",
+   "why": "Knowledge baked into the weights cannot be edited and may be stale or wrong, which is exactly the gap RAG fills at inference time.",
+   "text_answer": "It is static after pretraining, opaque, incomplete or outdated, and hallucination-prone",
+   "lesson": "7.1"
+  },
+  {
+   "q": "In RAG, how is the model conditioned on retrieved evidence?",
+   "answer": "rag",
+   "why": "RAG leaves architecture, training and decoding unchanged; it only changes what the model is allowed to condition on.",
+   "text_answer": "The retrieved documents are placed in the prompt, so the model computes p(y | x, RAG(x))",
+   "lesson": "7.1"
+  },
+  {
+   "q": "Which phase of the RAG pipeline is done offline, before any query arrives?",
+   "answer": "chunking",
+   "why": "Documents are processed ahead of time so that at query time only the query must be embedded and searched against the stored vectors.",
+   "text_answer": "Ingesting documents, chunking them, embedding them and storing them in a vector database",
+   "lesson": "7.1"
+  },
+  {
+   "q": "Why can alignment methods such as SFT, RLHF and DPO not replace RAG?",
+   "answer": "embedding_model_types",
+   "why": "Alignment shapes tone, safety and honesty; RAG supplies the evidence the answer is grounded in.",
+   "text_answer": "They change how the model responds but cannot add new facts or guarantee correctness",
+   "lesson": "7.1"
+  },
+  {
+   "q": "What kind of failure does RAG mostly shift the system toward?",
+   "answer": "embedding_quality_recall",
+   "why": "RAG removes many hallucinations but only works if the right chunks are retrieved, so the bottleneck moves to retrieval.",
+   "text_answer": "Retrieval quality: missed, stale or ignored documents rather than pure fabrication",
+   "lesson": "7.1"
+  },
+  {
+   "q": "What does an embedding model do in a RAG system?",
+   "answer": "dense_retrieval",
+   "why": "Both queries and chunks are embedded by the same model, so retrieval becomes a nearest-neighbor search in vector space.",
+   "text_answer": "It maps text to a fixed-dimension vector so that similar meanings lie close together, enabling retrieval by geometry",
+   "lesson": "7.2"
+  },
+  {
+   "q": "Which pooling method averages all token vectors and is the stable default for Sentence-BERT?",
+   "answer": "sentence_bert_pooling",
+   "why": "Mean pooling averages the token vectors dimension by dimension, giving a stable sentence vector, while max and [CLS] pooling serve other purposes.",
+   "text_answer": "Mean pooling",
+   "lesson": "7.2"
+  },
+  {
+   "q": "Why is Sentence-BERT described as a siamese bi-encoder?",
+   "answer": "siamese_training",
+   "why": "Shared weights and independent encoding let document embeddings be precomputed, which is what makes fast retrieval possible.",
+   "text_answer": "Both sentences pass through the same encoder with shared weights and are compared with cosine similarity",
+   "lesson": "7.2"
+  },
+  {
+   "q": "What is the main trade-off of a domain-adapted embedding model?",
+   "answer": "embedding_quality_recall",
+   "why": "Fine-tuning on legal, medical or code text sharpens that domain while narrowing the model's broader usefulness.",
+   "text_answer": "Higher in-domain recall but poorer generalization outside the domain and a need for curated data",
+   "lesson": "7.2"
+  },
+  {
+   "q": "What does a cross-lingual embedding model enable?",
+   "answer": "embedding_quality_recall",
+   "why": "Training on parallel, translation and cross-lingual NLI data aligns many languages, with slightly weaker monolingual performance as the price.",
+   "text_answer": "A query in one language can retrieve documents written in another, because all languages share one embedding space",
+   "lesson": "7.2"
+  },
+  {
+   "q": "What is trade-off between small and large chunks?",
+   "answer": "embedding_quality_recall",
+   "why": "Chunk size governs how precisely a query matches the stored knowledge and how much surrounding context travels with it.",
+   "text_answer": "Small chunks match precisely and raise recall but lose context; large chunks keep coherence but lower recall and add noise",
+   "lesson": "7.3"
+  },
+  {
+   "q": "Why are chunks often given overlap in RAG?",
+   "answer": "embedding_quality_recall",
+   "why": "With chunk size L = 400 and overlap O = 100, neighbouring chunks share 100 tokens, protecting boundary sentences at the cost of storage.",
+   "text_answer": "So information that sits on a boundary is not cut apart and lost",
+   "lesson": "7.3"
+  },
+  {
+   "q": "What does contextual retrieval add to a chunk before embedding it?",
+   "answer": "contextual_retrieval",
+   "why": "Giving an LLM the full document lets it write context such as the company and period, so an ambiguous chunk embeds with document-level meaning.",
+   "text_answer": "A short LLM-written context description, prepended so the chunk is self-contained",
+   "lesson": "7.3"
+  },
+  {
+   "q": "Why can a reranker not fix missing recall?",
+   "answer": "embedding_quality_recall",
+   "why": "If the geometry never places the relevant chunk close to the query, it never enters the top-k, so no downstream stage can bring it back.",
+   "text_answer": "It can only reorder chunks that were already retrieved; if the relevant chunk was never in the candidate list it cannot recover it",
+   "lesson": "7.3"
+  },
+  {
+   "q": "What sets the upper bound on achievable recall in a RAG system?",
+   "answer": "embedding_quality_recall",
+   "why": "Embedding quality, domain alignment, chunking and query phrasing decide whether relevant chunks are close enough to be found at all.",
+   "text_answer": "The quality of the embedding model (plus chunking and query formulation)",
+   "lesson": "7.3"
+  },
+  {
+   "q": "Why is naive similarity search impractical at scale?",
+   "answer": "vector_store",
+   "why": "With hundreds of dimensions and millisecond latency goals, scanning all vectors per query is far too slow.",
+   "text_answer": "It compares the query with every stored vector, costing O(N) per query at millions or billions of chunks",
+   "lesson": "7.4"
+  },
+  {
+   "q": "Why is approximate nearest neighbor search acceptable in RAG?",
+   "answer": "embedding_quality_recall",
+   "why": "Coverage of relevant chunks is what counts; the index's effort parameter trades latency for higher recall.",
+   "text_answer": "Several relevant chunks usually exist and small similarity differences rarely change answer quality, so recall matters more than exact ordering",
+   "lesson": "7.4"
+  },
+  {
+   "q": "How does an IVF index speed up search?",
+   "answer": "ivf",
+   "why": "Searching a few clusters is much faster than a flat scan, but a true neighbor in an unprobed cluster is missed, so recall depends on how many clusters are probed.",
+   "text_answer": "It learns k centroids with k-means, assigns vectors to clusters, and at query time searches only the nearest clusters",
+   "lesson": "7.4"
+  },
+  {
+   "q": "What is the main benefit and cost of quantization?",
+   "answer": "embedding_quality_recall",
+   "why": "Product and scalar quantization compress vectors via codebooks and compute distances approximately on the codes.",
+   "text_answer": "Much lower memory and faster access at very large scale, at the cost of lower precision and slight recall loss",
+   "lesson": "7.4"
+  },
+  {
+   "q": "According to the index comparison, which index has high memory, high recall and high speed?",
+   "answer": "hnsw",
+   "why": "Flat is slow, IVF is medium on all three, and quantized indexes trade recall for very high speed and low memory.",
+   "text_answer": "HNSW",
+   "lesson": "7.4"
+  },
+  {
+   "q": "What is FAISS?",
+   "answer": "ann",
+   "why": "FAISS focuses on algorithms and performance and implements Flat, IVF, HNSW, PQ and IVF-PQ index types.",
+   "text_answer": "Meta's open-source library for fast similarity search and clustering of dense vectors, with CPU and GPU support",
+   "lesson": "7.4"
+  },
+  {
+   "q": "What are the three constraints for choosing edges when building an NSW graph?",
+   "answer": "evaluation",
+   "why": "The maximum degree M bounds the cost, closer nodes are better neighbors, and the diversity rule avoids redundant links.",
+   "text_answer": "At most M neighbors, prefer closer nodes, and reject a candidate very close to an already chosen neighbor for diversity",
+   "lesson": "7.5"
+  },
+  {
+   "q": "In the NSW insertion example, why was candidate e5 (cos_sim 0.4) rejected for the new node e6?",
+   "answer": "lost_in_the_middle",
+   "why": "The diversity heuristic keeps links spread out, so e6 connected to e3 (0.2) instead, yielding edges e6-e4 and e6-e3.",
+   "text_answer": "It is very close to the already chosen neighbor e4 (cos_sim 0.8), so it would not add diversity",
+   "lesson": "7.5"
+  },
+  {
+   "q": "When does an NSW search stop?",
+   "answer": "nsw_search",
+   "why": "Only the path of visited nodes is evaluated, so search is cheap but can stop at a local optimum rather than the global best.",
+   "text_answer": "When it reaches a node whose neighbors are all less similar (a local best)",
+   "lesson": "7.5"
+  },
+  {
+   "q": "How does a skip list speed up search?",
+   "answer": "skip_list",
+   "why": "The layered structure is the inspiration for HNSW's multiple graph layers.",
+   "text_answer": "It stacks linked lists with sparser higher levels so a search jumps over many items, finding the local best per level then dropping down",
+   "lesson": "7.5"
+  },
+  {
+   "q": "Why is HNSW the typical default for RAG?",
+   "answer": "skip_list",
+   "why": "Search starts on a sparse top layer and descends through denser layers to refine, which is fast to build on and widely used in production.",
+   "text_answer": "It combines NSW graphs with skip-list layering for an excellent speed-recall trade-off: high recall at low latency",
+   "lesson": "7.5"
+  },
+  {
+   "q": "What is dense retrieval good at and what does it struggle with?",
+   "answer": "dense_retrieval",
+   "why": "Dense retrieval matches meaning in vector space, which covers paraphrases but not exact tokens such as serial numbers.",
+   "text_answer": "Good at paraphrases, synonyms and concepts; weak on rare IDs, exact strings, numeric constraints and rare proper names",
+   "lesson": "7.6"
+  },
+  {
+   "q": "Which three mechanisms shape the BM25 score?",
+   "answer": "bm25",
+   "why": "BM25 is a rule-based function that rewards rare query terms, saturates repeated occurrences and fairly treats short and long documents.",
+   "text_answer": "IDF (rare terms weigh more), term-frequency saturation, and length normalization",
+   "lesson": "7.6"
+  },
+  {
+   "q": "Why is hybrid retrieval more robust than dense or sparse alone?",
+   "answer": "embedding_quality_recall",
+   "why": "Dense and sparse fail in complementary ways, so running both and fusing the rankings covers more relevant chunks.",
+   "text_answer": "It combines semantic matching with exact keyword matching, increasing recall and robustness",
+   "lesson": "7.6"
+  },
+  {
+   "q": "How does Reciprocal Rank Fusion score a document?",
+   "answer": "hybrid_retrieval",
+   "why": "RRF is scale-invariant and rewards documents that rank well in several lists, not just one.",
+   "text_answer": "It sums 1/(k + rank) over every retrieval list that returned the document, using k of about 60",
+   "lesson": "7.6"
+  },
+  {
+   "q": "In the RRF example, why did chunk1 beat chunk2?",
+   "answer": "bm25",
+   "why": "Consistency across both lists gave chunk1 a slightly higher fused score than chunk2's single top rank.",
+   "text_answer": "Chunk1 was 2nd in dense and 1st in BM25 (RRF 0.03252), while chunk2 was 1st in dense but only 3rd in BM25 (RRF 0.03227)",
+   "lesson": "7.6"
+  },
+  {
+   "q": "What does the term 'saturation' mean in BM25?",
+   "answer": "bm25",
+   "why": "Diminishing returns on term frequency stop a document from ranking high just by repeating a word.",
+   "text_answer": "Repeated occurrences of a term add less and less, so the first occurrences matter most",
+   "lesson": "7.6"
+  }
+ ]
+}

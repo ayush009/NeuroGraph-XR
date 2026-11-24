@@ -14,7 +14,10 @@ extends Node3D
 const COURSES: Array = [
 	{"name": "LLM Engineering", "graph": "res://data/llm_graph.json", "net": "res://data/llm_network.json", "quiz": "res://data/llm_quiz.json"},
 	{"name": "Data Science Basics", "graph": "res://data/ds_graph.json", "net": "res://data/ds_network.json", "quiz": "res://data/ds_quiz.json"},
+	{"name": "AI Engineering", "graph": "res://data/aie_graph.json", "net": "res://data/llm_network.json", "quiz": "res://data/aie_quiz.json"},
 ]
+## Full course mode (chapter map + lesson player). Only the AI Engineering course has one.
+const COURSE_DATA_PATH: String = "res://data/aie_course.json"
 var course_idx: int = 0
 const OLLAMA_URL: String = "http://127.0.0.1:11434/api/generate"
 const OLLAMA_MODEL: String = "llama3.2:3b"
@@ -1902,6 +1905,8 @@ func _toggle_demo() -> void:
 	if demo_running:
 		_stop_demo()
 	else:
+		_hide_labs()
+		_close_course()
 		_run_demo()
 
 
@@ -2571,6 +2576,7 @@ func _toggle_lab() -> void:
 		_stop_demo()
 	if quiz_active:
 		_end_quiz()
+	_hide_labs()
 	menu_panel.visible = false
 	sl_panel.visible = false
 	al_panel.visible = false
@@ -3002,6 +3008,7 @@ func _toggle_sampling() -> void:
 	if quiz_active:
 		_end_quiz()
 	menu_panel.visible = false
+	_hide_labs()
 	lab_panel.visible = false
 	al_panel.visible = false
 	sl_panel.visible = not sl_panel.visible
@@ -3294,6 +3301,7 @@ func _toggle_attention() -> void:
 	if quiz_active:
 		_end_quiz()
 	menu_panel.visible = false
+	_hide_labs()
 	lab_panel.visible = false
 	sl_panel.visible = false
 	al_panel.visible = not al_panel.visible
@@ -3395,6 +3403,7 @@ const MENU_INFO: Dictionary = {
 	"TOKEN LAB": "Type any sentence and watch a real tokenizer cut it into tokens.",
 	"ATTENTION LAB": "Click a word and see which other words the model pays attention to.",
 	"SAMPLING LAB": "Drag temperature and top-k and see how a model chooses its next word.",
+	"AI COURSE": "The full course: 7 chapters, 43 lessons, narration, a lab and a quiz per lesson.",
 }
 var menu_logo: TextureRect
 var menu_title: Label
@@ -3463,7 +3472,7 @@ func _card(parent: Node, symbol: String, title: String, sub: String, col: Color,
 	b.mouse_exited.connect(func() -> void:
 		create_tween().tween_property(b, "scale", Vector2.ONE, 0.12)
 		if menu_hint != null:
-			menu_hint.text = "Choose how you want to learn  -  or press 1 to 6")
+			menu_hint.text = "Choose how you want to learn  -  or press 1 to 7")
 	b.pressed.connect(cb)
 	var badge: Label = Label.new()
 	badge.text = str(menu_actions.size() + 1)
@@ -3583,7 +3592,7 @@ func _art_tile(parent: Node, art_path: String, title: String, sub: String, col: 
 		if art_tr != null:
 			tw2.tween_property(art_tr, "modulate", Color(0.82, 0.82, 0.82), 0.14)
 		if menu_hint != null:
-			menu_hint.text = "Choose how you want to learn  -  or press 1 to 6")
+			menu_hint.text = "Choose how you want to learn  -  or press 1 to 7")
 	b.pressed.connect(cb)
 	var badge: Label = Label.new()
 	badge.text = str(menu_actions.size() + 1)
@@ -3704,22 +3713,25 @@ func _build_menu(layer: CanvasLayer) -> void:
 	row.add_theme_constant_override("separation", 14)
 	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	vb.add_child(row)
-	_art_tile(row, "res://assets/generated/hd_rag.png", "QUIZ", "Test yourself and unlock concepts", Color(1.0, 0.75, 0.2), Vector2(170, 168), func() -> void:
+	_art_tile(row, "res://assets/generated/hd_course.png", "AI COURSE", "7 chapters, 43 lessons, labs", Color(0.62, 0.6, 1.0), Vector2(160, 168), func() -> void:
+		menu_panel.visible = false
+		_toggle_course())
+	_art_tile(row, "res://assets/generated/hd_rag.png", "QUIZ", "Test yourself and unlock concepts", Color(1.0, 0.75, 0.2), Vector2(160, 168), func() -> void:
 		menu_panel.visible = false
 		_start_quiz())
-	_art_tile(row, "res://assets/generated/hd_graph.png", "EXPLORE", "Click, drag and ask the AI", Color(0.95, 0.35, 0.6), Vector2(170, 168), func() -> void:
+	_art_tile(row, "res://assets/generated/hd_graph.png", "EXPLORE", "Click, drag and ask the AI", Color(0.95, 0.35, 0.6), Vector2(160, 168), func() -> void:
 		menu_panel.visible = false)
-	_art_tile(row, "res://assets/generated/hd_tokens.png", "TOKEN LAB", "Type text, see how a model splits it", Color(0.3, 0.65, 1.0), Vector2(170, 168), func() -> void:
+	_art_tile(row, "res://assets/generated/hd_tokens.png", "TOKEN LAB", "Type text, see how a model splits it", Color(0.3, 0.65, 1.0), Vector2(160, 168), func() -> void:
 		menu_panel.visible = false
 		_toggle_lab())
-	_art_tile(row, "res://assets/generated/hd_attention.png", "ATTENTION LAB", "See which words a word looks at", Color(1.0, 0.5, 0.2), Vector2(170, 168), func() -> void:
+	_art_tile(row, "res://assets/generated/hd_attention.png", "ATTENTION LAB", "See which words a word looks at", Color(1.0, 0.5, 0.2), Vector2(160, 168), func() -> void:
 		menu_panel.visible = false
 		_toggle_attention())
-	_art_tile(row, "res://assets/generated/hd_prob.png", "SAMPLING LAB", "Drag temperature, watch it choose", Color(0.3, 0.85, 0.9), Vector2(170, 168), func() -> void:
+	_art_tile(row, "res://assets/generated/hd_prob.png", "SAMPLING LAB", "Drag temperature, watch it choose", Color(0.3, 0.85, 0.9), Vector2(160, 168), func() -> void:
 		menu_panel.visible = false
 		_toggle_sampling())
 	menu_hint = Label.new()
-	menu_hint.text = "Choose how you want to learn  -  or press 1 to 6"
+	menu_hint.text = "Choose how you want to learn  -  or press 1 to 7"
 	menu_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu_hint.custom_minimum_size = Vector2(0, 26)
 	menu_hint.add_theme_font_size_override("font_size", 15)
@@ -3810,7 +3822,7 @@ func _build_menu_v2_old(layer: CanvasLayer) -> void:
 		menu_panel.visible = false
 		_toggle_sampling())
 	menu_hint = Label.new()
-	menu_hint.text = "Choose how you want to learn  -  or press 1 to 6"
+	menu_hint.text = "Choose how you want to learn  -  or press 1 to 7"
 	menu_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu_hint.custom_minimum_size = Vector2(0, 28)
 	menu_hint.add_theme_font_size_override("font_size", 16)
@@ -3934,7 +3946,7 @@ func _show_menu() -> void:
 		_stop_demo()
 	if quiz_active:
 		_end_quiz()
-	lab_panel.visible = false
+	_hide_labs()
 	sl_panel.visible = false
 	al_panel.visible = false
 	_refresh_menu()
@@ -4198,6 +4210,171 @@ func _setup_ui() -> void:
 	_build_attention_ui(layer)
 	_build_menu(layer)
 	_build_chrome(layer)
+	_setup_course_view(layer)
+
+
+# ── Course mode (AI Engineering): chapter map + lesson player ──
+var course_view: CourseView
+
+
+func _setup_course_view(layer: CanvasLayer) -> void:
+	if not FileAccess.file_exists(COURSE_DATA_PATH):
+		return
+	var data: Dictionary = _load_json(COURSE_DATA_PATH)
+	if data.is_empty():
+		return
+	course_view = CourseView.new()
+	layer.add_child(course_view)
+	course_view.setup(app_theme, data)
+	course_view.visible = false
+	course_view.closed.connect(_close_course)
+	course_view.narration_requested.connect(say_course)
+	course_view.open_lab_requested.connect(_open_lab)
+	course_view.show_concept_requested.connect(_show_concept_in_graph)
+
+
+func _close_course() -> void:
+	if course_view != null:
+		course_view.visible = false
+
+
+func _toggle_course() -> void:
+	if course_view == null:
+		status_label.text = "This course has no lesson mode - press C to switch to AI Engineering."
+		return
+	if course_view.visible:
+		_close_course()
+		return
+	if demo_running:
+		_stop_demo()
+	if quiz_active:
+		_end_quiz()
+	if lab_panel != null:
+		lab_panel.visible = false
+	if sl_panel != null:
+		sl_panel.visible = false
+	if al_panel != null:
+		al_panel.visible = false
+	if menu_panel != null:
+		menu_panel.visible = false
+	course_view.open()
+
+
+## Narration for course cards: plays the pre-recorded voice when it exists, records every
+## line to user://narration_lines.json so tools/make_narration.py can create the rest.
+func say_course(t: String) -> void:
+	if t == "":
+		return
+	var key: String = _narr_key(t)
+	if not narr_lines.has(key):
+		narr_lines[key] = t
+		var f: FileAccess = FileAccess.open("user://narration_lines.json", FileAccess.WRITE)
+		if f:
+			f.store_string(JSON.stringify(narr_lines, "  "))
+	if not demo_voice:
+		return
+	_say_active = true
+	_say_start_ms = Time.get_ticks_msec()
+	_stop_voice()
+	narr_serial += 1
+	narr_words = []
+	narr_cursor = 0
+	tts_text = ""
+	var path: String = "res://assets/narration/%s.mp3" % key
+	if narr_player and ResourceLoader.exists(path):
+		narr_file_mode = true
+		narr_player.stream = load(path)
+		narr_player.play()
+		return
+	narr_file_mode = false
+	_say_active = false
+	var voices: PackedStringArray = DisplayServer.tts_get_voices_for_language("en")
+	if not voices.is_empty():
+		DisplayServer.tts_speak(_spoken(t), voices[0], 95, 1.0, 1.0)
+
+
+## Open the lab a course card points to. Unknown ids fall back to a message.
+const LAB_SCRIPTS: Dictionary = {
+	"embedding_lab": "res://scripts/labs/embedding_lab.gd",
+	"bigram_lab": "res://scripts/labs/bigram_lab.gd",
+	"posenc_lab": "res://scripts/labs/posenc_lab.gd",
+	"kvcache_lab": "res://scripts/labs/kvcache_lab.gd",
+	"moe_lab": "res://scripts/labs/moe_lab.gd",
+	"precision_lab": "res://scripts/labs/precision_lab.gd",
+	"scaling_lab": "res://scripts/labs/scaling_lab.gd",
+	"retrieval_lab": "res://scripts/labs/retrieval_lab.gd",
+	"hnsw_lab": "res://scripts/labs/hnsw_lab.gd",
+	"passk_lab": "res://scripts/labs/passk_lab.gd",
+	"prompt_lab": "res://scripts/labs/prompt_lab.gd",
+}
+var lab_views: Dictionary = {}   # lab id -> LabBase instance
+
+
+func _hide_labs() -> void:
+	for id in lab_views:
+		(lab_views[id] as LabBase).visible = false
+	if lab_panel != null:
+		lab_panel.visible = false
+	if sl_panel != null:
+		sl_panel.visible = false
+	if al_panel != null:
+		al_panel.visible = false
+
+
+func open_lab_view(lab_id: String) -> void:
+	_close_course()
+	if LAB_SCRIPTS.has(lab_id):
+		_hide_labs()
+		if menu_panel != null:
+			menu_panel.visible = false
+		var inst: LabBase = lab_views.get(lab_id, null)
+		if inst == null:
+			inst = (load(String(LAB_SCRIPTS[lab_id])) as GDScript).new()
+			var host: Node = self
+			if ui_vp != null:
+				host = ui_vp
+			host.add_child(inst)
+			inst.setup(app_theme)
+			lab_views[lab_id] = inst
+		inst.open()
+		return
+	_open_lab(lab_id)
+
+
+func _open_lab(lab_id: String) -> void:
+	_close_course()
+	match lab_id:
+		"token_lab":
+			if not lab_panel.visible:
+				_toggle_lab()
+		"attention_lab":
+			if not al_panel.visible:
+				_toggle_attention()
+		"sampling_lab":
+			if not sl_panel.visible:
+				_toggle_sampling()
+		"network_view":
+			_set_mode(Mode.NETWORK)
+		_:
+			status_label.text = "The '%s' lab is not wired up yet." % lab_id.replace("_", " ")
+
+
+## "Show in 3D": leave course mode and jump to that concept in the graph.
+func _show_concept_in_graph(node_id: String) -> void:
+	_close_course()
+	var aie: int = -1
+	for i in COURSES.size():
+		if String(COURSES[i]["name"]) == "AI Engineering":
+			aie = i
+	if aie >= 0 and course_idx != aie:
+		_set_course(aie)
+	_set_mode(Mode.GRAPH)
+	if g_items.has(node_id):
+		_select(g_items[node_id])
+		_pop(node_id)
+		_frame([node_id], 5.0)
+	else:
+		status_label.text = "That concept is not in this course's graph."
 
 
 # ═════════════════════ CLEAN APP CHROME (top bar, info card, hints) ═════════════════════
@@ -4400,6 +4577,43 @@ func _play_intro() -> void:
 	menu_panel.visible = false
 
 
+const LAB_MENU_ENTRIES: Array = ["Token Lab (text to tokens)", "Attention Lab (what a word looks at)", "Sampling Lab (temperature & top-p)", "-",
+	"Embeddings & similarity", "Bigram predictor", "Position encoding", "KV cache", "Mixture of experts",
+	"Numerics & precision", "Scaling laws", "Retrieval & rank fusion", "HNSW vector search", "pass@k", "Prompt builder"]
+
+
+func _labs_menu_pick(id: int) -> void:
+	match id:
+		0:
+			_toggle_lab()
+		1:
+			_toggle_attention()
+		2:
+			_toggle_sampling()
+		4:
+			open_lab_view("embedding_lab")
+		5:
+			open_lab_view("bigram_lab")
+		6:
+			open_lab_view("posenc_lab")
+		7:
+			open_lab_view("kvcache_lab")
+		8:
+			open_lab_view("moe_lab")
+		9:
+			open_lab_view("precision_lab")
+		10:
+			open_lab_view("scaling_lab")
+		11:
+			open_lab_view("retrieval_lab")
+		12:
+			open_lab_view("hnsw_lab")
+		13:
+			open_lab_view("passk_lab")
+		14:
+			open_lab_view("prompt_lab")
+
+
 func _view_menu_pick(id: int) -> void:
 	match id:
 		13:
@@ -4426,6 +4640,8 @@ func _view_menu_pick(id: int) -> void:
 			_switch_course()
 		12:
 			_save_screenshot()
+		14:
+			_toggle_course()
 
 
 func _build_chrome(layer: CanvasLayer) -> void:
@@ -4472,17 +4688,12 @@ func _build_chrome(layer: CanvasLayer) -> void:
 	mastery_label.modulate = Color(1.0, 0.86, 0.35)
 	hb.add_child(mastery_label)
 	_flat_btn(hb, "▶  Tour", func() -> void: _toggle_demo(), true)
+	_flat_btn(hb, "🎓  Course", func() -> void: _toggle_course())
 	quiz_top_btn = _flat_btn(hb, "?  Quiz", func() -> void: _toggle_quiz())
-	_menu_btn(hb, "Labs ▾", ["Token Lab", "Sampling Lab", "Attention Lab"], func(id: int) -> void:
-		if id == 0:
-			_toggle_lab()
-		elif id == 1:
-			_toggle_sampling()
-		else:
-			_toggle_attention())
+	_menu_btn(hb, "Labs ▾", LAB_MENU_ENTRIES, _labs_menu_pick)
 	ask_top_btn = _flat_btn(hb, "💬  Ask AI", func() -> void: ask_on = not ask_on)
 	learn_top_btn = _flat_btn(hb, "➜  Learn next", func() -> void: _learn_next())
-	_menu_btn(hb, "View ▾", ["Concept graph", "Neural network", "-", "Explode / assemble", "Forward-pass animation", "Auto-spin on/off", "Reset view", "-", "Filter by category", "Music on/off", "Narration voice on/off", "Switch course", "Screenshot", "Replay intro"], _view_menu_pick)
+	_menu_btn(hb, "View ▾", ["Concept graph", "Neural network", "-", "Explode / assemble", "Forward-pass animation", "Auto-spin on/off", "Reset view", "-", "Filter by category", "Music on/off", "Narration voice on/off", "Switch course", "Screenshot", "Replay intro", "Course mode (AI Engineering)"], _view_menu_pick)
 	_flat_btn(hb, "☰  Menu", func() -> void: _show_menu())
 
 	# concept card: only visible while something is selected
@@ -5306,7 +5517,7 @@ func _update_texts() -> void:
 		var gi: Dictionary = g_items[String(selected["id"])]
 		head_title = String(gi["title"])
 		var nconn: int = (g_adj[String(selected["id"])] as Array).size()
-		head_sub = "●  %s   ·   %d connection%s" % [String(gi["cat"]).to_upper(), nconn, "" if nconn == 1 else "s"]
+		head_sub = "●  %s   ·   %d connection%s" % [str(gi["cat"]).to_upper(), nconn, "" if nconn == 1 else "s"]
 		head_col = (gi["color"] as Color).lightened(0.3)
 	if card_title:
 		card_title.visible = head_title != ""
@@ -5983,10 +6194,23 @@ func _unhandled_input(event: InputEvent) -> void:
 				_refresh_materials()
 	elif event is InputEventKey and event.pressed and not event.echo:
 		var k: InputEventKey = event
-		if menu_panel.visible and k.keycode >= KEY_1 and k.keycode <= KEY_6:   # home screen: number keys pick a card
+		if menu_panel.visible and k.keycode >= KEY_1 and k.keycode <= KEY_7:   # home screen: number keys pick a card
 			var ai: int = k.keycode - KEY_1
 			if ai < menu_actions.size():
 				(menu_actions[ai] as Callable).call()
+			return
+		if course_view != null and course_view.visible:   # lesson player: arrows move, Esc closes
+			match k.keycode:
+				KEY_ESCAPE, KEY_U:
+					_close_course()
+				KEY_RIGHT, KEY_SPACE:
+					course_view.advance()
+				KEY_LEFT:
+					course_view.back()
+				KEY_C:
+					pass   # C does not switch course while reading a lesson
+				_:
+					return
 			return
 		match k.keycode:
 			KEY_1: _set_mode(Mode.GRAPH)
@@ -6016,6 +6240,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					quiz_next.emit()
 			KEY_ESCAPE: _stop_demo()
 			KEY_V: _toggle_voice()
+			KEY_U: _toggle_course()
 
 
 func _on_right_button(button: String) -> void:
