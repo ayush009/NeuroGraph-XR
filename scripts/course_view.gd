@@ -23,6 +23,19 @@ var ap_theme: Theme
 var voice_busy: Callable          # set by the host: is the narrator still talking?
 var stop_voice: Callable          # set by the host: silence the narrator
 
+# SFX
+var sfx_pop: AudioStream
+var sfx_select: AudioStream
+var sfx_explode: AudioStream
+var sfx_player: AudioStreamPlayer
+
+func _play_sfx(stream: AudioStream, db: float = -6.0) -> void:
+	if stream == null:
+		return
+	sfx_player.stream = stream
+	sfx_player.volume_db = db
+	sfx_player.play()
+
 # state
 var chapter_i: int = 0
 var lesson: Dictionary = {}
@@ -37,6 +50,13 @@ var _answered: bool = false
 var _beat_elapsed: float = 0.0
 var _after_voice: float = 0.0
 var _t: float = 0.0
+
+# Progress / XP
+var xp: int = 0
+var xp_to_next_level: int = 100
+var level: int = 1
+var badges: Dictionary = {}  # badge_id -> earned_date
+var following_lesson_nl: String = ""
 
 # ui
 var map_root: VBoxContainer
@@ -479,6 +499,19 @@ func _stars(score: int, total: int) -> int:
 	return 3 if f >= 0.99 else (2 if f >= 0.66 else (1 if f > 0.0 else 0))
 
 
+func _flash(node: Control) -> void:
+	# simple flash: brighten then fade back
+	var c: Color = node.modulate
+	node.modulate = Color(1.0, 0.95, 0.35)
+	get_tree().create_timer(0.15).timeout.connect(func(): node.modulate = c)
+
+
+func flash_badge(id: String) -> void:
+	# Show a quick "earned" badge visual
+	print("Badge earned: " + id)
+	_say("Bonus! You earned a badge.")
+
+
 func _on_map_input(ev: InputEvent) -> void:
 	if ev is InputEventMouseMotion:
 		var h: int = -1
@@ -823,8 +856,11 @@ func _answer(picked: String, q: Dictionary) -> void:
 	_answered = true
 	var right: bool = picked == String(q["answer"])
 	if right:
-		quiz_score += 1
+		_play_sfx(sfx_pop)
 		fx.burst(Vector2(fx.size.x * 0.5, fx.size.y * 0.45))
+	else:
+		_play_sfx(sfx_explode)
+	quiz_score = quiz_score + (1 if right else 0)
 	for g in quiz_box.get_children():
 		if g is GridContainer:
 			for b in g.get_children():
@@ -833,11 +869,14 @@ func _answer(picked: String, q: Dictionary) -> void:
 				bb.disabled = true
 				if o == String(q["answer"]):
 					_paint(bb, Color(0.18, 0.62, 0.36))
+					_flash(b)
 				elif o == picked:
 					_paint(bb, Color(0.7, 0.22, 0.25))
+					_flash(b)
 				else:
 					bb.modulate = Color(1, 1, 1, 0.45)
-	bubble_lbl.text = ("Yes! " if right else "Almost! ") + String(q.get("why", ""))
+	var why: String = String(q.get("why", ""))
+	bubble_lbl.text = ("Yes! " if right else "Not quite - the green one is right. ") + why
 	hint_lbl.text = "score %d" % quiz_score
 	var row: HBoxContainer = HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -848,7 +887,7 @@ func _answer(picked: String, q: Dictionary) -> void:
 	sp.custom_minimum_size = Vector2(20, 0)
 	row.add_child(sp)
 	_btn(row, "Continue  ▶", func() -> void: _next_question(), true)
-	_say(String(q.get("why", "")))
+	_say(why)
 
 
 func _next_question() -> void:
@@ -864,6 +903,20 @@ func _finish_lesson(total: int) -> void:
 	_save_progress()
 	in_quiz = false
 	var stars: int = _stars(quiz_score, total)
+	# Award XP based on stars
+	var xp_earned: int = stars * 25  # 25 XP per star
+	xp += xp_earned
+	# Check for level up
+	while xp >= xp_to_next_level:
+		xp -= xp_to_next_level
+		level += 1
+		xp_to_next_level = round(xp_to_next_level * 1.5)
+	# Earn badge for first perfect lesson
+	var badge_id: String = "perfect_%" + String(lesson["id"])
+	if not badges.has(badge_id) and stars >= 3:
+		badges[badge_id] = "earned"
+		flash_badge(badge_id)
+	# Show progress
 	fx.burst(Vector2(fx.size.x * 0.3, fx.size.y * 0.4))
 	fx.burst(Vector2(fx.size.x * 0.7, fx.size.y * 0.4))
 	var c: VBoxContainer = VBoxContainer.new()
@@ -873,10 +926,12 @@ func _finish_lesson(total: int) -> void:
 	quiz_box.add_child(c)
 	var l1: Label = _label(c, "Lesson %s complete!" % String(lesson["id"]), 30, Color(1.0, 0.88, 0.45))
 	l1.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var l2: Label = _label(c, "★".repeat(stars) + "☆".repeat(3 - stars), 54, Color(1.0, 0.82, 0.3))
+	var l2: Label = _label(c, "★".repeat(stars) + "☆".repeat(3 - stars) + "  +%d XP" % xp_earned, 54, Color(1.0, 0.82, 0.3))
 	l2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var l3: Label = _label(c, "%d of %d answers right" % [quiz_score, total], 18, Color(0.85, 0.9, 1.0))
 	l3.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var l4: Label = _label(c, "XP: %d / %d (Lvl %d)" % [xp, xp_to_next_level, level], 18, Color(0.7, 0.9, 1.0))
+	l4.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var row: HBoxContainer = HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 10)
