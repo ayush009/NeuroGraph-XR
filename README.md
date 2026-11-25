@@ -113,15 +113,24 @@ answers from the knowledge graph and speaks the answer back. No cloud, no API ke
 ## 🎓 The full AI Engineering course
 
 Press **`U`** (or the **🎓 Course** button, or the *AI COURSE* tile on the home screen) and the app becomes
-a complete, self-contained course — the whole AI-engineering curriculum, rewritten in the app's own words.
+a complete course on AI engineering, **told as animated stories instead of walls of text**.
+
+Every one of the **277 concepts** is an animated scene: a diagram builds up step by step while a friendly
+guide robot explains each step in one short spoken sentence. Then it's **your turn**: hover or click anything
+on the stage for details, drag the temperature slider and watch the probabilities change, drag a probe along a
+scaling curve, hover a word to see where attention looks. The full written explanation is still one click
+away (📖 *Read more*) for anyone who wants it.
 
 | | |
 |---|---|
 | **7 chapters** | Introduction & AI Engineering · From Text to Tokens and Back · Foundations of LLMs · Training & Alignment · Inference & Evaluation · Prompt Engineering · Retrieval-Augmented Generation |
-| **43 lessons** | Each with a goal, **277 illustrated concept cards** (text, key points, formulas, worked examples) and **spoken narration** for every card |
-| **234 quiz questions** | Four options each, with the explanation of *why* the answer is right — and a spoken explanation |
-| **15 hands-on labs** | Every lesson links straight into the lab that belongs to it |
-| **Progress tracking** | Lessons finished, cards read and best quiz score are saved; finished lessons get a ✓ |
+| **43 lessons** | Stepping stones on a winding story path per chapter; the robot waits at your next lesson |
+| **277 animated scenes** | 16 animated diagram types (pipelines, loops, token splitting, probability bars, meaning-space vectors, attention arcs, masks, curves, trees, timelines, neural nets, size bubbles, chats, funnels…) with **1,122 narrated story beats** |
+| **234 quiz questions** | Big friendly answer buttons, confetti, a spoken explanation, and up to ★★★ per lesson |
+| **15 hands-on labs** | Every scene links to the lab that belongs to it — close the lab and you are back in the story |
+| **Progress tracking** | Lessons finished and stars are saved |
+
+Controls: **Space** play / pause · **→ / ←** next / previous step · **Esc** back to the map.
 
 Chapters and lessons are plain JSON in `data/aie_course.json` and `data/aie_graph.json` — the same
 bring-your-own-course format used by the other two courses, so you can extend or translate it without touching code.
@@ -133,9 +142,9 @@ bring-your-own-course format used by the other two courses, so you can extend or
 <td width="33%"><img src="docs/media/11_course_quiz.jpg" alt="A lesson quiz"/></td>
 </tr>
 <tr>
-<td><b>Chapter map</b><br/>Seven chapters, 43 lessons, progress at a glance. Each lesson shows its card count, its goal and whether you finished it.</td>
-<td><b>Lesson player</b><br/>Read the card, press <b>🔊 Listen</b> for the natural voice, open the matching lab, or jump to the concept in the 3D graph.</td>
-<td><b>Lesson quiz</b><br/>Four choices per question, an explanation after every answer, and a score that is remembered per lesson.</td>
+<td><b>Story path</b><br/>Each chapter is a winding path of lessons. Finished lessons turn green with their stars; the guide robot waits at the next one.</td>
+<td><b>Animated story player</b><br/>The diagram builds step by step while the robot narrates. Hover or click anything; drag sliders and probes; open the matching lab.</td>
+<td><b>Lesson quiz</b><br/>Big answer buttons, confetti for right answers, a spoken explanation, and up to three stars per lesson.</td>
 </tr>
 </table>
 

@@ -34,8 +34,15 @@ func _ready() -> void:
 	cv.narration_requested.connect(func(t: String) -> void: spoken.append(t))
 	for i in cv.lesson["cards"].size():
 		seen.append(String(cv.lesson["cards"][cv.card_i]["id"]))
-		cv.advance()
-		await get_tree().create_timer(0.05).timeout
+		# step through every beat of the story with → (advance), which then moves on to the next card
+		var beats: int = cv.stage.beat_count()
+		for b in beats:
+			if cv.stage.beat_caption(cv.beat_i) == "":
+				problems.append("card %s beat %d has no caption" % [seen[seen.size() - 1], cv.beat_i])
+			cv.advance()
+			await get_tree().create_timer(0.03).timeout
+	if not cv.in_quiz:
+		problems.append("stepping past the last card did not start the quiz")
 	print("cards visited: ", seen, "\n  narration lines requested=", spoken.size())
 	if seen.size() != cv.lesson["cards"].size():
 		problems.append("did not visit every card")
@@ -98,6 +105,8 @@ func _check_data() -> void:
 				problems.append("lesson %s has only %d cards" % [l["id"], l["cards"].size()])
 			for c in l["cards"]:
 				cards += 1
+				if not c.has("scene") or (c["scene"].get("beats", []) as Array).is_empty():
+					problems.append("card %s has no animated scene" % c["id"])
 				var w: int = String(c.get("text", "")).split(" ", false).size()
 				if w < 45:
 					short_text += 1

@@ -1231,8 +1231,66 @@ func _stop_voice() -> void:
 
 func _voice_busy() -> bool:
 	if narr_file_mode:
-		return narr_player != null and narr_player.playing
+		return narr_player != null and (narr_player.playing or narr_fetching)
 	return DisplayServer.tts_is_speaking()
+
+
+## Plays the pre-recorded voice line <key>. Desktop: from the packed project. Web: the voice
+## files are not in the pack (keeps the download small) - they are fetched on demand from
+## narration/<key>.mp3 next to index.html and cached. Returns false when no file exists.
+var narr_http: HTTPRequest
+var narr_fetching: bool = false
+var _narr_cache: Dictionary = {}
+var _narr_want: String = ""
+var _web_base: String = ""
+
+
+func _narr_play_file(key: String) -> bool:
+	if narr_player == null:
+		return false
+	var path: String = "res://assets/narration/%s.mp3" % key
+	if ResourceLoader.exists(path):
+		narr_player.stream = load(path)
+		narr_player.play()
+		return true
+	if not OS.has_feature("web"):
+		return false
+	_narr_want = key
+	if _narr_cache.has(key):
+		narr_player.stream = _narr_cache[key]
+		narr_player.play()
+		return true
+	if narr_http == null:
+		narr_http = HTTPRequest.new()
+		narr_http.timeout = 20.0
+		add_child(narr_http)
+		narr_http.request_completed.connect(_on_narr_fetched)
+	narr_http.cancel_request()
+	narr_fetching = true
+	narr_http.set_meta("key", key)
+	if _web_base == "":
+		# directory of the page that hosts the game, e.g. https://user.github.io/Repo/
+		var href: String = String(JavaScriptBridge.eval("window.location.href.split('#')[0].split('?')[0]", true))
+		_web_base = href.substr(0, href.rfind("/") + 1)
+	if narr_http.request(_web_base + "narration/%s.mp3" % key) != OK:
+		narr_fetching = false
+		return false
+	return true
+
+
+func _on_narr_fetched(result: int, code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	narr_fetching = false
+	var key: String = String(narr_http.get_meta("key", ""))
+	if result != HTTPRequest.RESULT_SUCCESS or code != 200 or body.is_empty():
+		return
+	var st: AudioStreamMP3 = AudioStreamMP3.new()
+	st.data = body
+	if _narr_cache.size() > 300:
+		_narr_cache.clear()
+	_narr_cache[key] = st
+	if key == _narr_want and narr_file_mode:
+		narr_player.stream = st
+		narr_player.play()
 
 
 func _say(t: String) -> void:
@@ -1256,17 +1314,16 @@ func _say(t: String) -> void:
 	tts_text = t
 	tts_cursor = 0
 	tts_pending.clear()
-	if narr_player and ResourceLoader.exists(path):
+	if narr_player and (ResourceLoader.exists(path) or OS.has_feature("web")):
 		narr_file_mode = true
-		tts_text = ""
-		var jpath: String = "res://assets/narration/%s.json" % key
-		if ResourceLoader.exists(jpath):
-			var jr: Resource = load(jpath)
-			if jr is JSON and jr.data is Array:
-				narr_words = jr.data
-		narr_player.stream = load(path)
-		narr_player.play()
-		return
+		if _narr_play_file(key):
+			tts_text = ""
+			var jpath: String = "res://assets/narration/%s.json" % key
+			if ResourceLoader.exists(jpath):
+				var jr: Resource = load(jpath)
+				if jr is JSON and jr.data is Array:
+					narr_words = jr.data
+			return
 	narr_file_mode = false
 	var voices: PackedStringArray = DisplayServer.tts_get_voices_for_language("en")
 	if voices.is_empty():
@@ -1286,11 +1343,8 @@ func _say_quiz(t: String) -> void:
 	if not demo_voice or t == "":
 		return
 	_stop_voice()
-	var path: String = "res://assets/narration/%s.mp3" % _narr_key(t)
-	if narr_player and ResourceLoader.exists(path):
-		narr_file_mode = true
-		narr_player.stream = load(path)
-		narr_player.play()
+	narr_file_mode = true
+	if _narr_play_file(_narr_key(t)):
 		return
 	narr_file_mode = false
 	var voices: PackedStringArray = DisplayServer.tts_get_voices_for_language("en")
@@ -2576,11 +2630,12 @@ func _toggle_lab() -> void:
 		_stop_demo()
 	if quiz_active:
 		_end_quiz()
+	var was_open: bool = lab_panel.visible   # read BEFORE _hide_labs(), which hides this panel too
 	_hide_labs()
 	menu_panel.visible = false
 	sl_panel.visible = false
 	al_panel.visible = false
-	lab_panel.visible = not lab_panel.visible
+	lab_panel.visible = not was_open
 	if lab_panel.visible:
 		_lab_update()
 		_fit_panel(lab_panel)
@@ -3007,11 +3062,12 @@ func _toggle_sampling() -> void:
 		_stop_demo()
 	if quiz_active:
 		_end_quiz()
+	var was_open: bool = sl_panel.visible
 	menu_panel.visible = false
 	_hide_labs()
 	lab_panel.visible = false
 	al_panel.visible = false
-	sl_panel.visible = not sl_panel.visible
+	sl_panel.visible = not was_open
 	if sl_panel.visible:
 		_sl2_update()
 		_fit_panel(sl_panel)
@@ -3300,11 +3356,12 @@ func _toggle_attention() -> void:
 		_stop_demo()
 	if quiz_active:
 		_end_quiz()
+	var was_open: bool = al_panel.visible
 	menu_panel.visible = false
 	_hide_labs()
 	lab_panel.visible = false
 	sl_panel.visible = false
-	al_panel.visible = not al_panel.visible
+	al_panel.visible = not was_open
 	if al_panel.visible:
 		_al_update()
 		_fit_panel(al_panel)
@@ -4215,6 +4272,19 @@ func _setup_ui() -> void:
 
 # ── Course mode (AI Engineering): chapter map + lesson player ──
 var course_view: CourseView
+var _course_return: bool = false   # a lab was opened from a lesson: return there when it closes
+
+
+func _course_return_check() -> void:
+	if not _course_return or course_view == null or course_view.visible:
+		return
+	var any_lab: bool = lab_panel.visible or sl_panel.visible or al_panel.visible or mode == Mode.NETWORK
+	for id in lab_views:
+		if (lab_views[id] as LabBase).visible:
+			any_lab = true
+	if not any_lab:
+		_course_return = false
+		course_view.visible = true
 
 
 func _setup_course_view(layer: CanvasLayer) -> void:
@@ -4229,7 +4299,11 @@ func _setup_course_view(layer: CanvasLayer) -> void:
 	course_view.visible = false
 	course_view.closed.connect(_close_course)
 	course_view.narration_requested.connect(say_course)
-	course_view.open_lab_requested.connect(_open_lab)
+	course_view.voice_busy = func() -> bool: return _voice_busy()
+	course_view.stop_voice = func() -> void: _stop_voice()
+	course_view.open_lab_requested.connect(func(lab_id: String) -> void:
+		_course_return = true          # closing the lab brings the learner back to the lesson
+		open_lab_view(lab_id))
 	course_view.show_concept_requested.connect(_show_concept_in_graph)
 
 
@@ -4280,11 +4354,8 @@ func say_course(t: String) -> void:
 	narr_words = []
 	narr_cursor = 0
 	tts_text = ""
-	var path: String = "res://assets/narration/%s.mp3" % key
-	if narr_player and ResourceLoader.exists(path):
-		narr_file_mode = true
-		narr_player.stream = load(path)
-		narr_player.play()
+	narr_file_mode = true
+	if _narr_play_file(key):
 		return
 	narr_file_mode = false
 	_say_active = false
@@ -4821,6 +4892,7 @@ func _rebuild_card() -> void:
 func _update_chrome(delta: float) -> void:
 	if left_panel == null or info_panel == null:
 		return
+	_course_return_check()
 	_sync_toolbar()
 	if menu_panel.visible and menu_logo != null and menu_logo.scale.x <= 1.02:   # the logo gently breathes
 		menu_logo.pivot_offset = menu_logo.size * 0.5
@@ -6201,9 +6273,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if course_view != null and course_view.visible:   # lesson player: arrows move, Esc closes
 			match k.keycode:
-				KEY_ESCAPE, KEY_U:
+				KEY_ESCAPE:
+					if not course_view.escape():
+						_close_course()
+				KEY_U:
 					_close_course()
-				KEY_RIGHT, KEY_SPACE:
+				KEY_SPACE:
+					course_view.toggle_play()
+				KEY_RIGHT:
 					course_view.advance()
 				KEY_LEFT:
 					course_view.back()

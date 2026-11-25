@@ -42,6 +42,13 @@ def main():
         ls = []
         for lid in sorted([k for k in lessons if int(k.split(".")[0]) == num], key=lambda s: [int(x) for x in s.split(".")]):
             d = lessons[lid]
+            # animated story scenes (one per card) live next to the lessons in _slides/scenes/
+            sp = os.path.join(os.path.dirname(SRC), "scenes", "L%s.json" % lid)
+            if os.path.exists(sp):
+                sc = json.load(open(sp, encoding="utf-8"))
+                for card in d["cards"]:
+                    if card["id"] in sc:
+                        card["scene"] = sc[card["id"]]
             ls.append({"id": d["id"], "title": d["title"], "goal": d["goal"], "cards": d["cards"]})
             for n in d["nodes"]:
                 nodes[n["id"]] = {"id": n["id"], "label": n["label"], "desc": n["desc"], "category": short}

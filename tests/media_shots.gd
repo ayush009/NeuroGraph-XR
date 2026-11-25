@@ -14,25 +14,33 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	v.menu_panel.visible = false
 	await get_tree().create_timer(0.4).timeout
-	# 1) chapter map
+	v.demo_voice = false
+	# 1) chapter story path (with two lessons finished, so stars + the waiting robot show)
 	v._toggle_course()
+	var cv: CourseView = v.course_view
+	var saved: Dictionary = cv.progress.duplicate(true)
+	cv.progress = {"3.1": {"done": true, "quiz_best": 5}, "3.2": {"done": true, "quiz_best": 4}}
+	cv.chapter_i = 2
+	cv.show_map()
 	await get_tree().create_timer(0.8).timeout
 	await _shot("09_course_chapters")
-	# 2) a lesson card
-	var cv: CourseView = v.course_view
-	cv.chapter_i = 2
+	# 2) an animated story scene (attention arcs, mid-story)
 	cv.open_lesson("3.3")
-	await get_tree().create_timer(1.0).timeout
 	cv.card_i = 1
 	cv._show_card()
-	await get_tree().create_timer(1.2).timeout
+	cv._halt()
+	cv._play_beat(3)
+	cv.playing = false
+	await get_tree().create_timer(1.6).timeout
 	await _shot("10_course_lesson")
 	# 3) the lesson quiz
 	cv._start_quiz()
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.5).timeout
 	cv._answer(String(cv._lesson_quiz()[0]["answer"]), cv._lesson_quiz()[0])
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.35).timeout
 	await _shot("11_course_quiz")
+	cv.progress = saved
+	cv._save_progress()
 	print("screenshots written to ", OUT_DIR)
 	await get_tree().create_timer(0.4).timeout
 	get_tree().quit()

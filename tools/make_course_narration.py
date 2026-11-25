@@ -40,8 +40,13 @@ def collect() -> "list[str]":
         for l in ch["lessons"]:
             for c in l["cards"]:
                 add(c.get("say", ""))
+                for b in c.get("scene", {}).get("beats", []):   # the guide robot's lines in story mode
+                    add(b.get("cap", ""))
     for q in course["quiz"]:
         add(q.get("why", ""))
+    for t in ("Amazing work! You finished this lesson.",
+              "Well done for finishing! Watch it again any time to collect more stars."):
+        add(t)
     return lines
 
 
@@ -70,9 +75,24 @@ async def main() -> None:
         if force or not os.path.exists(os.path.join(OUT, k + ".mp3")):
             todo.append((t, k))
     print("course lines: %d   to create: %d   (voice %s)" % (len(lines), len(todo), VOICE))
-    for i, (t, k) in enumerate(todo, 1):
-        await synth(t, os.path.join(OUT, k + ".mp3"), os.path.join(OUT, k + ".json"))
-        print("  %3d/%d  %s  %s" % (i, len(todo), k, t[:70].encode("ascii", "replace").decode()), flush=True)
+    sem = asyncio.Semaphore(6)       # a few requests in parallel
+    done = [0]
+
+    async def one(t, k):
+        async with sem:
+            for attempt in range(4):
+                try:
+                    await synth(t, os.path.join(OUT, k + ".mp3"), os.path.join(OUT, k + ".json"))
+                    break
+                except Exception as e:
+                    if attempt == 3:
+                        print("  FAILED", k, e, flush=True)
+                    await asyncio.sleep(2 + attempt * 3)
+            done[0] += 1
+            if done[0] % 50 == 0 or done[0] == len(todo):
+                print("  %d/%d" % (done[0], len(todo)), flush=True)
+
+    await asyncio.gather(*(one(t, k) for t, k in todo))
     print("done")
 
 
